@@ -1,0 +1,249 @@
+* {
+  /* background-color: black; */
+}
+
+.entire-page{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid greenyellow; */
+  height: 100vh;
+
+}
+
+#login-header {
+  font-weight: 800;
+  color: black;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  /* border: 1px solid red; */
+}
+.form-and-img-container{
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  /* border: 1px solid blue; */
+  width: 815px;
+  /* height: 565px; */
+  margin-top: 55px;
+  margin-bottom: 75px;
+  /* padding: 10px; */
+}
+
+.img-container{
+  position: relative;
+  /* border: 1px solid seagreen; */
+  width: 47%;
+  height: 98%;
+}
+
+.phone-image{
+  /* border: 1px solid aqua; */
+  /* position: absolute; */
+  width: 100%;
+  z-index: -1;
+}
+
+.crossfade-container{
+  position: absolute;
+  top: 23px;
+  right: 19px;
+  z-index: -1;
+}
+
+
+.logo-container{
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* border: 1px solid magenta; */
+  height: 133px;
+  width: 350px;
+}
+
+.logo{
+  /* border: 1px solid orange; */
+  display: flex;
+  justify-content: center;
+  height: 80px;
+  width: 174px;
+  background-image: url('../../../images/Bobogram-No-Fish-Logo.png');
+  background-size: contain;
+}
+
+.logo:hover{
+  background-image: url('../../../images/Bobogram-Fish-Logo.png');
+}
+
+.complete-form-container{
+  /* border: 1px solid pink; */
+  margin: 15px;
+  height: fit-content;
+  width: 350px;
+}
+
+.main-form-container{
+  border: 1px solid rgba(158, 158, 158, 0.532);
+  margin-bottom: 10px;
+  height: 396px;
+  width: 100%;
+  background-color: white;
+}
+
+.form-container-2{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 63px;
+  width: 100%;
+  /* border: 1px solid orange; */
+  border: 1px solid rgba(158, 158, 158, 0.532);
+  background-color: white;
+  font-size: 16px;
+}
+
+.form-container-3{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 57px;
+  width: 100%;
+  /* border: 1px solid purple; */
+  font-size: 16px;
+}
+
+.form-container-4{
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  height: 40px;
+  width: 100%;
+  /* border: 1px solid green; */
+}
+
+.little-footer{
+  display: flex;
+  border: 1px solid purple;
+  width: 100%;
+  height: 100%;
+  bottom: 0;
+}
+
+.store-links{
+  width: 135px;
+}
+
+.login-fields-and-btns {
+  /* border: 1px solid hotpink; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-fields {
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: black;
+  margin-top: 134px;
+}
+
+.login-input-box {
+  height: 38px;
+  width: 270px;
+  padding: 10px;
+  border-radius: 2px;
+  border: .5px solid rgba(110, 110, 110, 0.532);
+  background-color: #fafafa;
+  margin-bottom: 6px;
+}
+
+.login-input-box:focus{
+  height: 38px;
+  width: 270px;
+  padding: 10px;
+  border-radius: 2px;
+  border: none;
+  outline-color: rgba(81, 81, 81, 0.532);
+  outline-width: 1px;
+  outline-style: solid
+}
+
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 8px;
+  height: 30px;
+  width: 270px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(0, 140, 255);
+  font-kerning: 6px;
+}
+
+.login-button-disabled {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  margin-top: 8px;
+  height: 30px;
+  width: 270px;
+  border-radius: 4px;
+  border: none;
+  background-color: rgb(95, 183, 255);
+  font-kerning: 6px;
+}
+
+.password-input-container{
+  display: flex;
+  justify-content: center;
+  /* align-self: center; */
+  position: relative;
+  /* border: 1px solid greenyellow; */
+  width: 270px;
+}
+
+.show-password-btn{
+  font-size: 15px;
+  font-weight: 600;
+  position: absolute;
+  right: 10px;
+  bottom: 13px;
+}
+
+.or-lines{
+  font-size: 12px;
+  margin: 13px 0px;
+  color: rgba(165, 165, 165, 0.532);
+}
+
+#or-word{
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0px 15px;
+  color: rgba(118, 118, 118, 0.532);
+}
+
+.login-input-label {
+  margin-top: 8px;
+  margin-bottom: 4px;
+  font-size: 16px;
+}
+
+#signup-reroute {
+  font-size: 16px;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgba(0, 140, 255, 0.847);
+}

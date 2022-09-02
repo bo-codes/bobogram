@@ -1,0 +1,195 @@
+/* .navBarWrapper{
+  position: relative;
+}
+.navBarDiv1, .navBarDiv2{
+  position: absolute;
+} */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.logo-link {
+    width: 60px;
+    height: 40px;
+    background-image: url("../../../../images/sleepin-cat.png");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.logo-link:hover {
+    width: 60px;
+    height: 40px;
+    background-image: url("../../../../images/sleepin-cat-animated.gif");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    animation-fill-mode: forwards;
+}
+
+.navlink {
+    font-family: "syne";
+    font-size: 13px;
+    /* font-style: bold; */
+    color: #bbbcdb;
+    text-decoration: "none";
+    background-color: transparent;
+    border: none;
+    margin-right: 40px;
+}
+
+.explore-link {
+    background-image: url("../../../../images/explore-icon1-transparent.png");
+    background-size: cover;
+    /* opacity: 70%; */
+    width: 22px;
+    height: 22px;
+}
+
+.explore-link:hover {
+    background-image: url("../../../../images/explore-icon1.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.explore-link-selected {
+    background-image: url("../../../../images/explore-icon1.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.home-link {
+    background-image: url("../../../../images/home-icon-transparent.png");
+    background-size: cover;
+    /* opacity: 70%; */
+    width: 22px;
+    height: 22px;
+}
+
+.home-link:hover {
+    background-image: url("../../../../images/home-icon.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.home-link-selected {
+    background-image: url("../../../../images/home-icon.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.create-link {
+    background-image: url("../../../../images/create-icon-transparent.png");
+    background-size: cover;
+    /* opacity: 70%; */
+    width: 22px;
+    height: 22px;
+}
+
+.create-link:hover {
+    background-image: url("../../../../images/create-icon.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.create-link-selected {
+    background-image: url("../../../../images/create-icon.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.profile-link {
+    background-image: url("../../../../images/profile-icon-transparent.png");
+    background-size: cover;
+    /* opacity: 70%; */
+    width: 22px;
+    height: 22px;
+}
+
+.profile-link:hover {
+    background-image: url("../../../../images/profile-icon.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.profile-link-selected {
+    background-image: url("../../../../images/profile-icon.png");
+    background-size: cover;
+    /* opacity: 100%; */
+    width: 22px;
+    height: 22px;
+}
+
+.navlink:hover, .navlink:focus {
+    color: #f1f3ff;
+    /* font-size: 18px; */
+}
+
+.navBarWrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 7px 10%;
+    border-bottom: 1px solid rgb(75, 75, 97);
+}
+
+.profile-icon {
+    /* background-color: #FF521B; */
+    /* background-image: url('../../images/user\ 2.png'); */
+    background-size: cover;
+    background-position: center;
+    background-repeat: none;
+    height: 24px;
+    width: 24px;
+    margin-right: 0 auto;
+    float: left;
+}
+
+.profile-container:hover .user-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #f1f3ff;
+    float: left;
+    margin-right: 6px;
+}
+
+.profile-container:hover .navlink {
+    color: #f1f3ff;
+}
+
+.user-profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background-color: #65678e;
+    float: left;
+    margin-right: 6px;
+}
+
+.navlink-container {
+    text-decoration: none;
+}

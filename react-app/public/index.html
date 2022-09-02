@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Bobogram</title>
+    <link rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Jost:light,regular,semibold,bold,extrabold,black,bolditalic|Syne:semibold,bold,extrabold|Montserrat:black,blackitalic,extrabold,extrabolditalic,semibold,medium,regular"
+    >
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+  <script>
+    const scrollContainer = document.getElementById("imageCard");
+
+      scrollContainer.addEventListener("wheel", (evt) => {
+        evt.preventDefault();
+        scrollContainer.scrollLeft += evt.deltaY;
+      });
+  </script>
+  <script type="text/javascript">
+    function setHeight(fieldId) {
+      document.getElementById(fieldId).style.height = document.getElementById(fieldId).scrollHeight + 'px';
+    }
+    setHeight('textBox1');
+  </script>
+</html>
