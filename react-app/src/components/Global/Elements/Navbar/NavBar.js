@@ -86,11 +86,13 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink ${
-                      window.location.pathname == "/home"
-                        ? "home-link-selected"
-                        : "home-link"
-                    }`}
+                    className={`navlink home-link`
+                    // ${
+                    //   window.location.pathname == "/home"
+                    //     ? "home-link-selected"
+                    //     : "home-link"
+                    // }`
+                  }
                   ></div>
                 </NavLink>
               </div>
@@ -102,11 +104,13 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink ${
-                      window.location.pathname == "/create"
-                        ? "create-link-selected"
-                        : "create-link"
-                    }`}
+                    className={`navlink create-link`
+                    // ${
+                    //   window.location.pathname == "/create"
+                    //     ? "create-link-selected"
+                    //     : "create-link"
+                    // }`
+                  }
                   ></div>
                 </NavLink>
               </div>
@@ -119,28 +123,32 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink ${
-                      window.location.pathname == "/explore"
-                        ? "explore-link-selected"
-                        : "explore-link"
-                    }`}
+                    className={`navlink explore-link`
+                    // ${
+                    //   window.location.pathname == "/explore"
+                    //     ? "explore-link-selected"
+                    //     : "explore-link"
+                    // }`
+                  }
                   ></div>
                 </NavLink>
               </div>
               <div className="navlink-container">
                 <NavLink
-                  to="/profile"
+                  to="/likes"
                   exact={true}
                   activeClassName="active"
                   style={{ textDecoration: "none" }}
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink ${
-                      window.location.pathname == "/profile"
-                        ? "profile-link-selected"
-                        : "profile-link"
-                    }`}
+                    className={`navlink likes-link`
+                    // ${
+                    //   window.location.pathname == "/likes"
+                    //     ? "likes-link-selected"
+                    //     : "likes-link"
+                    // }`
+                  }
                   ></div>
                 </NavLink>
               </div>

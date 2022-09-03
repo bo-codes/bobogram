@@ -4,18 +4,20 @@
 
 #outermost-card {
   margin: 30px;
-  color: white;
+  color: rgb(0, 0, 0);
   width: 560px;
   height: fit-content;
   /* background-color: #ffffff; */
-  background-color: #2d2d2d;
+  background-color: white;
   /* background-color: #3f3f3f; */
   /* padding: 17px; */
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  /* border-top-left-radius: 8px;
+  border-top-right-radius: 8px; */
+  border-radius: 8px;
+  border: .75px solid rgba(128, 128, 128, 0.54);
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
 }
 
 #postcard {
@@ -32,6 +34,17 @@
 #postcard-image {
   width: 100%;
   height: auto;
+}
+
+.like-count{
+  margin-top: 1px;
+  font-size: 15px;
+  font-weight: 600;
+  /* border: 1px solid blue; */
+  margin-left: 11px;
+  /* width: fit-content; */
+  display: flex;
+  justify-content: start;
 }
 
 .comment-section {
@@ -68,8 +81,10 @@
 }
 
 .post-caption {
+  float: right;
   width: 100%;
-  padding-top: 10px;
+  font-size: 15px;
+  padding-top: 5px;
   padding-bottom: 10px;
   padding-left: 17px;
   padding-right: 17px;
@@ -152,7 +167,7 @@
 
 .post-btns {
   background-color: transparent;
-  margin: 11px 12px;
+  /* margin: 11px 12px; */
 }
 
 .post-username {
@@ -164,10 +179,14 @@
   /* border: 1px solid blue; */
 }
 
+.post-username-2{
+  float: left;
+}
+
 .post-head-container {
   /* border: .1px solid orange; */
   display: flex;
-  height: 50px;
+  height: 56.5px;
   width: 100%;
   /* flex-direction: row; */
   justify-content: space-between;
@@ -175,17 +194,16 @@
 
 
 .show-more {
-  margin-top: 4px;
-  border: 1px solid grey;
+  /* margin-top: 4px; */
   background-color: transparent;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
+  color: rgb(163, 163, 163);
+  font-size: 16px;
+  font-weight: 400;
   padding-left: 4px;
   padding-right: 4px;
   border-radius: 6px;
 }
-
+/*
 .show-more:hover {
   border: 1px solid grey;
   background-color: #5c457191;
@@ -196,7 +214,7 @@
   padding-right: 4px;
   border-radius: 6px;
   cursor: pointer;
-}
+} */
 
 #post-form-container {
   width: 100%;
@@ -205,45 +223,48 @@
 .comment-btns {
   /* border: 1px solid orange; */
   border-top: 1px solid grey;
+  color: black;
   width: 100%;
-  height: 55px;
+  height: 45px;
   display: flex;
-  justify-content: end;
+  justify-content: start;
   align-items: center;
 }
 
 #comment-btn {
   background-image: url('../../../../images/chat-balloon.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 30px;
-  height: 30px;
+  width: 25px;
+  height: 25px;
 }
 
 #heart-btn {
   background-image: url('../../../../images/heart.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
+  width: 25px;
+  height: 25px;
+  margin-left: 12px;
+  margin-right: 15px;
 }
 
 #filled-heart-btn {
   background-image: url('../../../../images/filled-heart-red.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  width: 30px;
-  height: 30px;
-  margin-right: 8px;
+  width: 25px;
+  height: 25px;
+  margin-left: 12px;
+  margin-right: 15px;
 }
 
 .postcard-explore {
   overflow: scroll;
-  background-color: #2d2d2d;
+  background-color: #ffffff;
   margin-bottom: 33px;
 }
 

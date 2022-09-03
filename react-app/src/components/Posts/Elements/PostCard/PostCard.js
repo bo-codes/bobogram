@@ -38,6 +38,7 @@ function PostCard({ post, postComments, likes }) {
   // const likes = useSelector((state) => state.likes) || ""; //Grab likes state
   const user = useSelector((state) => state.session.user) || "";
   const [localDate] = useState(new Date(post.created_at));
+  const postLikes = likes.filter((like) => like.post_id == post.id);
 
   const areWeShowingComments = () => {
     if (showComments) {
@@ -54,12 +55,12 @@ function PostCard({ post, postComments, likes }) {
         <div className="post-username">
           <Link
             to={`/users/${post.user.username}`}
-            style={{ textDecoration: "none", color: "white" }}
+            style={{ textDecoration: "none", color: "black" }}
             className="post-username"
           >
             <div className="post-username">{post.user.username}</div>
           </Link>
-          {user && <Follows profileUsername={post.user.username} />}
+          {/* {user && <Follows profileUsername={post.user.username} />} */}
         </div>
         {/* ------ POST EDIT BUTTON ------ vv*/}
         <div className="edit-post-container">
@@ -87,98 +88,8 @@ function PostCard({ post, postComments, likes }) {
       {/* ----------- POST IMAGE ----------- vv*/}
       <div>
         {post.image_url && (
-          <Link
-            style={{
-              textDecoration: "none",
-              color: "white",
-            }}
-            to={`/posts/${post.id}`}
-          >
-            <img id="postcard-image" src={post.image_url} alt="" />
-          </Link>
+          <img id="postcard-image" src={post.image_url} alt="" />
         )}
-        {/*  POST CAPTION ----- vv*/}
-        {!showCreatePost && !post.image_url && (
-          <div
-            className="post-caption"
-          >
-            <Link
-              style={{
-                textDecoration: "none",
-                color: "white",
-              }}
-              to={`/posts/${post.id}`}
-            >
-              {post.caption.length > 138 ? (
-                <div>
-                  {!showFullCaption ? (
-                    <p>
-                      {post.caption.slice(0, 138)}{" "}
-                      <span>
-                        <button
-                          className="show-more"
-                          onClick={() => setShowFullCaption(true)}
-                        >
-                          ...
-                        </button>
-                      </span>
-                    </p>
-                  ) : (
-                    <p>
-                      {post.caption}{" "}
-                      <span>
-                        <button
-                          className="show-more"
-                          onClick={() => setShowFullCaption(false)}
-                        >
-                          show less
-                        </button>
-                      </span>
-                    </p>
-                  )}
-                </div>
-              ) : (
-                <p>{post.caption}</p>
-              )}
-            </Link>
-          </div>
-        )}
-        {!showCreatePost && post.image_url && (
-          <div className="post-caption">
-            {post.caption.length > 138 ? (
-              <div>
-                {!showFullCaption ? (
-                  <p>
-                    {post.caption.slice(0, 138)}{" "}
-                    <span>
-                      <button
-                        className="show-more"
-                        onClick={() => setShowFullCaption(true)}
-                      >
-                        ...
-                      </button>
-                    </span>
-                  </p>
-                ) : (
-                  <p>
-                    {post.caption}{" "}
-                    <span>
-                      <button
-                        className="show-more"
-                        onClick={() => setShowFullCaption(false)}
-                      >
-                        show less
-                      </button>
-                    </span>
-                  </p>
-                )}
-              </div>
-            ) : (
-              <p>{post.caption}</p>
-            )}
-          </div>
-        )}
-        {/* POST CAPTION ----- ^^*/}
         {/* ----------- EDIT POST BUTTON ----------- vv*/}
         <div id="post-form-container">
           {showCreatePost && (
@@ -203,17 +114,7 @@ function PostCard({ post, postComments, likes }) {
         {/* ----------- EDIT POST BUTTON ----------- ^^*/}
       </div>
       {/* ----------- POST IMAGE ----------- ^^*/}
-
-      {/* ----- POST DATE ----- vv*/}
-      {/* <div className="post-date">
-        <div>{moment(localDate).calendar()}</div>
-      </div> */}
-      {/* ----- POST DATE ----- ^^ */}
-
       <div className="comment-btns">
-        <button className="post-btns" onClick={areWeShowingComments}>
-          <div id="comment-btn"></div>
-        </button>
         {user ? (
           <Like post_id={post.id} user_id={user.id} likes={likes} />
         ) : (
@@ -221,50 +122,106 @@ function PostCard({ post, postComments, likes }) {
             <div id="heart-btn"></div>
           </button>
         )}
+        <button className="post-btns" onClick={areWeShowingComments}>
+          <div id="comment-btn"></div>
+        </button>
       </div>
+      {/* LIKES */}
+      <div className="like-count">{`${postLikes.length} likes`}</div>
+      <div className="post-username-2">
+        <Link
+          to={`/users/${post.user.username}`}
+          style={{ textDecoration: "none", color: "black" }}
+          className="post-username"
+        >
+          <p>{post.user.username}</p>
+        </Link>
+        {/* {user && <Follows profileUsername={post.user.username} />} */}
+      </div>
+      {/*  POST CAPTION ----- vv*/}
+      {!showCreatePost && post.image_url && (
+        <p className="post-caption">
+          {post.caption.length > 138 ? (
+            <div>
+              {!showFullCaption ? (
+                <p>
+                  {post.caption.slice(0, 138)}{" "}
+                  <span>
+                    ...
+                    <button
+                      className="show-more"
+                      onClick={() => setShowFullCaption(true)}
+                    >
+                      more
+                    </button>
+                  </span>
+                </p>
+              ) : (
+                <p>
+                  {post.caption}{" "}
+                  <span>
+                    <button
+                      className="show-more"
+                      onClick={() => setShowFullCaption(false)}
+                    >
+                      less
+                    </button>
+                  </span>
+                </p>
+              )}
+            </div>
+          ) : (
+            <p>{post.caption}</p>
+          )}
+        </p>
+      )}
+      {/* POST CAPTION ----- ^^*/}
       {showLogin && (
         <Modal onClose={() => setShowLogin(false)}>
           <LoginFormPosts setShowLogin={setShowLogin} />
         </Modal>
       )}
-      {showComments && (
-        <div className="create-comment-container">
-          {/* ----------- CREATE COMMENT FORM ----------- vv*/}
-          <CreateCommentForm
-            post={post}
-            setShowCreateComment={setShowCreateComment}
-            userId={user.id}
-            setShowLogin={setShowLogin}
-          />
-          {/* ----------- CREATE COMMENT FORM ----------- ^^*/}
+      <div className="create-comment-container">
+        {/* ----------- CREATE COMMENT FORM ----------- vv*/}
+        <CreateCommentForm
+          post={post}
+          setShowCreateComment={setShowCreateComment}
+          userId={user.id}
+          setShowLogin={setShowLogin}
+        />
+        {/* ----------- CREATE COMMENT FORM ----------- ^^*/}
 
-          {/* ------------ COMMENTS ------------ vv*/}
-          <div className="comment-section">
-            {postComments ? (
-              postComments.map((comment) => {
-                // FOR EACH COMMENT DISPLAY THIS
-                return (
-                  <Comment
-                    style={{
-                      backgroundColor: "red",
-                    }}
-                    className="comment"
-                    key={comment.id}
-                    comment={comment}
-                    post={post}
-                    userId={user.id}
-                  />
-                );
-              })
-            ) : (
-              <div className="no-comment-message">
-                No Comments Yet, Want To Leave One?
-              </div>
-            )}
-          </div>
-          {/* ------------ COMMENTS ------------ ^^*/}
+        {/* ------------ COMMENTS ------------ vv*/}
+        <div className="comment-section">
+          {postComments ? (
+            postComments.map((comment) => {
+              // FOR EACH COMMENT DISPLAY THIS
+              return (
+                <Comment
+                  style={{
+                    backgroundColor: "red",
+                  }}
+                  className="comment"
+                  key={comment.id}
+                  comment={comment}
+                  post={post}
+                  userId={user.id}
+                />
+              );
+            })
+          ) : (
+            <div className="no-comment-message">
+              No Comments Yet, Want To Leave One?
+            </div>
+          )}
         </div>
-      )}
+        {/* ------------ COMMENTS ------------ ^^*/}
+        {/* ----- POST DATE ----- vv*/}
+        <div className="post-date">
+          <div>{moment(localDate).calendar()}</div>
+        </div>
+        {/* ----- POST DATE ----- ^^ */}
+      </div>
     </div>
   );
 }

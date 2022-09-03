@@ -37,7 +37,7 @@ function App() {
         <Route path="/" exact={true}>
           <SplashPage />
         </Route>
-        {/* <Route path="/home" exact={true}>
+        <Route path="/home" exact={true}>
           <NavBar />
           <HomePage />
         </Route>
@@ -52,7 +52,7 @@ function App() {
         <Route path="/explore" exact={true}>
           <NavBar />
           <Posts />
-        </Route> */}
+        </Route>
         {/* <Route path="/explore/users" exact={true}>
           <ExploreUsers />
         </Route> */}

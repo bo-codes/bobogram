@@ -19,6 +19,7 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordShown, setPasswordShown] = useState(false);
+  const [validateInputs, setValidateInputs] = useState();
 
   // CROSSFADE START
   const [curImg, setCurImg] = useState(0);
@@ -47,10 +48,10 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
     setPasswordShown(!passwordShown);
   };
 
-  const validateInputs = () => {
-    if (password.length > 6 && email) return true;
-    else return false;
-  };
+  useEffect(() => {
+    if (password.length >= 6 && email) setValidateInputs(true);
+    else setValidateInputs(false);
+  }, [password, email]);
 
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();

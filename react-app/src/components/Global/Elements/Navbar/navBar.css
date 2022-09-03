@@ -40,16 +40,7 @@
     border: none;
     margin-right: 40px;
 }
-
 .explore-link {
-    background-image: url("../../../../images/explore-icon1-transparent.png");
-    background-size: cover;
-    /* opacity: 70%; */
-    width: 22px;
-    height: 22px;
-}
-
-.explore-link:hover {
     background-image: url("../../../../images/explore-icon1.png");
     background-size: cover;
     /* opacity: 100%; */
@@ -57,23 +48,21 @@
     height: 22px;
 }
 
-.explore-link-selected {
+/* .explore-link-selected {
     background-image: url("../../../../images/explore-icon1.png");
     background-size: cover;
-    /* opacity: 100%; */
     width: 22px;
     height: 22px;
-}
+} */
 
-.home-link {
+/* .home-link {
     background-image: url("../../../../images/home-icon-transparent.png");
     background-size: cover;
-    /* opacity: 70%; */
     width: 22px;
     height: 22px;
-}
+} */
 
-.home-link:hover {
+.home-link {
     background-image: url("../../../../images/home-icon.png");
     background-size: cover;
     /* opacity: 100%; */
@@ -81,61 +70,62 @@
     height: 22px;
 }
 
-.home-link-selected {
-    background-image: url("../../../../images/home-icon.png");
+.likes-link {
+    background-image: url("../../../../images/heart.png");
     background-size: cover;
     /* opacity: 100%; */
     width: 22px;
     height: 22px;
 }
 
-.create-link {
+/* .home-link-selected {
+    background-image: url("../../../../images/home-icon.png");
+    background-size: cover;
+    width: 22px;
+    height: 22px;
+} */
+
+/* .create-link {
     background-image: url("../../../../images/create-icon-transparent.png");
     background-size: cover;
-    /* opacity: 70%; */
     width: 22px;
     height: 22px;
-}
+} */
 
-.create-link:hover {
+.create-link {
     background-image: url("../../../../images/create-icon.png");
     background-size: cover;
-    /* opacity: 100%; */
     width: 22px;
     height: 22px;
 }
 
-.create-link-selected {
+/* .create-link-selected {
     background-image: url("../../../../images/create-icon.png");
     background-size: cover;
-    /* opacity: 100%; */
     width: 22px;
     height: 22px;
-}
+} */
 
-.profile-link {
+/* .profile-link {
     background-image: url("../../../../images/profile-icon-transparent.png");
     background-size: cover;
-    /* opacity: 70%; */
     width: 22px;
     height: 22px;
-}
+} */
 
-.profile-link:hover {
+/* .profile-link:hover {
     background-image: url("../../../../images/profile-icon.png");
     background-size: cover;
-    /* opacity: 100%; */
     width: 22px;
     height: 22px;
-}
+} */
 
-.profile-link-selected {
+/* .profile-link-selected {
     background-image: url("../../../../images/profile-icon.png");
     background-size: cover;
-    /* opacity: 100%; */
     width: 22px;
     height: 22px;
-}
+} */
 
 .navlink:hover, .navlink:focus {
     color: #f1f3ff;
@@ -151,8 +141,6 @@
 }
 
 .profile-icon {
-    /* background-color: #FF521B; */
-    /* background-image: url('../../images/user\ 2.png'); */
     background-size: cover;
     background-position: center;
     background-repeat: none;

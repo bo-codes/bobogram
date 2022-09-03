@@ -55,7 +55,7 @@ function Like({ post_id, user_id = null, likes }) {
   };
 
   return (
-    <div>
+    <>
       {user_id && !like && (
         <>
           <button className="post-btns" onClick={clickButton}>
@@ -68,7 +68,7 @@ function Like({ post_id, user_id = null, likes }) {
           <div id="filled-heart-btn"></div>
         </button>
       )}
-    </div>
+    </>
   );
 }
 

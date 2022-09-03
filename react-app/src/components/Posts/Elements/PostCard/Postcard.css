@@ -8,7 +8,7 @@
   width: 560px;
   height: fit-content;
   /* background-color: #ffffff; */
-  background-color: #2d2d2d;
+  background-color: #ffffff;
   /* background-color: #3f3f3f; */
   /* padding: 17px; */
   border-top-left-radius: 8px;
@@ -30,6 +30,7 @@
 }
 
 #postcard-image {
+  display: block;
   width: 100%;
   height: auto;
 }
@@ -145,7 +146,7 @@
 
 .post-btns {
   background-color: transparent;
-  margin: 11px 12px;
+  /* margin: 11px 12px; */
 }
 
 .post-username {
@@ -168,10 +169,10 @@
 
 
 .show-more {
-  margin-top: 4px;
-  border: 1px solid grey;
+  /* margin-top: 4px; */
+  border: none;
   background-color: transparent;
-  color: white;
+  color: black;
   font-size: 18px;
   font-weight: bold;
   padding-left: 4px;
@@ -179,7 +180,7 @@
   border-radius: 6px;
 }
 
-.show-more:hover {
+/* .show-more:hover {
   border: 1px solid grey;
   background-color: #5c457191;
   color: white;
@@ -189,7 +190,7 @@
   padding-right: 4px;
   border-radius: 6px;
   cursor: pointer;
-}
+} */
 
 #post-form-container {
   width: 100%;
@@ -207,7 +208,7 @@
 
 #comment-btn {
   background-image: url('../../../../images/chat-balloon.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   width: 30px;
@@ -216,7 +217,7 @@
 
 #heart-btn {
   background-image: url('../../../../images/heart.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   width: 30px;
@@ -226,17 +227,17 @@
 
 #filled-heart-btn {
   background-image: url('../../../../images/filled-heart-red.png');
-  background-size: cover;
+  background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
   width: 30px;
   height: 30px;
-  margin-right: 8px;
+  margin-left: 8px;
 }
 
 .postcard-explore {
   overflow: scroll;
-  background-color: #2d2d2d;
+  background-color: #ffffff;
   margin-bottom: 33px;
 }
 

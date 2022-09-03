@@ -181,8 +181,12 @@
   width: 270px;
   border-radius: 4px;
   border: none;
-  background-color: rgb(0, 140, 255);
+  background-color: #3195ff;
   font-kerning: 6px;
+}
+
+.login-button:hover {
+  cursor: pointer;
 }
 
 .login-button-disabled {
@@ -197,7 +201,7 @@
   width: 270px;
   border-radius: 4px;
   border: none;
-  background-color: rgb(95, 183, 255);
+  background-color: #2e9aff48;
   font-kerning: 6px;
 }
 
@@ -216,6 +220,10 @@
   position: absolute;
   right: 10px;
   bottom: 13px;
+}
+
+.show-password-btn:hover{
+  cursor: pointer;
 }
 
 .or-lines{
@@ -241,5 +249,5 @@
   font-size: 16px;
   font-weight: 600;
   text-decoration: none;
-  color: rgba(0, 140, 255, 0.847);
+  color: #3195ff;
 }
