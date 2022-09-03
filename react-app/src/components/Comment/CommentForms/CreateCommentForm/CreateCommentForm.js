@@ -86,7 +86,6 @@ function CreateCommentForm({
           </ul>
         </div>
         <div className="custom-search">
-          <div className="custom-outer-div"></div>
           <div className="text-area-container">
             <TextareaAutosize
               // onKeyUp={adjustTextBox}
@@ -95,18 +94,14 @@ function CreateCommentForm({
               name="content"
               type="text"
               value={content}
-              placeholder={`Tell ${post.user.username} something ...`}
+              placeholder="Add a comment..."
               onChange={(e) => setContent(e.target.value)}
             />
           </div>
-          <div className="custom-outer-div-bottom"></div>
-          {userId ? (
-            <button className="custom-search-button">Reply</button>
+          {userId && content ? (
+            <button className="custom-search-button">Post</button>
           ) : (
-            <button
-              className="custom-search-button"
-              onClick={() => setShowLogin(true)}
-            >
+            <button className="custom-search-button-disabled" disabled>
               Reply
             </button>
           )}

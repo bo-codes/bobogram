@@ -86,12 +86,12 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink home-link`
-                    // ${
-                    //   window.location.pathname == "/home"
-                    //     ? "home-link-selected"
-                    //     : "home-link"
-                    // }`
+                    className={`navlink home-link
+                    ${
+                      window.location.pathname == "/home"
+                        ? "home-link-selected"
+                        : "home-link"
+                    }`
                   }
                   ></div>
                 </NavLink>
@@ -104,12 +104,12 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink create-link`
-                    // ${
-                    //   window.location.pathname == "/create"
-                    //     ? "create-link-selected"
-                    //     : "create-link"
-                    // }`
+                    className={`navlink create-link
+                    ${
+                      window.location.pathname == "/create"
+                        ? "create-link-selected"
+                        : "create-link"
+                    }`
                   }
                   ></div>
                 </NavLink>
@@ -123,12 +123,12 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink explore-link`
-                    // ${
-                    //   window.location.pathname == "/explore"
-                    //     ? "explore-link-selected"
-                    //     : "explore-link"
-                    // }`
+                    className={`navlink explore-link
+                    ${
+                      window.location.pathname == "/explore"
+                        ? "explore-link-selected"
+                        : "explore-link"
+                    }`
                   }
                   ></div>
                 </NavLink>
@@ -142,12 +142,12 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink likes-link`
-                    // ${
-                    //   window.location.pathname == "/likes"
-                    //     ? "likes-link-selected"
-                    //     : "likes-link"
-                    // }`
+                    className={`navlink
+                    ${
+                      window.location.pathname == "/likes"
+                        ? "likes-link-selected"
+                        : "likes-link"
+                    }`
                   }
                   ></div>
                 </NavLink>

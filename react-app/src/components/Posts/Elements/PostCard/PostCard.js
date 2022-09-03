@@ -7,15 +7,12 @@ import { Link } from "react-router-dom";
 // --------COMPONENTS -------- //
 import Comment from "../../../Comment/Elements/Comment/Comment";
 import DeletePostModal from "../../Elements/DeletePostModal/DeletePostModal";
-import Follows from "../../../Follows/Follows";
 // --------FORMS -------- //
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import CreateCommentForm from "../../../Comment/CommentForms/CreateCommentForm/CreateCommentForm";
 import EditPostForm from "../../PostForms/CreatePostForm/EditPostForm";
-import SignUpForm from "../../../auth/SignupForm/SignUpForm";
 // -------- CSS/IMAGES -------- //
 import "./Postcard.css";
-import { addOneLike, getAllLikes } from "../../../../store/likes";
 import Like from "../../../Like/Like";
 
 function PostCard({ post, postComments, likes }) {
@@ -127,7 +124,13 @@ function PostCard({ post, postComments, likes }) {
         </button>
       </div>
       {/* LIKES */}
-      <div className="like-count">{`${postLikes.length} likes`}</div>
+      {postLikes.length >= 1 &&
+        <div className="like-count">
+          {postLikes.length == 1
+            ? `${postLikes.length} like`
+            : `${postLikes.length} likes`}
+        </div>
+      }
       <div className="post-username-2">
         <Link
           to={`/users/${post.user.username}`}
@@ -139,8 +142,8 @@ function PostCard({ post, postComments, likes }) {
         {/* {user && <Follows profileUsername={post.user.username} />} */}
       </div>
       {/*  POST CAPTION ----- vv*/}
-      {!showCreatePost && post.image_url && (
-        <p className="post-caption">
+      {!showCreatePost && (
+        <div className="post-caption">
           {post.caption.length > 138 ? (
             <div>
               {!showFullCaption ? (
@@ -173,7 +176,7 @@ function PostCard({ post, postComments, likes }) {
           ) : (
             <p>{post.caption}</p>
           )}
-        </p>
+        </div>
       )}
       {/* POST CAPTION ----- ^^*/}
       {showLogin && (
@@ -182,6 +185,29 @@ function PostCard({ post, postComments, likes }) {
         </Modal>
       )}
       <div className="create-comment-container">
+        {/* ------------ COMMENTS ------------ vv*/}
+        <div className="comment-section">
+          {postComments.length >= 2
+            ? <div className="view-comments">{`View all ${postComments.length} comments`}</div>
+            : postComments.map((comment) => {
+                // FOR EACH COMMENT DISPLAY THIS
+                return (
+                  <Comment
+                    className="comment"
+                    key={comment.id}
+                    comment={comment}
+                    post={post}
+                    userId={user.id}
+                  />
+                );
+              })}
+        </div>
+        {/* ------------ COMMENTS ------------ ^^*/}
+        {/* ----- POST DATE ----- vv*/}
+        <div className="post-date">
+          <div>{moment(localDate).calendar().toUpperCase()}</div>
+        </div>
+        {/* ----- POST DATE ----- ^^ */}
         {/* ----------- CREATE COMMENT FORM ----------- vv*/}
         <CreateCommentForm
           post={post}
@@ -190,37 +216,6 @@ function PostCard({ post, postComments, likes }) {
           setShowLogin={setShowLogin}
         />
         {/* ----------- CREATE COMMENT FORM ----------- ^^*/}
-
-        {/* ------------ COMMENTS ------------ vv*/}
-        <div className="comment-section">
-          {postComments ? (
-            postComments.map((comment) => {
-              // FOR EACH COMMENT DISPLAY THIS
-              return (
-                <Comment
-                  style={{
-                    backgroundColor: "red",
-                  }}
-                  className="comment"
-                  key={comment.id}
-                  comment={comment}
-                  post={post}
-                  userId={user.id}
-                />
-              );
-            })
-          ) : (
-            <div className="no-comment-message">
-              No Comments Yet, Want To Leave One?
-            </div>
-          )}
-        </div>
-        {/* ------------ COMMENTS ------------ ^^*/}
-        {/* ----- POST DATE ----- vv*/}
-        <div className="post-date">
-          <div>{moment(localDate).calendar()}</div>
-        </div>
-        {/* ----- POST DATE ----- ^^ */}
       </div>
     </div>
   );

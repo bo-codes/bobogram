@@ -5,7 +5,7 @@
 #outermost-card {
   margin: 30px;
   color: rgb(0, 0, 0);
-  width: 560px;
+  width: 470px;
   height: fit-content;
   /* background-color: #ffffff; */
   background-color: white;
@@ -54,7 +54,6 @@
   /* background-color: #3f3f3f; */
   overflow-y: scroll;
   margin-left: 20px;
-  padding-bottom: 28px;
 }
 .comment {
   height: 10%;
@@ -83,9 +82,9 @@
 .post-caption {
   float: right;
   width: 100%;
-  font-size: 15px;
+  font-size: 16px;
   padding-top: 5px;
-  padding-bottom: 10px;
+  padding-bottom: 3px;
   padding-left: 17px;
   padding-right: 17px;
   word-wrap: break-word;
@@ -94,24 +93,23 @@
 }
 
 .post-date {
-  color: #bbbcdb;
-  padding-top: 10px;
-  padding-bottom: 14px;
+  font-size: 10px;
+  color: #a4a4a4;
   padding-left: 17px;
-  border: 1px solid aqua;
+  padding-top: 5px;
+  padding-bottom: 12px;
+  /* border: 1px solid aqua; */
 }
 
-.create-comment-container:first-child {
-  /* background-color: #3f3f3f; */
-  /* width: 660px; */
-  border-top: 1px solid grey;
-}
+/* .create-comment-container:first-child {
+
+} */
 
 .create-comment-container{
   /* background-color: #3f3f3f; */
   width: 100%;
-  min-height: 444px;
-  border-top: .5px solid grey;
+  height: fit-content;
+  /* border-top: .5px solid grey; */
   /* padding-top: 18px; */
 }
 
@@ -175,11 +173,12 @@
   justify-content: center;
   align-items: center;
   margin-left: 10px;
-  font-weight: 400;
+  font-weight: 600;
   /* border: 1px solid blue; */
 }
 
 .post-username-2{
+  /* border: 1px solid greenyellow; */
   float: left;
 }
 
