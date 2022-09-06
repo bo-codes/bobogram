@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeComment } from "../../../../store/comments";
-import { Modal } from "../../../Global/Elements/Modal/index";
+import { Modal } from "../../../Global/Elements/Modal";
 import DeleteCommentModal from "../../Elements/DeleteCommentModal/DeleteCommentModal";
 import "../../Elements/Comment/Comment.css";
 import "./CommentDropdown.css"

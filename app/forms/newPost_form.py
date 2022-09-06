@@ -15,12 +15,17 @@ def caption_required(form, field):
     if len(caption) <= 0:
         raise ValidationError('Caption required.')
 
+def image_required(form, field):
+    image = field.data
+    if len(image) <= 0:
+        raise ValidationError('Image required.')
+
 
 class PostForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     image = StringField(
-        'image')
-    caption = TextAreaField('caption', validators=[caption_required, caption_length])
+        'image', validators=[image_required])
+    caption = TextAreaField('caption')
 
 
 
@@ -28,4 +33,4 @@ class EditPostForm(FlaskForm):
     user_id = IntegerField('user_id', validators=[DataRequired()])
     image = StringField(
         'image')
-    caption = TextAreaField('caption', validators=[caption_required, caption_length])
+    caption = TextAreaField('caption')

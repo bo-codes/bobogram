@@ -102,7 +102,7 @@ function CreateCommentForm({
             <button className="custom-search-button">Post</button>
           ) : (
             <button className="custom-search-button-disabled" disabled>
-              Reply
+              Post
             </button>
           )}
         </div>

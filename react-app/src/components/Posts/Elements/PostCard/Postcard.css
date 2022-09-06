@@ -116,9 +116,9 @@
   position: relative;
   font-size: 22px;
   font-weight: bold;
-  color: white;
+  color: black;
   background-color: transparent;
-  border: none;
+  border: 1px solid red;
   /* float: "right" */
 }
 

@@ -11,7 +11,7 @@ import Follows from "../../../Follows/Follows";
 // --------FORMS -------- //
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import CreateCommentForm from "../../../Comment/CommentForms/CreateCommentForm/CreateCommentForm";
-import EditPostForm from "../../PostForms/CreatePostForm/EditPostForm";
+import EditPostForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
 import SignUpForm from "../../../auth/SignupForm/SignUpForm";
 // -------- CSS/IMAGES -------- //
 import "./Postcard.css";
@@ -124,7 +124,7 @@ function PostCardDetail({ post, postComments=null, likes }) {
       )}
       {/* POST CAPTION ----- ^^*/}
       {/* ----------- EDIT POST BUTTON ----------- vv*/}
-      <div id="post-form-container">
+      {/* <div id="post-form-container">
         {showCreatePost && (
           <Modal onClose={() => setShowCreatePost(false)}>
             <EditPostForm
@@ -143,7 +143,7 @@ function PostCardDetail({ post, postComments=null, likes }) {
             />
           </Modal>
         )}
-      </div>
+      </div> */}
       {/* ----------- EDIT POST BUTTON ----------- ^^*/}
       <div className="comment-btns">
         {/* <button className="post-btns" onClick={areWeShowingComments}>
@@ -157,11 +157,11 @@ function PostCardDetail({ post, postComments=null, likes }) {
           </button>
         )}
       </div>
-      {showLogin && (
+      {/* {showLogin && (
         <Modal onClose={() => setShowLogin(false)}>
           <LoginFormPosts setShowLogin={setShowLogin} />
         </Modal>
-      )}
+      )} */}
         <div className="create-comment-container">
           {/* ----------- CREATE COMMENT FORM ----------- vv*/}
           <CreateCommentForm

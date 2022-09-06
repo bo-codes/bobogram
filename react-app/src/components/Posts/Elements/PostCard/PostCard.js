@@ -1,7 +1,6 @@
 // IMPORT REACT STUFF --------
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Modal } from "../../../Global/Elements/Modal";
 import moment from "moment";
 import { Link } from "react-router-dom";
 // --------COMPONENTS -------- //
@@ -10,17 +9,21 @@ import DeletePostModal from "../../Elements/DeletePostModal/DeletePostModal";
 // --------FORMS -------- //
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import CreateCommentForm from "../../../Comment/CommentForms/CreateCommentForm/CreateCommentForm";
-import EditPostForm from "../../PostForms/CreatePostForm/EditPostForm";
+import EditPostForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
 // -------- CSS/IMAGES -------- //
 import "./Postcard.css";
 import Like from "../../../Like/Like";
+import OwnPostOptionsForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
+import { Modal } from "../../../Global/Elements/Modal";
+import PostOptionsForm from "../../PostForms/CreatePostForm/PostOptionsForm";
 
 function PostCard({ post, postComments, likes }) {
   // console.log("POST LIKES BEFORE EVEN RETURNING", likes);
   const dispatch = useDispatch();
   // -------- SETTING STATES ------- //
   // SHOWING OR HIDING THE EDIT POST MODAL
-  const [showCreatePost, setShowCreatePost] = useState(false);
+  const [showPostOptions, setShowPostOptions] = useState(false);
+  const [showOwnPostOptions, setShowOwnPostOptions] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showFullCaption, setShowFullCaption] = useState(false);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
@@ -63,17 +66,25 @@ function PostCard({ post, postComments, likes }) {
         <div className="edit-post-container">
           {post ? (
             // POST EDIT BUTTON
-            // when clicked, setShowCreatePost will toggle to true
+            // when clicked, setShowPostOptions will toggle to true
             <div className="edit-post-button-container">
               {user && post.user_id === user.id && (
                 <button
-                  onClick={() => setShowCreatePost(true)}
+                  onClick={() => setShowPostOptions(true)}
                   className="edit-post-button"
                 >
                   ...
                 </button>
               )}
-              {/* if setShowCreatePost is set to true, then show the modal which holds the post edit form. */}
+              {user && !(post.user_id === user.id) && (
+                <button
+                  onClick={() => setShowPostOptions(true)}
+                  className="edit-post-button"
+                >
+                  ...
+                </button>
+              )}
+              {/* if setShowPostOptions is set to true, then show the modal which holds the post edit form. */}
             </div>
           ) : (
             <h1>Loading Post</h1>
@@ -89,11 +100,20 @@ function PostCard({ post, postComments, likes }) {
         )}
         {/* ----------- EDIT POST BUTTON ----------- vv*/}
         <div id="post-form-container">
-          {showCreatePost && (
-            <Modal onClose={() => setShowCreatePost(false)}>
-              <EditPostForm
+          {showPostOptions && (
+            <Modal onClose={() => setShowPostOptions(false)}>
+              <PostOptionsForm
                 post={post}
-                setShowCreatePost={setShowCreatePost}
+                setShowPostOptions={setShowPostOptions}
+                setShowConfirmDeleteModal={setShowConfirmDeleteModal}
+              />
+            </Modal>
+          )}
+          {showOwnPostOptions && (
+            <Modal onClose={() => setShowOwnPostOptions(false)}>
+              <OwnPostOptionsForm
+                post={post}
+                setShowOwnPostOptions={setShowOwnPostOptions}
                 setShowConfirmDeleteModal={setShowConfirmDeleteModal}
               />
             </Modal>
@@ -124,13 +144,13 @@ function PostCard({ post, postComments, likes }) {
         </button>
       </div>
       {/* LIKES */}
-      {postLikes.length >= 1 &&
+      {postLikes.length >= 1 && (
         <div className="like-count">
           {postLikes.length == 1
             ? `${postLikes.length} like`
             : `${postLikes.length} likes`}
         </div>
-      }
+      )}
       <div className="post-username-2">
         <Link
           to={`/users/${post.user.username}`}
@@ -142,7 +162,7 @@ function PostCard({ post, postComments, likes }) {
         {/* {user && <Follows profileUsername={post.user.username} />} */}
       </div>
       {/*  POST CAPTION ----- vv*/}
-      {!showCreatePost && (
+      {!showPostOptions && (
         <div className="post-caption">
           {post.caption.length > 138 ? (
             <div>
@@ -179,28 +199,30 @@ function PostCard({ post, postComments, likes }) {
         </div>
       )}
       {/* POST CAPTION ----- ^^*/}
-      {showLogin && (
+      {/* {showLogin && (
         <Modal onClose={() => setShowLogin(false)}>
           <LoginFormPosts setShowLogin={setShowLogin} />
         </Modal>
-      )}
+      )} */}
       <div className="create-comment-container">
         {/* ------------ COMMENTS ------------ vv*/}
         <div className="comment-section">
-          {postComments.length >= 2
-            ? <div className="view-comments">{`View all ${postComments.length} comments`}</div>
-            : postComments.map((comment) => {
-                // FOR EACH COMMENT DISPLAY THIS
-                return (
-                  <Comment
-                    className="comment"
-                    key={comment.id}
-                    comment={comment}
-                    post={post}
-                    userId={user.id}
-                  />
-                );
-              })}
+          {postComments.length >= 2 ? (
+            <div className="view-comments">{`View all ${postComments.length} comments`}</div>
+          ) : (
+            postComments.map((comment) => {
+              // FOR EACH COMMENT DISPLAY THIS
+              return (
+                <Comment
+                  className="comment"
+                  key={comment.id}
+                  comment={comment}
+                  post={post}
+                  userId={user.id}
+                />
+              );
+            })
+          )}
         </div>
         {/* ------------ COMMENTS ------------ ^^*/}
         {/* ----- POST DATE ----- vv*/}

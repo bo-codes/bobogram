@@ -4,12 +4,13 @@ import { NavLink, useLocation, useHistory } from "react-router-dom";
 import styled from "styled-components";
 import UserMenu from "./UserMenu";
 import { login } from "../../../../store/session";
-import { Modal } from "../Modal";
+import { Modal } from "../../../Global/Elements/Modal";
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import "./navBar.css";
 
 const NavigationBar = styled.div`
   margin-left: 20vw;
+  margin-right: 3.5vw;
   display: flex;
   flex-direction: row;
   width: 80vw;
@@ -86,13 +87,29 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink home-link
+                    className={`navlink
                     ${
                       window.location.pathname == "/home"
                         ? "home-link-selected"
                         : "home-link"
-                    }`
-                  }
+                    }`}
+                  ></div>
+                </NavLink>
+              </div>
+              <div className="navlink-container">
+                <NavLink
+                  to="/messages"
+                  activeClassName="active"
+                  style={{ textDecoration: "none" }}
+                >
+                  <div
+                    style={{ textDecoration: "none" }}
+                    className={`navlink
+                    ${
+                      window.location.pathname == "/messages"
+                        ? "messages-link-selected"
+                        : "messages-link"
+                    }`}
                   ></div>
                 </NavLink>
               </div>
@@ -104,13 +121,12 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink create-link
+                    className={`navlink
                     ${
                       window.location.pathname == "/create"
                         ? "create-link-selected"
                         : "create-link"
-                    }`
-                  }
+                    }`}
                   ></div>
                 </NavLink>
               </div>
@@ -123,13 +139,12 @@ const NavBar = () => {
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink explore-link
+                    className={`navlink
                     ${
                       window.location.pathname == "/explore"
                         ? "explore-link-selected"
                         : "explore-link"
-                    }`
-                  }
+                    }`}
                   ></div>
                 </NavLink>
               </div>
@@ -147,14 +162,11 @@ const NavBar = () => {
                       window.location.pathname == "/likes"
                         ? "likes-link-selected"
                         : "likes-link"
-                    }`
-                  }
+                    }`}
                   ></div>
                 </NavLink>
               </div>
-              <div>
-                <UserMenu user={user} />
-              </div>
+              <UserMenu user={user} />
             </>
           )}
         </NavigationBar>

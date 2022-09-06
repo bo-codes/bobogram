@@ -11,7 +11,7 @@ import Follows from "../../../Follows/Follows";
 // --------FORMS -------- //
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import CreateCommentForm from "../../../Comment/CommentForms/CreateCommentForm/CreateCommentForm";
-import EditPostForm from "../../PostForms/CreatePostForm/EditPostForm";
+import EditPostForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
 import SignUpForm from "../../../auth/SignupForm/SignUpForm";
 // -------- CSS/IMAGES -------- //
 import "./Postcard.css";
@@ -205,11 +205,11 @@ function PostCardExplore({ post, postComments, likes }) {
           </button>
         )}
       </div>
-      {showLogin && (
+      {/* {showLogin && (
         <Modal onClose={() => setShowLogin(false)}>
           <LoginFormPosts setShowLogin={setShowLogin} />
         </Modal>
-      )}
+      )} */}
     </div>
   );
 }

@@ -1,0 +1,23 @@
+#own-post-options{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  width: 400px;
+}
+
+.own-post-options-button{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: .25px solid grey;
+  padding: 23.75px 0px;
+  width: 300px;
+  /* width: 100%; */
+  background-color: white;
+}
+
+.button-text{
+  font-size: 16px;
+  background-color: transparent;
+}

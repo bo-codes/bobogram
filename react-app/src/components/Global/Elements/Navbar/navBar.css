@@ -38,7 +38,7 @@
     text-decoration: "none";
     background-color: transparent;
     border: none;
-    margin-right: 40px;
+    margin-right: 23px;
 }
 .explore-link {
     background-image: url("../../../../images/explore-icon1.png");
@@ -81,7 +81,7 @@
     background-image: url("../../../../images/heart.png");
     background-size: cover;
     /* opacity: 100%; */
-    width: 22px;
+    width: 25px;
     height: 22px;
 }
 
@@ -89,7 +89,7 @@
     background-image: url("../../../../images/heart-selected.png");
     background-size: cover;
     /* opacity: 100%; */
-    width: 22px;
+    width: 25px;
     height: 22px;
 }
 
@@ -109,6 +109,20 @@
 
 .create-link-selected {
     background-image: url("../../../../images/create-icon-selected.png");
+    background-size: cover;
+    width: 22px;
+    height: 22px;
+}
+
+.messages-link {
+    background-image: url("../../../../images/message-icon.png");
+    background-size: cover;
+    width: 22px;
+    height: 22px;
+}
+
+.messages-link-selected {
+    background-image: url("../../../../images/message-icon-selected.png");
     background-size: cover;
     width: 22px;
     height: 22px;
@@ -154,7 +168,7 @@
     background-repeat: none;
     height: 24px;
     width: 24px;
-    margin-right: 0 auto;
+    margin-right: 0;
     float: left;
 }
 
@@ -162,12 +176,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 15px;
     background-color: #f1f3ff;
     float: left;
-    margin-right: 6px;
+    /* margin-right: 6px; */
 }
 
 .profile-container:hover .navlink {
@@ -178,12 +192,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
     border-radius: 15px;
     background-color: #65678e;
     float: left;
-    margin-right: 6px;
+    /* margin-right: 6px; */
 }
 
 .navlink-container {

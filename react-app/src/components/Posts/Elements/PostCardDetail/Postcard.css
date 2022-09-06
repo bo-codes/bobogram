@@ -38,8 +38,9 @@
 
 .like-count{
   margin-top: 1px;
-  font-size: 15px;
-  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 16px;
+  font-weight: bold;
   /* border: 1px solid blue; */
   margin-left: 11px;
   /* width: fit-content; */
@@ -132,7 +133,7 @@
   position: relative;
   font-size: 22px;
   font-weight: bold;
-  color: white;
+  color: black;
   background-color: transparent;
   border: none;
   /* float: "right" */

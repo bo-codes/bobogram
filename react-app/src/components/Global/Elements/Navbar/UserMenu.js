@@ -22,7 +22,6 @@ const DropDownMenu = styled.div`
 
 const MenuButton = styled.div`
   cursor: pointer;
-  width: 150px;
 `;
 
 function UserMenu({ user }) {
@@ -53,32 +52,23 @@ function UserMenu({ user }) {
   }, [showMenu]);
 
   return (
-    <div className="navlink" style={{ textDecoration: "none" }}>
+    <>
       <MenuButton onClick={openMenu}>
-        <div className="profile-container" style={{ width: "150px" }}>
+        <div className="profile-container">
           <div className="user-profile-container">
-            <div
+            {/* <div
               className="profile-icon"
               style={{
                 backgroundImage: `url(${user.avatar})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "none",
-                height: "24px",
-                width: "24px",
+                height: "20px",
+                width: "20px",
                 marginRight: "0px",
                 float: "left",
               }}
-            ></div>
-          </div>
-          <div
-            className="navlink dropdown"
-            style={{
-              paddingTop: "7px",
-              width: "200px",
-            }}
-          >
-            Welcome, {user.username} !
+            ></div> */}
           </div>
         </div>
       </MenuButton>
@@ -102,7 +92,7 @@ function UserMenu({ user }) {
           </DropDownMenu>
         </div>
       )}
-    </div>
+    </>
   );
 }
 

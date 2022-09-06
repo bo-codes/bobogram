@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 // IMPORT COMPONENTS WE'RE USING --------
-import { Modal } from "../../../Global/Elements/Modal/index";
+import { ModalWithX } from "../../../Global/Elements/Modal";
 import DeleteCommentModal from "../../Elements/DeleteCommentModal/DeleteCommentModal";
 // IMPORT THUNKS WE NEED TO DISPATCH --------
 import { editComment } from "../../../../store/comments";
