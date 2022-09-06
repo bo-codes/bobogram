@@ -112,14 +112,14 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
                 {errors &&
                   errors.map((error) => {
                     let splitError = error.split(":");
-                    let firstPart = splitError[0];
-                    let firstLetter = firstPart[0].toUpperCase();
-                    let secondPart = splitError[1].slice(11, 23);
+                    // let firstPart = splitError[0];
+                    // let firstLetter = firstPart[0].toUpperCase();
+                    // let secondPart = splitError[1].slice(11, 23);
                     return (
                       <li
                         key={error}
                         style={{
-                          color: "white",
+                          color: "black",
                         }}
                       >
                         <span
@@ -186,7 +186,6 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
             <NavLink
               id="signup-reroute"
               to={"/signup"}
-              onClick={() => setShowLogin(false)}
             >
               {" "}
               Sign up

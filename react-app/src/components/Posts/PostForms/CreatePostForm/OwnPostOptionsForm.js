@@ -106,7 +106,9 @@ function OwnPostOptionsForm({
     <div id="own-post-options">
       {/* ----------------------FORM ---------------------- vv*/}
       <div className="own-post-options-button">
-        <button className="button-text">Delete</button>
+        <button className="button-text">
+          <span className="critical-operations">Delete</span>
+        </button>
       </div>
       <div className="own-post-options-button">
         <button className="button-text">Edit</button>

@@ -1,14 +1,15 @@
+from app.forms.signup_form import profile_picture
 from app.models import db, User
 
 
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', password='password')
+        username='Demo', email='demo@aa.io', password='password', full_name='Demo Dominic', profile_picture='https://bobogrambucket.s3.amazonaws.com/6f00f3e66f084737bb2914c52c05c6db.jpg')
     marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
+        username='marnie', email='marnie@aa.io', password='password', full_name='Marnicus Mono', profile_picture='https://bobogrambucket.s3.amazonaws.com/6f00f3e66f084737bb2914c52c05c6db.jpg')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
+        username='bobbie', email='bobbie@aa.io', password='password', full_name='Bobbi Bo-lover', profile_picture='https://bobogrambucket.s3.amazonaws.com/6f00f3e66f084737bb2914c52c05c6db.jpg')
 
     db.session.add(demo)
     db.session.add(marnie)

@@ -7,6 +7,7 @@ import { login } from "../../../../store/session";
 import { Modal } from "../../../Global/Elements/Modal";
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import "./navBar.css";
+import CreatePostForm from "../../../Posts/PostForms/CreatePostForm/CreatePostForm";
 
 const NavigationBar = styled.div`
   margin-left: 20vw;
@@ -28,7 +29,7 @@ const NavBar = () => {
   const currentPage = window.location.href.split("/")[-1];
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const location = useLocation();
+  const [showCreatePostForm, setShowCreatePostForm] = useState(false);
 
   useEffect(() => {
     if (!user) setLoggedIn(false);
@@ -42,6 +43,11 @@ const NavBar = () => {
 
   return (
     <div>
+      {showCreatePostForm && (
+        <Modal onClose={() => setShowCreatePostForm(false)}>
+          <CreatePostForm setShowCreatePostForm={setShowCreatePostForm} />
+        </Modal>
+      )}
       {showLogin && (
         <Modal onClose={() => setShowLogin(false)}>
           <LoginFormPosts setShowLogin={setShowLogin} />
@@ -114,21 +120,20 @@ const NavBar = () => {
                 </NavLink>
               </div>
               <div className="navlink-container">
-                <NavLink
-                  to="/create"
-                  activeClassName="active"
-                  style={{ textDecoration: "none" }}
+                <button
+                  style={{ textDecoration: "none", backgroundColor: 'transparent', marginTop: '6px' }}
+                  onClick={() => setShowCreatePostForm(true)}
                 >
                   <div
                     style={{ textDecoration: "none" }}
                     className={`navlink
                     ${
-                      window.location.pathname == "/create"
+                      showCreatePostForm
                         ? "create-link-selected"
                         : "create-link"
                     }`}
                   ></div>
-                </NavLink>
+                </button>
               </div>
               <div className="navlink-container">
                 <NavLink

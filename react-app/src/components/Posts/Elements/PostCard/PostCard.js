@@ -58,7 +58,8 @@ function PostCard({ post, postComments, likes }) {
             style={{ textDecoration: "none", color: "black" }}
             className="post-username"
           >
-            <div className="post-username">{post.user.username}</div>
+            <img className="post-pfp" src={post.user.profile_picture}/>
+            <div className="post-username-name">{post.user.username}</div>
           </Link>
           {/* {user && <Follows profileUsername={post.user.username} />} */}
         </div>
@@ -70,7 +71,7 @@ function PostCard({ post, postComments, likes }) {
             <div className="edit-post-button-container">
               {user && post.user_id === user.id && (
                 <button
-                  onClick={() => setShowPostOptions(true)}
+                  onClick={() => setShowOwnPostOptions(true)}
                   className="edit-post-button"
                 >
                   ...
@@ -207,7 +208,7 @@ function PostCard({ post, postComments, likes }) {
       <div className="create-comment-container">
         {/* ------------ COMMENTS ------------ vv*/}
         <div className="comment-section">
-          {postComments.length >= 2 ? (
+          {postComments.length > 2 ? (
             <div className="view-comments">{`View all ${postComments.length} comments`}</div>
           ) : (
             postComments.map((comment) => {

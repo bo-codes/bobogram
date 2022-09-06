@@ -71,7 +71,7 @@ function App() {
           <ErrorPage />
         </Route>
       </Switch>
-      <Footer />
+      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

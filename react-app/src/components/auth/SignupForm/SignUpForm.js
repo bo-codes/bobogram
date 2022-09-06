@@ -1,23 +1,43 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
 import { signUp } from "../../../store/session";
+import React, { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Link, NavLink, Redirect } from "react-router-dom";
+
+import appStoreButton from "../../../images/Download-on-the-App-Store-Button.png";
+import googlePlayButton from "../../../images/Get-It-On-Google-Play-Button.png";
+
 import "./SignupForm.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [validateInputs, setValidateInputs] = useState();
+
+  // Password toggle handler
+  const togglePassword = async (e) => {
+    e.preventDefault();
+    // When the handler is invoked
+    // inverse the boolean state of passwordShown
+    setPasswordShown(!passwordShown);
+  };
+
+  useEffect(() => {
+    if (password.length >= 6 && email && username) setValidateInputs(true);
+    else setValidateInputs(false);
+  }, [password, email]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
     // if (password === repeatPassword) {
     const data = await dispatch(
-      signUp(username, email, password, repeatPassword)
+      signUp(username, email, password, fullName)
     );
     if (data) {
       setErrors(data);
@@ -29,6 +49,10 @@ const SignUpForm = () => {
     setUsername(e.target.value);
   };
 
+  const updateFullName = (e) => {
+    setFullName(e.target.value);
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -37,37 +61,35 @@ const SignUpForm = () => {
     setPassword(e.target.value);
   };
 
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
 
   if (user) {
-    return <Redirect to="/explore" />;
+    return <Redirect to="/home" />;
   }
 
   return (
-    <div className="page-container">
-      <div className="form-half">
-        <div className="form-container">
-          <div className="signup-title">SIGN UP</div>
-          <form onSubmit={onSignUp} novalidate="novalidate" className="form">
-            <div className="errors">
+    <div className="entire-page">
+      <div className="form-and-img-container">
+        <div className="complete-form-container">
+          <div className="logo-container">
+            <div className="logo"></div>
+          </div>
+          <form onSubmit={onSignUp} className="main-form-container">
+            <div>
               {/* IF THERE IS A POST, DISPLAY THE TEXT "Update Your Post" AND LIST ANY ERRORS */}
               <ul>
                 {errors &&
                   errors.map((error) => {
                     let splitError = error.split(":");
-                    let firstPart = splitError[0];
-                    let firstLetter = firstPart[0].toUpperCase();
-                    let secondPart = splitError[1].slice(11, 23);
+                    // let firstPart = splitError[0];
+                    // let firstLetter = firstPart[0].toUpperCase();
+                    // let secondPart = splitError[1].slice(11, 23);
                     return (
                       <li
                         key={error}
                         style={{
-                          color: "white",
+                          color: "black",
                         }}
                       >
-                        {/* {firstLetter + firstPart.slice(1) + secondPart} */}
                         <span
                           style={{
                             color: "#9387bc",
@@ -75,70 +97,96 @@ const SignUpForm = () => {
                         >
                           ✖
                         </span>
+                        {/* {firstLetter + firstPart.slice(1) + secondPart} */}
                         {splitError[1]}
                       </li>
                     );
                   })}
               </ul>
             </div>
-            <div style={{padding: '20px'}}>
+            <div className="login-fields-and-btns">
               <div className="login-fields">
-                <label className="login-input-label">
-                  User Name <span style={{ color: "red" }}> *</span>
-                </label>
                 <input
                   className="login-input-box"
-                  type="text"
-                  name="username"
-                  onChange={updateUsername}
-                  value={username}
-                ></input>
-              </div>
-              <div className="login-fields">
-                <label className="login-input-label">
-                  Email<span style={{ color: "red" }}> *</span>
-                </label>
-                <input
-                  className="login-input-box"
-                  type="text"
                   name="email"
-                  onChange={updateEmail}
+                  type="text"
+                  placeholder="Email"
                   value={email}
-                ></input>
-              </div>
-              <div className="login-fields">
-                <label className="login-input-label">
-                  Password<span style={{ color: "red" }}> *</span>
-                </label>
+                  onChange={updateEmail}
+                />
                 <input
                   className="login-input-box"
-                  type="password"
-                  name="password"
-                  onChange={updatePassword}
-                  value={password}
-                ></input>
-              </div>
-              <div className="login-fields">
-                <label className="login-input-label">
-                  Repeat Password<span style={{ color: "red" }}> *</span>
-                </label>
+                  name="fullName"
+                  type="text"
+                  placeholder="Full Name"
+                  value={fullName}
+                  onChange={updateFullName}
+                />
                 <input
                   className="login-input-box"
-                  type="password"
-                  name="confirmPassword"
-                  onChange={updateRepeatPassword}
-                  value={repeatPassword}
-                  required={true}
-                ></input>
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  value={username}
+                  onChange={updateUsername}
+                />
+                <div className="password-input-container">
+                  <input
+                    className="login-input-box"
+                    name="password"
+                    type={passwordShown ? "text" : "password"}
+                    placeholder="Password"
+                    value={password}
+                    onChange={updatePassword}
+                  />
+                  <button
+                    onClick={togglePassword}
+                    className="show-password-btn"
+                  >
+                    {!passwordShown ? "Show" : "Hide"}
+                  </button>
+                </div>
+              </div>
+              {/* LOGIN BUTTON */}
+              {validateInputs && (
+                <button type="submit" className="login-button">
+                  Log In
+                </button>
+              )}
+              {!validateInputs && (
+                <button className="login-button-disabled" disabled>
+                  Log In
+                </button>
+              )}
+              <div className="or-lines">
+                ----------------------------------------{" "}
+                <span id="or-word">OR</span>{" "}
+                -----------------------------------------
               </div>
             </div>
-            <button className="login-button" type="submit">
-              Sign Up
-            </button>
           </form>
+          <div className="form-container-3">Get the app.</div>
+          <div className="form-container-4">
+            <Link
+              to={{
+                pathname: "https://www.bo-codes.co",
+              }}
+              target="_blank"
+            >
+              <img src={appStoreButton} className="store-links" />
+            </Link>
+            <Link
+              to={{
+                pathname: "https://www.bo-codes.co",
+              }}
+              target="_blank"
+            >
+              <img src={googlePlayButton} className="store-links" />
+            </Link>
+          </div>
         </div>
       </div>
-      <div className="image-half"></div>
+      <div className="little-footer"></div>
     </div>
   );
 };

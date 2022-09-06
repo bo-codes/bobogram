@@ -56,19 +56,20 @@ function UserMenu({ user }) {
       <MenuButton onClick={openMenu}>
         <div className="profile-container">
           <div className="user-profile-container">
-            {/* <div
+            <div
               className="profile-icon"
               style={{
-                backgroundImage: `url(${user.avatar})`,
+                backgroundImage: `url(${user.profile_picture})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 backgroundRepeat: "none",
-                height: "20px",
-                width: "20px",
+                borderRadius: '15px',
+                height: "24px",
+                width: "24px",
                 marginRight: "0px",
                 float: "left",
               }}
-            ></div> */}
+            ></div>
           </div>
         </div>
       </MenuButton>

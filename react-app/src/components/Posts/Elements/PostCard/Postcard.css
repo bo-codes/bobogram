@@ -156,9 +156,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  margin-left: 6px;
   font-weight: 400;
   /* border: 1px solid blue; */
+}
+
+.post-username-name{
+  margin-left: 22px;
 }
 
 .post-head-container {

@@ -21,3 +21,8 @@
   font-size: 16px;
   background-color: transparent;
 }
+
+.critical-operations {
+  font-weight: 600;
+  color: red;
+}

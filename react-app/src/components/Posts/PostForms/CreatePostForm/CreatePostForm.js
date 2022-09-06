@@ -11,7 +11,7 @@ import "../../../auth/SignupForm/SignupForm.css";
 import "./CreatePostForm.css";
 
 // THIS IS OUR POST CREATION/EDIT FORM COMPONENT
-function PostForm({ post = null, setShowCreatePost }) {
+function CreatePostForm({ post = null, setShowCreatePost }) {
   // SETTING STATES
   const [date, setDate] = useState((post && post.created_at) || "");
   const [image, setImage] = useState((post && post.image_url) || "");
@@ -151,6 +151,14 @@ function PostForm({ post = null, setShowCreatePost }) {
             {/* -------- ERROR DISPLAY -------- ^^*/}
 
             {/* ----- IMAGE INPUT ----- vv*/}
+            {image ? (
+              <div
+                className="image-preview"
+                style={{ backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
+              ></div>
+            ) : (
+              <div>No image selected</div>
+            )}
             <div className="input-section">
               <label htmlFor="image-upload-button" className="imput-label">
                 Image
@@ -218,4 +226,4 @@ function PostForm({ post = null, setShowCreatePost }) {
   );
 }
 
-export default PostForm;
+export default CreatePostForm;

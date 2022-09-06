@@ -38,7 +38,7 @@
 
 .like-count{
   margin-top: 1px;
-  margin-bottom: 4px;
+  margin-bottom: 3px;
   font-size: 16px;
   font-weight: bold;
   /* border: 1px solid blue; */
@@ -173,7 +173,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 10px;
+  /* margin-left: 10px; */
   font-weight: 600;
   /* border: 1px solid blue; */
 }
@@ -274,4 +274,9 @@
 
 .explore-caption {
   padding: 11px;
+}
+
+.post-pfp{
+  width: 30px;
+  height: 30px;
 }
