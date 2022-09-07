@@ -65,32 +65,34 @@ function UserMenu({ user }) {
               activeClassName="active"
               className="dropdown-button profile-btn"
             >
-              <div id="usermenu-profile-icon"></div>
-              <div className="dropdown-button-text">Profile</div>
+              <div className="usermenu-profile-icon dropdown"></div>
+              <div className="dropdown-button-text dropdown">Profile</div>
             </NavLink>
             <NavLink
               to="/saved"
               activeClassName="active"
               className="dropdown-button"
             >
-              <div id="usermenu-saved-icon"></div>
-              <div className="dropdown-button-text">Saved</div>
+              <div className="usermenu-saved-icon dropdown"></div>
+              <div className="dropdown-button-text dropdown">Saved</div>
             </NavLink>
             <NavLink
               to="/settings"
               activeClassName="active"
               className="dropdown-button"
             >
-              <div id="usermenu-settings-icon"></div>
-              <div className="dropdown-button-text">Settings</div>
+              <div className="usermenu-settings-icon dropdown"></div>
+              <div className="dropdown-button-text dropdown">Settings</div>
             </NavLink>
             <NavLink
               to="/switch"
               activeClassName="active"
               className="dropdown-button switch-btn"
             >
-              <div id="usermenu-switch-icon"></div>
-              <div className="dropdown-button-text">Switch accounts</div>
+              <div className="usermenu-switch-icon dropdown"></div>
+              <div className="dropdown-button-text dropdown">
+                Switch accounts
+              </div>
             </NavLink>
 
             <LogoutButton className="dropdown-logout-button" />

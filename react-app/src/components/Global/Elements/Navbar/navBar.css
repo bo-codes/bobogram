@@ -235,7 +235,7 @@
     text-decoration: none;
 }
 
-#usermenu-profile-icon{
+.usermenu-profile-icon{
     width: 15px;
     height: 15px;
     background-image: url('../../../../images/usermenu-profile-icon.png');
@@ -243,7 +243,7 @@
     background-repeat: no-repeat;
 }
 
-#usermenu-saved-icon{
+.usermenu-saved-icon{
     width: 15px;
     height: 15px;
     background-image: url('../../../../images/usermenu-saved-icon.png');
@@ -251,7 +251,7 @@
     background-repeat: no-repeat;
 }
 
-#usermenu-settings-icon{
+.usermenu-settings-icon{
     width: 15px;
     height: 15px;
     background-image: url('../../../../images/usermenu-settings-icon.png');
@@ -259,7 +259,7 @@
     background-repeat: no-repeat;
 }
 
-#usermenu-switch-icon{
+.usermenu-switch-icon{
     width: 15px;
     height: 15px;
     background-image: url('../../../../images/usermenu-switch-icon.png');
