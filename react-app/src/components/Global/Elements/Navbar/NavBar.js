@@ -9,17 +9,6 @@ import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePos
 import "./navBar.css";
 import CreatePostForm from "../../../Posts/PostForms/CreatePostForm/CreatePostForm";
 
-const NavigationBar = styled.div`
-  margin-left: 20vw;
-  margin-right: 3.5vw;
-  display: flex;
-  flex-direction: row;
-  width: 80vw;
-  height: 45px;
-  align-items: center;
-  justify-content: end;
-`;
-
 const NavBar = () => {
   const history = useHistory();
   const [showLogin, setShowLogin] = useState(false);
@@ -59,7 +48,7 @@ const NavBar = () => {
             <div className="logo-link"></div>
           </NavLink>
         </div> */}
-        <NavigationBar className="navBarDiv2">
+        <div className="navBarDiv2">
           {!loggedIn && (
             <>
               <div className="navlink-container">
@@ -174,7 +163,7 @@ const NavBar = () => {
               <UserMenu user={user} />
             </>
           )}
-        </NavigationBar>
+        </div>
       </div>
     </div>
   );
