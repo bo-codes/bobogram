@@ -31,7 +31,7 @@
 }
 
 .navlink {
-    font-family: "syne";
+    font-family: proxima-nova, sans-serif;
     font-size: 13px;
     /* font-style: bold; */
     color: #bbbcdb;
@@ -159,7 +159,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 7px 10%;
-    border-bottom: 1px solid rgb(75, 75, 97);
+    border-bottom: 1px solid rgba(175, 175, 175, 0.415);
 }
 
 .profile-icon {
@@ -202,4 +202,79 @@
 
 .navlink-container {
     text-decoration: none;
+}
+
+.dropdown-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    box-shadow: 0 0 4px 5px rgba(191, 191, 191, 0.135);
+    border-radius: 4px;
+    background-color: white;
+    /* border: 2px solid grey; */
+    min-width: 150px;
+    width: 230px;
+    top: 27px;
+    right: -22px;
+    gap: 3px;
+    z-index: 1000;
+}
+
+.dropdown-button {
+    display: flex;
+    align-items: center ;
+    margin-left: 15px;
+    text-decoration: none;
+    margin-bottom: 12px;
+    color: black;
+}
+
+.dropdown-button-text {
+    font-size: 14.5px;
+    margin-left: 13px;
+    text-decoration: none;
+}
+
+#usermenu-profile-icon{
+    width: 15px;
+    height: 15px;
+    background-image: url('../../../../images/usermenu-profile-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#usermenu-saved-icon{
+    width: 15px;
+    height: 15px;
+    background-image: url('../../../../images/usermenu-saved-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#usermenu-settings-icon{
+    width: 15px;
+    height: 15px;
+    background-image: url('../../../../images/usermenu-settings-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+#usermenu-switch-icon{
+    width: 15px;
+    height: 15px;
+    background-image: url('../../../../images/usermenu-switch-icon.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.profile-btn{
+    margin-top: 12px;
+}
+
+.switch-btn{
+    margin-bottom: 8px;
+}
+
+.dropdown-logout-button{
+    border-top: 1px solid rgba(178, 178, 178, 0.536);
 }

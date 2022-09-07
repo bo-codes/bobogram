@@ -15,7 +15,7 @@ const NavigationBar = styled.div`
   display: flex;
   flex-direction: row;
   width: 80vw;
-  height: 40px;
+  height: 45px;
   align-items: center;
   justify-content: end;
 `;

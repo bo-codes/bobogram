@@ -58,7 +58,7 @@ function PostCard({ post, postComments, likes }) {
             style={{ textDecoration: "none", color: "black" }}
             className="post-username"
           >
-            <img className="post-pfp" src={post.user.profile_picture}/>
+            <img className="post-pfp" src={post.user.profile_picture} />
             <div className="post-username-name">{post.user.username}</div>
           </Link>
           {/* {user && <Follows profileUsername={post.user.username} />} */}
@@ -152,54 +152,48 @@ function PostCard({ post, postComments, likes }) {
             : `${postLikes.length} likes`}
         </div>
       )}
-      <div className="post-username-2">
+      <div className="username-caption-container">
         <Link
           to={`/users/${post.user.username}`}
           style={{ textDecoration: "none", color: "black" }}
-          className="post-username"
+          className="post-username-2"
         >
           <p>{post.user.username}</p>
         </Link>
         {/* {user && <Follows profileUsername={post.user.username} />} */}
-      </div>
-      {/*  POST CAPTION ----- vv*/}
-      {!showPostOptions && (
-        <div className="post-caption">
-          {post.caption.length > 138 ? (
-            <div>
-              {!showFullCaption ? (
-                <p>
-                  {post.caption.slice(0, 138)}{" "}
-                  <span>
-                    ...
-                    <button
-                      className="show-more"
-                      onClick={() => setShowFullCaption(true)}
-                    >
-                      more
-                    </button>
-                  </span>
-                </p>
-              ) : (
-                <p>
-                  {post.caption}{" "}
-                  <span>
-                    <button
-                      className="show-more"
-                      onClick={() => setShowFullCaption(false)}
-                    >
-                      less
-                    </button>
-                  </span>
-                </p>
-              )}
-            </div>
-          ) : (
-            <p>{post.caption}</p>
+        {/*  POST CAPTION ----- vv*/}
+          {post.caption.length > 138 && !showFullCaption && (
+            <p className="post-caption">
+              {post.caption.slice(0, 138)}{" "}
+              <span>
+                ...
+                <button
+                  className="show-more"
+                  onClick={() => setShowFullCaption(true)}
+                >
+                  more
+                </button>
+              </span>
+            </p>
           )}
-        </div>
-      )}
-      {/* POST CAPTION ----- ^^*/}
+          {post.caption.length > 138 && showFullCaption && (
+            <p className="post-caption">
+              {post.caption}{" "}
+              <span>
+                <button
+                  className="show-more"
+                  onClick={() => setShowFullCaption(false)}
+                >
+                  less
+                </button>
+              </span>
+            </p>
+          )}
+          {post.caption.length < 138 && (
+            <p className="post-caption">{post.caption}</p>
+          )}
+        {/* POST CAPTION ----- ^^*/}
+      </div>
       {/* {showLogin && (
         <Modal onClose={() => setShowLogin(false)}>
           <LoginFormPosts setShowLogin={setShowLogin} />

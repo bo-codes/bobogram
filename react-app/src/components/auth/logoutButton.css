@@ -1,0 +1,8 @@
+.dropdown-logout-button{
+  background-color: transparent;
+  padding: 9px 0px;
+  font-size: 15px;
+  display: flex;
+  justify-content: start;
+  padding-left: 14.5px;
+}

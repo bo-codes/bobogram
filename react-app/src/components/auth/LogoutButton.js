@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import { Redirect, useHistory } from "react-router-dom";
 
+import './logoutButton.css'
+
 const LogoutButton = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -14,8 +16,12 @@ const LogoutButton = () => {
   };
 
   return (
-    <button className="dropdown" onClick={onLogout} style={{ width: "90px" }}>
-      Logout
+    <button
+      className="dropdown-logout-button"
+      onClick={onLogout}
+
+    >
+      <div>Log Out</div>
     </button>
   );
 };
