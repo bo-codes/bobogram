@@ -43,13 +43,16 @@ const NavBar = () => {
         </Modal>
       )}
       <div className="navBarWrapper">
-        {/* <div className="navBarDiv1">
-          <NavLink to="/" exact={true} activeClassName="navlink navBarDiv1">
+        <div className="navBarDiv1">
+          <NavLink to="/" exact={true}>
             <div className="logo-link"></div>
           </NavLink>
-        </div> */}
+          <div className="logo-dropdown-arrow-container">
+            <div className="logo-dropdown-arrow"></div>
+          </div>
+        </div>
         <div className="navBarDiv2">
-          {!loggedIn && (
+          {/* {!loggedIn && (
             <>
               <div className="navlink-container">
                 <button onClick={demoLogIn} className="navlink">
@@ -71,7 +74,7 @@ const NavBar = () => {
                 </NavLink>
               </div>
             </>
-          )}
+          )} */}
           {loggedIn && user && (
             <>
               <div className="navlink-container">

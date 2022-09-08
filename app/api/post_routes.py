@@ -114,8 +114,22 @@ def get_user_posts(username):
 # ----------- GET FOLLOWED POSTS ----------- vv#
 @post_routes.route('/feed/<int:userId>')
 @login_required
+# def feed_posts(userId):
+#     posts = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == userId)
+#     data = [post.to_dict() for post in posts]
+#     return {'posts': data}
 def feed_posts(userId):
-    posts = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == userId)
+    followed = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == userId)
+    own = Post.query.filter_by(user_id=userId)
+    posts = followed.union(own).order_by(Post.created_at.desc())
     data = [post.to_dict() for post in posts]
     return {'posts': data}
+
 # ----------- GET FOLLOWED POSTS ----------- ^^#
+
+# def feed_posts(userId):
+#     followed = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == userId)
+#     own = Post.query.filter_by(user_id=userId)
+#     posts = followed.union(own).order_by(Post.created_at.desc())
+#     data = [post.to_dict() for post in posts]
+#     return {'posts': data}

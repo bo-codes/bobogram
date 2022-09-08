@@ -10,7 +10,6 @@ import { getAllPostsThunk } from "../../../store/posts";
 import { getAllLikes } from "../../../store/likes";
 // -------- CSS/IMAGES -------- //
 import "./ExplorePage.css";
-import "./images.css";
 import PostCardExplore from "../../Posts/Elements/PostCard/PostCardExplore";
 
 function Posts({}) {
