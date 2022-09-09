@@ -26,7 +26,6 @@ def validation_errors_to_error_messages(validation_errors):
 def get_posts():
     posts = Post.query.all()
     data = [post.to_dict() for post in posts]
-    # print("\n\n\n", data, "\n\n\n", "DATAAAAAAAA")
     return {'posts': data}
 # ----------- GET POSTS ----------- ^^#
 #
@@ -36,8 +35,6 @@ def get_posts():
 def get_one_post(postId):
     posts = Post.query.filter(Post.id == postId)
     data = [post.to_dict() for post in posts]
-    # print("\n\n\n", data, "\n\n\n", "DATAAAAAAAA")
-    print("\n\n\n\n",data, "\n\n\n\n")
     return {'post': data}
 # ----------- GET ONE POST ----------- ^^#
 #
@@ -112,15 +109,15 @@ def get_user_posts(username):
 
 
 # ----------- GET FOLLOWED POSTS ----------- vv#
-@post_routes.route('/feed/<int:userId>')
+@post_routes.route('/feed/')
 @login_required
 # def feed_posts(userId):
 #     posts = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == userId)
 #     data = [post.to_dict() for post in posts]
 #     return {'posts': data}
-def feed_posts(userId):
-    followed = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == userId)
-    own = Post.query.filter_by(user_id=userId)
+def feed_posts():
+    followed = Post.query.join(follows, (follows.c.followed_id == Post.user_id)).filter(follows.c.follower_id == current_user.id)
+    own = Post.query.filter_by(user_id=current_user.id)
     posts = followed.union(own).order_by(Post.created_at.desc())
     data = [post.to_dict() for post in posts]
     return {'posts': data}

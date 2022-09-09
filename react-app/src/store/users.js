@@ -39,6 +39,16 @@ export const thunkGetUser = (username) => async (dispatch) => {
   }
 };
 
+export const thunkGetAllUsers = () => async (dispatch) => {
+  const response = await fetch(`/api/users/`);
+
+  if (response.ok) {
+    const users = await response.json();
+    dispatch(actionGetAllUsers(users));
+    return users;
+  }
+};
+
 export const destroyUser = (userId) => async (dispatch) => {
   const response = await fetch(`/api/auth/dashboard/${userId}`, {
     method: "DELETE",
@@ -90,7 +100,6 @@ const userReducer = (state = initialState, action) => {
       newState = {};
       newState[action.user.username] = action.user;
       return newState;
-
     case GET_ALL_USERS:
       newState = {};
       // console.log("ACTION", action);

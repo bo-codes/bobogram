@@ -31,7 +31,7 @@ const NavBar = () => {
   };
 
   return (
-    <div>
+    <div className="entire-navBar">
       {showCreatePostForm && (
         <Modal onClose={() => setShowCreatePostForm(false)}>
           <CreatePostForm setShowCreatePostForm={setShowCreatePostForm} />

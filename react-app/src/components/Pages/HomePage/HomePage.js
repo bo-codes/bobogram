@@ -8,6 +8,7 @@ import PostCard from "../../Posts/Elements/PostCard/PostCard";
 import { getAllCommentsThunk } from "../../../store/comments";
 import { getAllPostsThunk, thunkGetFeedPosts } from "../../../store/posts";
 import { getAllLikes } from "../../../store/likes";
+import { thunkGetAllUsers } from "../../../store/users";
 // -------- CSS/IMAGES -------- //
 
 function HomePage({}) {
@@ -27,32 +28,35 @@ function HomePage({}) {
   useEffect(() => {
     // console.log(likes);
     // GET ALL POSTS
-    dispatch(thunkGetFeedPosts(user.id));
+    dispatch(thunkGetFeedPosts());
     // GET ALL COMMENTS
     dispatch(getAllCommentsThunk());
     // GET ALL LIKES
     dispatch(getAllLikes());
+    dispatch(thunkGetAllUsers())
   }, [dispatch]);
 
   return (
     <main>
       <div className="post-list">
         <div className="suggested-users">
-          {/* <h3>Suggested Users:</h3> */}
-          {/* {shuffledUsers.slice(0, 5).map((listedUser) => {
+          <h3>Suggested Users:</h3>
+          {users.slice(0, 5).map((user) => {
             return (
-              <div key={listedUser.id}>
-                <NavLink to={`/${listedUser.username}`}>
-                  <img src={listedUser.profile_pic}></img>
-                  <div>{listedUser.username}</div>
+              <div key={user.id}>
+                <NavLink to={`/${user.username}`}>
+                  <img src={user.profile_picture}></img>
+                  <div>{user.username}</div>
                 </NavLink>
               </div>
             );
-          })} */}
+          })}
         </div>
         {/* CHECK IF THERE ARE POSTS SO THAT THE USESELECTOR DOESNT MESS US UP */}
         {posts &&
-          posts.map((post) => {
+          posts.sort((a, b) => {
+                return new Date(b.created_at) - new Date(a.created_at);
+              }).map((post) => {
             // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
             // console.log(likes, "LIKES BEFORE EVEN FILTERING");
             let postComments = comments.filter((comment) => {

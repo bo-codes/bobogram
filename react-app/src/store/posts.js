@@ -195,8 +195,8 @@ export const getOneUserPostsThunk = (username) => async (dispatch) => {
   }
 };
 
-export const thunkGetFeedPosts = (userId) => async (dispatch) => {
-  const response = await fetch(`/api/posts/feed/${userId}`);
+export const thunkGetFeedPosts = () => async (dispatch) => {
+  const response = await fetch(`/api/posts/feed/`);
 
   if (response.ok) {
     const feedPosts = await response.json();

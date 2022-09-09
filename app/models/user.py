@@ -85,3 +85,7 @@ class User(db.Model, UserMixin):
     def is_following(self, user):
         return self.followed.filter(
             follows.c.followed_id == user.id).count() > 0
+
+    def is_not_following(self, user):
+        return self.followed.filter(
+            follows.c.followed_id == user.id).count() <= 0

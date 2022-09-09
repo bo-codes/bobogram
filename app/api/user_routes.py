@@ -1,7 +1,7 @@
 from crypt import methods
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, db
+from app.models import User, db, follows
 from flask_wtf.csrf import validate_csrf
 
 user_routes = Blueprint('users', __name__)
@@ -21,8 +21,11 @@ def validation_errors_to_error_messages(validation_errors):
 @login_required
 def users():
     users = User.query.all()
-    print("\n\n\n\ USERS HERE \n\n\n", users, "\n\n\n")
-    return {'users': [user.to_dict_short() for user in users]}
+    not_followed = []
+    for user in users:
+        if current_user.is_not_following(user) and user.id != current_user.id:
+            not_followed.append(user)
+    return {'users': [user.to_dict_short() for user in not_followed]}
 
 
 @user_routes.route('/profile/<username>')
@@ -40,8 +43,6 @@ def search_user(searchword):
 
 
 # FOLLOWS
-
-
 @user_routes.route('/<username>/follow', methods=['PUT'])
 @login_required
 def follow(username):

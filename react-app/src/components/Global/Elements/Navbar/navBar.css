@@ -131,12 +131,18 @@
     height: 22px;
 }
 
+.entire-navBar{
+    display: flex;
+    justify-content: center;
+    padding: 7px 0px;
+    border-bottom: 1px solid rgba(175, 175, 175, 0.415);
+}
+
 .navBarWrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 7px 24%;
-    border-bottom: 1px solid rgba(175, 175, 175, 0.415);
+    width: 930px;
 }
 
 .profile-icon {
