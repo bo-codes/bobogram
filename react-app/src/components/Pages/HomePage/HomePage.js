@@ -11,6 +11,7 @@ import { getAllLikes } from "../../../store/likes";
 import { thunkGetAllUsers, thunkGetUser } from "../../../store/users";
 // -------- CSS/IMAGES -------- //
 import './HomePage.css'
+import Follows from "../../Follows/Follows";
 
 function HomePage({}) {
   const dispatch = useDispatch();
@@ -56,17 +57,37 @@ function HomePage({}) {
                 </Link>
                 <h3 className="current-user-full-name">{user.full_name}</h3>
               </div>
+              <Link
+              to={{
+                pathname: "https://www.bo-codes.co",
+              }}
+              target="_blank" className="other-work-text">
+                Other Work
+              </Link>
             </div>
             <h2 className="suggestions-for-you-title">
               Suggestestions For You
             </h2>
             {users.slice(0, 5).map((user) => {
               return (
-                <div key={user.id}>
-                  <NavLink to={`/${user.username}`}>
-                    <img src={user.profile_picture}></img>
-                    <div>{user.username}</div>
-                  </NavLink>
+                <div className="user-bar" key={user.id}>
+                  <Link to={`/${user.username}`} exact={true}>
+                    <img
+                      className="user-profile-picture"
+                      src={user.profile_picture}
+                    />
+                  </Link>
+                  <div className="user-username-and-name">
+                    <Link
+                      to={`/${user.username}`}
+                      exact={true}
+                      style={{ textDecoration: "none", color: "black" }}
+                    >
+                      <h3 className="user-username">{user.username}</h3>
+                    </Link>
+                    <h3 className="user-suggested-for-you">Suggested for you</h3>
+                  </div>
+                  <Follows profileUsername={user.username}  className='user-follow-button'/>
                 </div>
               );
             })}
