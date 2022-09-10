@@ -35,6 +35,9 @@ function HomePage({}) {
     dispatch(getAllCommentsThunk());
     // GET ALL LIKES
     dispatch(getAllLikes());
+  }, [dispatch]);
+
+  useEffect(() => {
     dispatch(thunkGetAllUsers())
   }, [dispatch]);
 
@@ -45,30 +48,33 @@ function HomePage({}) {
         <div className="suggested-users-container">
           <div className="inner-suggestions-container">
             <div className="current-user-bar">
-              <Link to={`/${user.username}`} exact={true}>
-                <img
-                  className="current-user-profile-picture"
-                  src={user.profile_picture}
-                />
-              </Link>
-              <div className="current-user-username-and-name">
-                <Link to={`/${user.username}`} exact={true} style={{textDecoration: 'none', color: 'black'}}>
-                  <h3 className="current-user-username">{user.username}</h3>
+            {user && (
+              <>
+                <Link to={`/${user.username}`} exact={true}>
+                  <img
+                    className="current-user-profile-picture"
+                    src={user.profile_picture}
+                  />
                 </Link>
-                <h3 className="current-user-full-name">{user.full_name}</h3>
-              </div>
-              <Link
-              to={{
-                pathname: "https://www.bo-codes.co",
-              }}
-              target="_blank" className="other-work-text">
-                Other Work
-              </Link>
+                <div className="current-user-username-and-name">
+                  <Link to={`/${user.username}`} exact={true} style={{textDecoration: 'none', color: 'black'}}>
+                    <h3 className="current-user-username">{user.username}</h3>
+                  </Link>
+                  <h3 className="current-user-full-name">{user.full_name}</h3>
+                </div>
+                <Link
+                to={{
+                  pathname: "https://www.bo-codes.co",
+                }}
+                target="_blank" className="other-work-text">
+                  Other Work
+                </Link>
+              </>)}
             </div>
             <h2 className="suggestions-for-you-title">
               Suggestestions For You
             </h2>
-            {users.slice(0, 5).map((user) => {
+            {shuffledUsers && (shuffledUsers.slice(0, 5).map((user) => {
               return (
                 <div className="user-bar" key={user.id}>
                   <Link to={`/${user.username}`} exact={true}>
@@ -90,7 +96,7 @@ function HomePage({}) {
                   <Follows profileUsername={user.username}  className='user-follow-button'/>
                 </div>
               );
-            })}
+            }))}
           </div>
         </div>
         {/* </div> */}

@@ -37,32 +37,32 @@ function App() {
         <Route path="/" exact={true}>
           <SplashPage />
         </Route>
-        <Route path="/home" exact={true}>
+        <ProtectedRoute path="/home" exact={true}>
           <NavBar />
           <HomePage />
-        </Route>
-        <Route path="/profile" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/profile" exact={true}>
           <NavBar />
           <ProfilePage />
-        </Route>
-        <Route path="/users">
+        </ProtectedRoute>
+        <ProtectedRoute path="/users">
           <NavBar />
           <UsersProfilePage />
-        </Route>
-        <Route path="/explore" exact={true}>
+        </ProtectedRoute>
+        <ProtectedRoute path="/explore" exact={true}>
           <NavBar />
           <Posts />
-        </Route>
-        {/* <Route path="/explore/users" exact={true}>
+        </ProtectedRoute>
+        {/* <ProtectedRoute path="/explore/users" exact={true}>
           <ExploreUsers />
-        </Route> */}
-        <Route path="/posts">
+        </ProtectedRoute> */}
+        <ProtectedRoute path="/posts">
           <NavBar />
           <PostDetailPage />
-        </Route>
-        {/* <ProtectedRoute path="/create" exact={true}>
+        </ProtectedRoute>
+        {/* <ProtectedProtectedRoute path="/create" exact={true}>
           <CreatePost />
-        </ProtectedRoute> */}
+        </ProtectedProtectedRoute> */}
         <Route path="/signup" exact={true}>
           <Signup />
         </Route>
