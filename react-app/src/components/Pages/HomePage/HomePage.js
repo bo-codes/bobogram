@@ -1,15 +1,16 @@
 // IMPORT REACT STUFF --------
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 // --------COMPONENTS -------- //
 import PostCard from "../../Posts/Elements/PostCard/PostCard";
 // -------- THUNKS -------- //
 import { getAllCommentsThunk } from "../../../store/comments";
 import { getAllPostsThunk, thunkGetFeedPosts } from "../../../store/posts";
 import { getAllLikes } from "../../../store/likes";
-import { thunkGetAllUsers } from "../../../store/users";
+import { thunkGetAllUsers, thunkGetUser } from "../../../store/users";
 // -------- CSS/IMAGES -------- //
+import './HomePage.css'
 
 function HomePage({}) {
   const dispatch = useDispatch();
@@ -37,44 +38,70 @@ function HomePage({}) {
   }, [dispatch]);
 
   return (
-    <main>
-      <div className="post-list">
-        <div className="suggested-users">
-          <h3>Suggested Users:</h3>
-          {users.slice(0, 5).map((user) => {
-            return (
-              <div key={user.id}>
-                <NavLink to={`/${user.username}`}>
-                  <img src={user.profile_picture}></img>
-                  <div>{user.username}</div>
-                </NavLink>
-              </div>
-            );
-          })}
-        </div>
-        {/* CHECK IF THERE ARE POSTS SO THAT THE USESELECTOR DOESNT MESS US UP */}
-        {posts &&
-          posts.sort((a, b) => {
-                return new Date(b.created_at) - new Date(a.created_at);
-              }).map((post) => {
-            // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
-            // console.log(likes, "LIKES BEFORE EVEN FILTERING");
-            let postComments = comments.filter((comment) => {
-              return parseInt(comment.post_id) === parseInt(post.id);
-            });
-
-            // RETURNING A POST CARD WHICH IS A COMPONENT THAT DETERMINES HOW THE POST IS STRUCTURED
-            return (
-              // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
-              <a key={post.id} name={post.id} id={post.id}>
-                <PostCard
-                  post={post}
-                  postComments={postComments}
-                  likes={likes}
+    <main className="entire-homepage">
+      <div className="homepage-container">
+        {/* <div className="suggested-users-container"> */}
+        <div className="suggested-users-container">
+          <div className="inner-suggestions-container">
+            <div className="current-user-bar">
+              <Link to={`/${user.username}`} exact={true}>
+                <img
+                  className="current-user-profile-picture"
+                  src={user.profile_picture}
                 />
-              </a>
-            );
-          })}
+              </Link>
+              <div className="current-user-username-and-name">
+                <Link to={`/${user.username}`} exact={true} style={{textDecoration: 'none', color: 'black'}}>
+                  <h3 className="current-user-username">{user.username}</h3>
+                </Link>
+                <h3 className="current-user-full-name">{user.full_name}</h3>
+              </div>
+            </div>
+            <h2 className="suggestions-for-you-title">
+              Suggestestions For You
+            </h2>
+            {users.slice(0, 5).map((user) => {
+              return (
+                <div key={user.id}>
+                  <NavLink to={`/${user.username}`}>
+                    <img src={user.profile_picture}></img>
+                    <div>{user.username}</div>
+                  </NavLink>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+        {/* </div> */}
+        {/* <div className="post-list-container"> */}
+        <div className="post-list">
+          {/* CHECK IF THERE ARE POSTS SO THAT THE USESELECTOR DOESNT MESS US UP */}
+          {posts &&
+            posts
+              .sort((a, b) => {
+                return new Date(b.created_at) - new Date(a.created_at);
+              })
+              .map((post) => {
+                // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
+                // console.log(likes, "LIKES BEFORE EVEN FILTERING");
+                let postComments = comments.filter((comment) => {
+                  return parseInt(comment.post_id) === parseInt(post.id);
+                });
+
+                // RETURNING A POST CARD WHICH IS A COMPONENT THAT DETERMINES HOW THE POST IS STRUCTURED
+                return (
+                  // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
+                  <a key={post.id} name={post.id} id={post.id}>
+                    <PostCard
+                      post={post}
+                      postComments={postComments}
+                      likes={likes}
+                    />
+                  </a>
+                );
+              })}
+        </div>
+        {/* </div> */}
       </div>
     </main>
   );

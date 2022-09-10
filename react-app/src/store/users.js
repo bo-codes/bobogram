@@ -98,7 +98,7 @@ const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_SINGLE_USER:
       newState = {};
-      newState[action.user.username] = action.user;
+      newState[action.user.id] = action.user;
       return newState;
     case GET_ALL_USERS:
       newState = {};
