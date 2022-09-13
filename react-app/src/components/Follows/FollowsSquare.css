@@ -29,3 +29,82 @@
   color: white;
   border-radius: 3px;
 }
+
+.user-suggestions-button-opened-pfp{
+  width: 10px;
+  height: 10px;
+  background-image: url('../../images/up-arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.user-suggestions-button-pfp{
+  width: 10px;
+  height: 10px;
+  background-image: url('../../images/down-arrow.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.suggestions-button-pfp{
+  width: 33px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid rgb(196, 196, 196);
+  margin-left: 10px;
+  border-radius: 3px;
+}
+
+.user-suggestions-button-opened-pfp-blue{
+  width: 10px;
+  height: 10px;
+  background-image: url('../../images/up-arrow-blue.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.user-suggestions-button-pfp-blue{
+  width: 10px;
+  height: 10px;
+  background-image: url('../../images/down-arrow-blue.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.suggestions-button-pfp-blue{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3195ff;
+  margin-left: 10px;
+  border-radius: 3px;
+}
+
+.follow-button-container{
+  display: flex;
+  height: 30px;
+}
+
+.user-options-button-pfp-container{
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  margin-left: 13px;
+  border-radius: 3px;
+}
+
+.user-options-button-pfp{
+  width: 22px;
+  height: 22px;
+  background-image: url('../../images/other.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}

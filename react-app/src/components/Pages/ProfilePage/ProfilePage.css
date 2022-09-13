@@ -53,7 +53,7 @@
 }
 
 .btns-profile-page{
-  border: 1px solid red;
+  /* border: 1px solid red; */
   margin-left: 27px;
   margin-top: 5px;
 }
@@ -94,4 +94,18 @@
 
 .btn-profile-page{
 
+}
+
+.second-section-container{
+  border: 1px solid rgba(255, 166, 0, 0.219);
+  width: 100%;
+  height: 225px;
+  display: flex;
+  justify-content: center;
+}
+
+.suggestions-box-pfp{
+  height: 100%;
+  max-width: 999px;
+  width: 999px;
 }

@@ -5,7 +5,11 @@ import { thunkFollow, thunkUnfollow } from "../../store/session";
 import { thunkGetUser } from "../../store/users";
 import "./FollowsSquare.css";
 
-const FollowsSquare = ({ profileUsername }) => {
+const FollowsSquare = ({
+  profileUsername,
+  setShowSuggestions,
+  showSuggestions,
+}) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -50,22 +54,66 @@ const FollowsSquare = ({ profileUsername }) => {
     // }
   };
 
+  const suggestionsButton = (e) => {
+    setShowSuggestions(!showSuggestions);
+  };
+
   return (
     <>
       {sessionUser.username === profileUsername && <div></div>}
       {sessionUser.username !== profileUsername && (
         <div>
           {!follow ? (
-            <button
-              onClick={followButton}
-              className="user-follow-button-square"
-            >
-              Follow
-            </button>
+            <div className="follow-button-container">
+              <button
+                onClick={followButton}
+                className="user-follow-button-square"
+              >
+                Follow
+              </button>
+              {showSuggestions ? (
+                <button
+                  onClick={suggestionsButton}
+                  className="suggestions-button-pfp-blue"
+                >
+                  <div className="user-suggestions-button-opened-pfp-blue"></div>
+                </button>
+              ) : (
+                <button
+                  onClick={suggestionsButton}
+                  className="suggestions-button-pfp-blue"
+                >
+                  <div className="user-suggestions-button-pfp-blue"></div>
+                </button>
+              )}
+              <button className="user-options-button-pfp-container">
+                <div className="user-options-button-pfp"></div>
+              </button>
+            </div>
           ) : (
-            <button onClick={unfollowButton} style={{background: 'white'}}>
-              <div className="user-unfollow-button-square"></div>
-            </button>
+            <div className="follow-button-container">
+              <button onClick={unfollowButton} style={{ background: "white" }}>
+                <div className="user-unfollow-button-square"></div>
+              </button>
+              {showSuggestions ? (
+                <button
+                  className="suggestions-button-pfp"
+                  onClick={suggestionsButton}
+                >
+                  <div className="user-suggestions-button-opened-pfp"></div>
+                </button>
+              ) : (
+                <button
+                  onClick={suggestionsButton}
+                  className="suggestions-button-pfp"
+                >
+                  <div className="user-suggestions-button-pfp"></div>
+                </button>
+              )}
+              <button className="user-options-button-pfp-container">
+                <div className="user-options-button-pfp"></div>
+              </button>
+            </div>
           )}
         </div>
       )}

@@ -1,5 +1,5 @@
 // IMPORT REACT STUFF --------
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // --------COMPONENTS -------- //
@@ -23,6 +23,12 @@ function ProfilePage({}) {
   const sessionUser = useSelector((state) => state.session.user);
   const likes = Object.values(useSelector((state) => state.likes));
 
+  const [showSuggestions, setShowSuggestions] = useState(false);
+
+  let followingList = sessionUser.following.map((user) => {
+    return user.username;
+  });
+  
   useEffect(() => {
     // GET ALL COMMENTS
     dispatch(getAllCommentsThunk());
@@ -34,7 +40,7 @@ function ProfilePage({}) {
     dispatch(thunkGetUser(username));
     dispatch(getOneUserPostsThunk(username));
     console.log(sessionUser.following)
-  }, [dispatch, username]);
+  }, [dispatch, username, sessionUser.following]);
 
   if (!user) {
     return null;
@@ -49,9 +55,6 @@ function ProfilePage({}) {
     userPosts = posts.filter((post) => post.user_id === user.id);
   }
 
-  let followingList = sessionUser.following.map((user) => {
-    return user.username
-  })
 
   return (
     <main className="entire-profile-page">
@@ -66,7 +69,7 @@ function ProfilePage({}) {
               <div className="btns-profile-page">
                 {/* <Link>Edit Profile</Link> */}
                 {/* <button></button> */}
-                  <FollowsSquare followingList={followingList} profileUsername={user.username} className='btn-profile-page'/>
+                  <FollowsSquare followingList={followingList} profileUsername={user.username} showSuggestions={showSuggestions} setShowSuggestions={setShowSuggestions} className='btn-profile-page'/>
               </div>
             </div>
             <div className="numbers-profile-page-container">
@@ -86,6 +89,13 @@ function ProfilePage({}) {
           </div>
         </div>
       </div>
+      {showSuggestions && (
+        <div className="second-section-container">
+          <div className="suggestions-box-pfp">
+            suggestions
+          </div>
+        </div>
+      )}
       {userPosts &&
         userPosts.map((post) => {
           // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST

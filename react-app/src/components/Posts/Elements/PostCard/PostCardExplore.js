@@ -53,7 +53,7 @@ function PostCardExplore({ post, postComments, likes }) {
       <div className="post-head-container">
         <div className="post-username">
           <Link
-            to={`/users/${post.user.username}`}
+            to={`/${post.user.username}`}
             style={{ textDecoration: "none", color: "white" }}
             className="post-username"
           >

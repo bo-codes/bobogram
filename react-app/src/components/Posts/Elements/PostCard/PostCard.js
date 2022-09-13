@@ -54,7 +54,7 @@ function PostCard({ post, postComments, likes }) {
       <div className="post-head-container">
         <div className="post-username">
           <Link
-            to={`/users/${post.user.username}`}
+            to={`/${post.user.username}`}
             style={{ textDecoration: "none", color: "black" }}
             className="post-username"
           >
@@ -154,7 +154,7 @@ function PostCard({ post, postComments, likes }) {
       )}
       <div className="username-caption-container">
         <Link
-          to={`/users/${post.user.username}`}
+          to={`/${post.user.username}`}
           style={{ textDecoration: "none", color: "black" }}
           className="post-username-2"
         >
