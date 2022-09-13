@@ -75,7 +75,7 @@ function CreatePostForm({ post = null, setShowCreatePost }) {
 
       // IF THE DISPATCH SUCCESSFULLY CREATES AND RETURNS A POST, THEN RETURN TO END THE FUNCTION
       if (post.id) {
-        history.push(`/profile`);
+        history.push(`/home`);
         return;
       }
     }
@@ -154,7 +154,11 @@ function CreatePostForm({ post = null, setShowCreatePost }) {
             {image ? (
               <div
                 className="image-preview"
-                style={{ backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover' }}
+                style={{
+                  backgroundImage: `url(${image})`,
+                  backgroundRepeat: "no-repeat",
+                  backgroundSize: "cover",
+                }}
               ></div>
             ) : (
               <div>No image selected</div>

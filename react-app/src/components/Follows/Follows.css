@@ -16,3 +16,13 @@
   /* color: rgb(142, 115, 186); */
   font-size: 17px;
 }
+
+.user-follow-button {
+  display: flex;
+  justify-content: flex-start;
+  /* border: 1px solid green; */
+  font-size: 13px;
+  background: transparent;
+  font-weight: bold;
+  color: #3195ff;
+}

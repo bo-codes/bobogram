@@ -45,6 +45,7 @@
 .current-user-profile-picture{
   width: 55px;
   margin-right: 20px;
+  border-radius: 27.5px;
   /* border: 1px solid blue; */
 }
 
@@ -110,6 +111,7 @@ Link{
 .user-profile-picture {
   width: 32.5px;
   margin-right: 13px;
+  border-radius: 16.25px;
   /* border: 1px solid blue; */
 }
 
@@ -150,12 +152,9 @@ Link{
   margin: 0;
 }
 
-.user-follow-button{
-  display: flex;
-  justify-content: flex-start;
-  /* border: 1px solid green; */
-  font-size: 13px;
-  background: transparent;
-  font-weight: bold;
-  color: #3195ff;
+@media (max-width: 999px) {
+  .suggested-users-container{
+    visibility: hidden;
+    width: 0;
+  }
 }

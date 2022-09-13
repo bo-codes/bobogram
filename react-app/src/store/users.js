@@ -18,7 +18,6 @@ const deleteUser = () => ({
   type: DELETE_USER,
 });
 
-
 const actionGetAllUsers = (users) => ({
   type: GET_ALL_USERS,
   users,
@@ -30,7 +29,7 @@ const actionGetSearchedUsers = (users) => ({
 });
 
 export const thunkGetUser = (username) => async (dispatch) => {
-  const response = await fetch(`/api/users/profile/${username}`);
+  const response = await fetch(`/api/users/${username}`);
 
   if (response.ok) {
     const user = await response.json();
@@ -89,16 +88,14 @@ export const thunkEditUser =
     }
   };
 
-
 const initialState = {};
 
 const userReducer = (state = initialState, action) => {
-  // console.log("BEFORE ACTION", action, "ACTION HERE BOZO");
   let newState = { ...state };
   switch (action.type) {
     case GET_SINGLE_USER:
       newState = {};
-      newState[action.user.id] = action.user;
+      newState[action.user.username] = action.user;
       return newState;
     case GET_ALL_USERS:
       newState = {};

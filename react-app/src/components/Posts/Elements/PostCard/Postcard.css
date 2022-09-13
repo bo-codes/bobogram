@@ -24,6 +24,7 @@
 #postcard-image {
   display: block;
   width: 100%;
+  min-width: 470px;
   height: auto;
 }
 
@@ -263,6 +264,7 @@
 .post-pfp {
   width: 30px;
   height: 30px;
+  border-radius: 15px;
 }
 
 .username-caption-container {

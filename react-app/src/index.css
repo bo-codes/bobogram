@@ -30,3 +30,7 @@
     border: none;
     /* background-color: rgb(92, 69, 113); */
   }
+
+  *{
+    font-family: proxima-nova, sans-serif;
+  }

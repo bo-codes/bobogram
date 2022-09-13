@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { thunkFollow, thunkUnfollow } from "../../store/session";
 import { thunkGetUser } from "../../store/users";
-import "./Follows.css";
+import "./FollowsSquare.css";
 
-const Follows = ({ profileUsername }) => {
+const FollowsSquare = ({ profileUsername }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -56,12 +56,15 @@ const Follows = ({ profileUsername }) => {
       {sessionUser.username !== profileUsername && (
         <div>
           {!follow ? (
-            <button onClick={followButton} className="user-follow-button">
+            <button
+              onClick={followButton}
+              className="user-follow-button-square"
+            >
               Follow
             </button>
           ) : (
-            <button onClick={unfollowButton} className="user-follow-button">
-              Unfollow
+            <button onClick={unfollowButton} style={{background: 'white'}}>
+              <div className="user-unfollow-button-square"></div>
             </button>
           )}
         </div>
@@ -70,4 +73,4 @@ const Follows = ({ profileUsername }) => {
   );
 };
 
-export default Follows;
+export default FollowsSquare;

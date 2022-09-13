@@ -1,87 +1,108 @@
 // IMPORT REACT STUFF --------
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { useParams } from "react-router-dom";
 // --------COMPONENTS -------- //
 import PostCard from "../../Posts/Elements/PostCard/PostCard";
 // -------- THUNKS -------- //
 import { getAllCommentsThunk } from "../../../store/comments";
-import { getAllPostsThunk } from "../../../store/posts";
 import { getAllLikes } from "../../../store/likes";
 // -------- CSS/IMAGES -------- //
-import "./HomePage.css";
-import { thunkGetFeedPosts } from "../../../store/posts";
-// import Follows from "../../Follows/Follows";
+import "./ProfilePage.css";
+import { getOneUserPostsThunk } from "../../../store/posts";
+import { thunkGetUser } from "../../../store/users";
+import FollowsSquare from "../../Follows/FollowsSquare";
 
 function ProfilePage({}) {
   const dispatch = useDispatch();
-  // PULLING ALL OF THE INFORMATION FROM OUR STATE
-  // THIS RUNS FIRST BEFORE USEEFFECT FETCHES OUR DATA WHICH IS WHY WE ALWAYS HAVE TO IMPLEMENT
-  // OUR CONDITIONALS (posts && posts.map()) TO HANDLE THE CASES WHERE WE DONT HAVE DATA YET
+  const { username } = useParams();
+
   const posts = Object.values(useSelector((state) => state.posts));
   const comments = Object.values(useSelector((state) => state.comments));
-  const user = useSelector((state) => state.session.user);
-  // const users = useSelector((state) => Object.values(state.user));
+  const user = useSelector((state) => state.user[username]);
+  const sessionUser = useSelector((state) => state.session.user);
   const likes = Object.values(useSelector((state) => state.likes));
+
+  useEffect(() => {
+    // GET ALL COMMENTS
+    dispatch(getAllCommentsThunk());
+    // GET ALL LIKES
+    dispatch(getAllLikes());
+  }, [dispatch, username]);
+
+  useEffect(() => {
+    dispatch(thunkGetUser(username));
+    dispatch(getOneUserPostsThunk(username));
+    console.log(sessionUser.following)
+  }, [dispatch, username]);
+
+  if (!user) {
+    return null;
+  }
+
+  if (!posts) {
+    return null;
+  }
 
   let userPosts;
   if (user) {
     userPosts = posts.filter((post) => post.user_id === user.id);
   }
 
-  // const shuffledUsers = users.sort(() => Math.random() - 0.5);
-
-  // WE ADD DISPATCH TO THE DEPENDENCY ARR SO THAT IT DOESNT RERENDER A MILLION TIMES, I JUST CANT EXPLAIN IT WELL
-  useEffect(() => {
-    // console.log(likes);
-    // GET POSTS
-    if (user) {
-      dispatch(getAllPostsThunk());
-    }
-    // GET ALL COMMENTS
-    dispatch(getAllCommentsThunk());
-    // GET ALL LIKES
-    dispatch(getAllLikes());
-  }, [dispatch, user]);
+  let followingList = sessionUser.following.map((user) => {
+    return user.username
+  })
 
   return (
-    <main>
-      <div className="post-list">
-        <div className="suggested-users">
-          {/* <h3>Suggested Users:</h3> */}
-          {/* {shuffledUsers.slice(0, 5).map((listedUser) => {
-            return (
-              <div key={listedUser.id}>
-                <NavLink to={`/${listedUser.username}`}>
-                  <img src={listedUser.profile_pic}></img>
-                  <div>{listedUser.username}</div>
-                </NavLink>
+    <main className="entire-profile-page">
+      <div className="top-section-container">
+        <div className="top-section">
+          <div className="pfp-profile-page-container">
+            <img src={user.profile_picture} className="pfp-profile-page" />
+          </div>
+          <div className="info-section-profile-page">
+            <div className="name-and-btns-profile-page-container">
+              <div className="name-profile-page">{user.username}</div>
+              <div className="btns-profile-page">
+                {/* <Link>Edit Profile</Link> */}
+                {/* <button></button> */}
+                  <FollowsSquare followingList={followingList} profileUsername={user.username} className='btn-profile-page'/>
               </div>
-            );
-          })} */}
+            </div>
+            <div className="numbers-profile-page-container">
+              <div className="posts-number-profile-page metric">
+                <span className="profile-number">{userPosts.length}</span> posts
+              </div>
+              <div className="followers-number-profile-page metric">
+                <span className="profile-number">{user.followers.length}</span>{" "}
+                followers
+              </div>
+              <div className="following-number-profile-page metric">
+                <span className="profile-number">{user.following.length}</span>{" "}
+                following
+              </div>
+            </div>
+            <div className="user-full-name-profile-page">{user.full_name}</div>
+          </div>
         </div>
-        {/* CHECK IF THERE ARE POSTS SO THAT THE USESELECTOR DOESNT MESS US UP */}
-        {userPosts &&
-          userPosts.map((post) => {
-            // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
-            // console.log(likes, "LIKES BEFORE EVEN FILTERING");
-            let postComments = comments.filter((comment) => {
-              return parseInt(comment.post_id) === parseInt(post.id);
-            });
-
-            // RETURNING A POST CARD WHICH IS A COMPONENT THAT DETERMINES HOW THE POST IS STRUCTURED
-            return (
-              // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
-              <a key={post.id} name={post.id} id={post.id}>
-                <PostCard
-                  post={post}
-                  postComments={postComments}
-                  likes={likes}
-                />
-              </a>
-            );
-          })}
       </div>
+      {userPosts &&
+        userPosts.map((post) => {
+          // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
+          // console.log(likes, "LIKES BEFORE EVEN FILTERING");
+          let postComments = comments.filter((comment) => {
+            return parseInt(comment.post_id) === parseInt(post.id);
+          });
+
+          // RETURNING A POST CARD WHICH IS A COMPONENT THAT DETERMINES HOW THE POST IS STRUCTURED
+          return (
+            // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
+            <a key={post.id} name={post.id} id={post.id}>
+              <PostCard post={post} postComments={postComments} likes={likes} />
+            </a>
+            // <></>
+          );
+        })}
     </main>
   );
 }

@@ -28,7 +28,7 @@ def users():
     return {'users': [user.to_dict_short() for user in not_followed]}
 
 
-@user_routes.route('/profile/<username>')
+@user_routes.route('/<username>')
 @login_required
 def user(username):
     user = User.query.filter(User.username == username).first()
