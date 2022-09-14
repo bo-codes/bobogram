@@ -9,6 +9,8 @@ const FollowsSquare = ({
   profileUsername,
   setShowSuggestions,
   showSuggestions,
+  setShowUserOptions,
+  showUserOptions
 }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -25,6 +27,10 @@ const FollowsSquare = ({
       }
     }
   }, [sessionUser.following, profileUsername]);
+
+  const optionsButton = (e) => {
+    setShowUserOptions(!showUserOptions)
+  }
 
   const followButton = async (e) => {
     setFollow(true);
@@ -60,7 +66,13 @@ const FollowsSquare = ({
 
   return (
     <>
-      {sessionUser.username === profileUsername && <div></div>}
+      {sessionUser.username === profileUsername && (
+        <div>
+          <button onClick={followButton} className="user-edit-profile-button-square">
+            Edit profile
+          </button>
+        </div>
+      )}
       {sessionUser.username !== profileUsername && (
         <div>
           {!follow ? (
@@ -86,7 +98,10 @@ const FollowsSquare = ({
                   <div className="user-suggestions-button-pfp-blue"></div>
                 </button>
               )}
-              <button className="user-options-button-pfp-container">
+              <button
+                className="user-options-button-pfp-container"
+                onClick={optionsButton}
+              >
                 <div className="user-options-button-pfp"></div>
               </button>
             </div>
@@ -110,7 +125,10 @@ const FollowsSquare = ({
                   <div className="user-suggestions-button-pfp"></div>
                 </button>
               )}
-              <button className="user-options-button-pfp-container">
+              <button
+                className="user-options-button-pfp-container"
+                onClick={optionsButton}
+              >
                 <div className="user-options-button-pfp"></div>
               </button>
             </div>

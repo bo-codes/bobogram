@@ -61,7 +61,7 @@ function UserMenu({ user }) {
         <div style={{ position: "relative" }}>
           <div className="dropdown-container">
             <NavLink
-              to="/profile"
+              to={`/${user.username}`}
               activeClassName="active"
               className="dropdown-button profile-btn"
             >

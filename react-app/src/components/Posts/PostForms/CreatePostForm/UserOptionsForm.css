@@ -1,0 +1,27 @@
+#own-post-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: fit-content;
+  width: 400px;
+}
+
+.own-post-options-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: .25px solid rgba(128, 128, 128, 0.522);
+  height: 20px;
+  width: 100%;
+  background-color: white;
+}
+
+.button-text {
+  font-size: 16px;
+  background-color: transparent;
+}
+
+.critical-operations{
+  font-weight: 600;
+  color: red;
+}

@@ -12,7 +12,7 @@ import { getAllLikes } from "../../../store/likes";
 import "./ExplorePage.css";
 import PostCardExplore from "../../Posts/Elements/PostCard/PostCardExplore";
 
-function Posts({}) {
+function ExplorePage({}) {
   const dispatch = useDispatch();
   // PULLING ALL OF THE INFORMATION FROM OUR STATE
   // THIS RUNS FIRST BEFORE USEEFFECT FETCHES OUR DATA WHICH IS WHY WE ALWAYS HAVE TO IMPLEMENT
@@ -62,22 +62,6 @@ function Posts({}) {
                   postComments={postComments}
                   likes={likes}
                 />
-                {/* <div key={image.id} className="image"> */}
-                {/* <Link
-                  to={`/images/${post.id}`}
-                  className="image"
-                  style={{ position: "relative" }}
-                >
-                  <div className="overlay">
-                    <h3 style={{ color: "white" }}>{post.caption.slice(0, 130)}...</h3>
-                  </div>
-                  <img
-                    src={post.image_url}
-                    alt="coverImg"
-                    className="image"
-                    style={{ padding: 2.5 }}
-                  ></img>
-                </Link> */}
               </div>
             );
           })}
@@ -87,4 +71,4 @@ function Posts({}) {
   );
 }
 
-export default Posts;
+export default ExplorePage;

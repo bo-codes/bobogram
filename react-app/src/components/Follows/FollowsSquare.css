@@ -1,7 +1,7 @@
 .user-follow-button-square {
   display: flex;
   height: 30px;
-  width: 98px;
+  width: 96px;
   justify-content: center;
   align-items: center;
   /* border: 1px solid green; */
@@ -28,6 +28,14 @@
   font-weight: bold;
   color: white;
   border-radius: 3px;
+}
+
+.user-follow-button-square:hover {
+  cursor: pointer;
+}
+
+.user-unfollow-button-square {
+  cursor: pointer;
 }
 
 .user-suggestions-button-opened-pfp{
@@ -85,6 +93,14 @@
   border-radius: 3px;
 }
 
+.suggestions-button-pfp-blue:hover{
+  cursor: pointer;
+}
+
+.suggestions-button-pfp:hover{
+  cursor: pointer;
+}
+
 .follow-button-container{
   display: flex;
   height: 30px;
@@ -107,4 +123,22 @@
   background-image: url('../../images/other.png');
   background-size: contain;
   background-repeat: no-repeat;
+}
+
+.user-options-button-pfp:hover{
+  cursor: pointer;
+}
+
+.user-edit-profile-button-square{
+  display: flex;
+  height: 30px;
+  width: 93px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgba(196, 196, 196, 0.547);
+  font-size: 15px;
+  background: transparent;
+  font-weight: 600;
+  /* color: white; */
+  border-radius: 3px;
 }

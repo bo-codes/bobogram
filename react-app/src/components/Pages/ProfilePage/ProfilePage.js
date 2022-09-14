@@ -12,6 +12,9 @@ import "./ProfilePage.css";
 import { getOneUserPostsThunk } from "../../../store/posts";
 import { thunkGetUser } from "../../../store/users";
 import FollowsSquare from "../../Follows/FollowsSquare";
+import { Modal } from "../../Global/Elements/Modal";
+import UserOptionsForm from "../../Posts/PostForms/CreatePostForm/UserOptionsForm";
+import PostCardExplore from "../../Posts/Elements/PostCard/PostCardExplore";
 
 function ProfilePage({}) {
   const dispatch = useDispatch();
@@ -24,11 +27,12 @@ function ProfilePage({}) {
   const likes = Object.values(useSelector((state) => state.likes));
 
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [showUserOptions, setShowUserOptions] = useState(false);
 
   let followingList = sessionUser.following.map((user) => {
     return user.username;
   });
-  
+
   useEffect(() => {
     // GET ALL COMMENTS
     dispatch(getAllCommentsThunk());
@@ -39,7 +43,7 @@ function ProfilePage({}) {
   useEffect(() => {
     dispatch(thunkGetUser(username));
     dispatch(getOneUserPostsThunk(username));
-    console.log(sessionUser.following)
+    console.log(sessionUser.following);
   }, [dispatch, username, sessionUser.following]);
 
   if (!user) {
@@ -55,7 +59,6 @@ function ProfilePage({}) {
     userPosts = posts.filter((post) => post.user_id === user.id);
   }
 
-
   return (
     <main className="entire-profile-page">
       <div className="top-section-container">
@@ -69,7 +72,15 @@ function ProfilePage({}) {
               <div className="btns-profile-page">
                 {/* <Link>Edit Profile</Link> */}
                 {/* <button></button> */}
-                  <FollowsSquare followingList={followingList} profileUsername={user.username} showSuggestions={showSuggestions} setShowSuggestions={setShowSuggestions} className='btn-profile-page'/>
+                <FollowsSquare
+                  followingList={followingList}
+                  profileUsername={user.username}
+                  setShowSuggestions={setShowSuggestions}
+                  showSuggestions={showSuggestions}
+                  setShowUserOptions={setShowUserOptions}
+                  showUserOptions={showUserOptions}
+                  className="btn-profile-page"
+                />
               </div>
             </div>
             <div className="numbers-profile-page-container">
@@ -91,28 +102,40 @@ function ProfilePage({}) {
       </div>
       {showSuggestions && (
         <div className="second-section-container">
-          <div className="suggestions-box-pfp">
-            suggestions
-          </div>
+          <div className="suggestions-box-pfp">suggestions</div>
         </div>
       )}
-      {userPosts &&
-        userPosts.map((post) => {
-          // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
-          // console.log(likes, "LIKES BEFORE EVEN FILTERING");
-          let postComments = comments.filter((comment) => {
-            return parseInt(comment.post_id) === parseInt(post.id);
-          });
+      {showUserOptions && (
+        <Modal onClose={() => setShowUserOptions(false)}>
+          <UserOptionsForm
+          // user={user}
+          // setShowUserOptions={setShowUserOptions}
+          // setShowConfirmDeleteModal={setShowConfirmDeleteModal}
+          />
+        </Modal>
+      )}
+      <div className="second-and-a-half-section"></div>
+      <div className="third-section-container">
+        <div className="third-section">
+          {userPosts &&
+            userPosts.map((post) => {
+              // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
+              // console.log(likes, "LIKES BEFORE EVEN FILTERING");
+              let postComments = comments.filter((comment) => {
+                return parseInt(comment.post_id) === parseInt(post.id);
+              });
 
-          // RETURNING A POST CARD WHICH IS A COMPONENT THAT DETERMINES HOW THE POST IS STRUCTURED
-          return (
-            // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
-            <a key={post.id} name={post.id} id={post.id}>
-              <PostCard post={post} postComments={postComments} likes={likes} />
-            </a>
-            // <></>
-          );
-        })}
+              // RETURNING A POST CARD WHICH IS A COMPONENT THAT DETERMINES HOW THE POST IS STRUCTURED
+              return (
+                // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
+                <a key={post.id} name={post.id} id={post.id}>
+                  <PostCardExplore post={post} postComments={postComments} likes={likes} />
+                </a>
+                // <></>
+              );
+            })}
+        </div>
+      </div>
     </main>
   );
 }

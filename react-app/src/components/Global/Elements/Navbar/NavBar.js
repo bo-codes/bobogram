@@ -129,7 +129,7 @@ const NavBar = () => {
               </div>
               <div className="navlink-container">
                 <NavLink
-                  to="/explore"
+                  to="/explore/posts"
                   exact={true}
                   activeClassName="active"
                   style={{ textDecoration: "none" }}

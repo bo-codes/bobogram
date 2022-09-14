@@ -13,6 +13,7 @@ import ProfilePage from "./components/Pages/ProfilePage/ProfilePage";
 import UsersProfilePage from "./components/Pages/UsersProfilePage/UsersProfilePage";
 import PostDetailPage from "./components/Pages/PostDetailPage/PostDetailPage";
 import Signup from "./components/auth/Pages/SignupPage/Signup";
+import ExplorePage from "./components/Pages/ExplorePage/ExplorePage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -49,9 +50,9 @@ function App() {
           <NavBar />
           <ProfilePage />
         </ProtectedRoute>
-        <ProtectedRoute path="/explore" exact={true}>
+        <ProtectedRoute path="/explore/posts" exact={true}>
           <NavBar />
-          <Posts />
+          <ExplorePage />
         </ProtectedRoute>
         {/* <ProtectedRoute path="/explore/users" exact={true}>
           <ExploreUsers />

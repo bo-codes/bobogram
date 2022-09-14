@@ -1,0 +1,15 @@
+.postcard-image{
+  width: 290px;
+  height: 290px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  overflow: hidden;
+}
+
+.postcard-explore{
+  width: 290px;
+  height: 290px;
+  padding: 0px;
+  margin-bottom: 15px;
+}
