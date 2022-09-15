@@ -9,7 +9,7 @@ def seed_users():
     marnie = User(
         username='marnie', email='marnie@aa.io', password='password', full_name='Marnicus Mono', profile_picture='https://bobogrambucket.s3.amazonaws.com/6f00f3e66f084737bb2914c52c05c6db.jpg')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password', full_name='Bobbi Bo-lover', profile_picture='https://bobogrambucket.s3.amazonaws.com/6f00f3e66f084737bb2914c52c05c6db.jpg')
+        username='bobbie', email='bobbi@aa.io', password='password', full_name='Bobbi Bo-lover', profile_picture='https://bobogrambucket.s3.amazonaws.com/6f00f3e66f084737bb2914c52c05c6db.jpg')
     bobo = User(
         username='bobo', email='bobo@aa.io', password='password', full_name='Bobo Bobus', profile_picture='https://bobogrambucket.s3.amazonaws.com/83376c8d72a44e00af0395262997a5ea.jpeg')
     bo = User(
