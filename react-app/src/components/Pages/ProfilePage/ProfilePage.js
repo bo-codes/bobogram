@@ -107,11 +107,7 @@ function ProfilePage({}) {
       )}
       {showUserOptions && (
         <Modal onClose={() => setShowUserOptions(false)}>
-          <UserOptionsForm
-          // user={user}
-          // setShowUserOptions={setShowUserOptions}
-          // setShowConfirmDeleteModal={setShowConfirmDeleteModal}
-          />
+          <UserOptionsForm />
         </Modal>
       )}
       <div className="second-and-a-half-section"></div>
@@ -129,7 +125,11 @@ function ProfilePage({}) {
               return (
                 // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
                 <a key={post.id} name={post.id} id={post.id}>
-                  <PostCardExplore post={post} postComments={postComments} likes={likes} />
+                  <PostCardExplore
+                    post={post}
+                    postComments={postComments}
+                    likes={likes}
+                  />
                 </a>
                 // <></>
               );

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { thunkFollow, thunkUnfollow } from "../../store/session";
 import { thunkGetUser } from "../../store/users";
 import "./FollowsSquare.css";
@@ -68,9 +68,9 @@ const FollowsSquare = ({
     <>
       {sessionUser.username === profileUsername && (
         <div>
-          <button onClick={followButton} className="user-edit-profile-button-square">
+          <Link to='/accounts/edit' className="user-edit-profile-button-square">
             Edit profile
-          </button>
+          </Link>
         </div>
       )}
       {sessionUser.username !== profileUsername && (

@@ -247,12 +247,6 @@
   margin-right: 15px;
 }
 
-.postcard-explore {
-  overflow: scroll;
-  background-color: #ffffff;
-  margin-bottom: 33px;
-}
-
 ::-webkit-scrollbar {
   width: 0;
 }

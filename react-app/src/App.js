@@ -14,6 +14,7 @@ import UsersProfilePage from "./components/Pages/UsersProfilePage/UsersProfilePa
 import PostDetailPage from "./components/Pages/PostDetailPage/PostDetailPage";
 import Signup from "./components/auth/Pages/SignupPage/Signup";
 import ExplorePage from "./components/Pages/ExplorePage/ExplorePage";
+import AccountEditPage from "./components/Pages/AccountEditPage/AccountEditPage";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -38,14 +39,13 @@ function App() {
         <Route path="/" exact={true}>
           <SplashPage />
         </Route>
+        <Route path="/signup" exact={true}>
+          <Signup />
+        </Route>
         <ProtectedRoute path="/home" exact={true}>
           <NavBar />
           <HomePage />
         </ProtectedRoute>
-        {/* <ProtectedRoute path="/profile" exact={true}>
-          <NavBar />
-          <ProfilePage />
-        </ProtectedRoute> */}
         <ProtectedRoute path="/:username" exact={true}>
           <NavBar />
           <ProfilePage />
@@ -54,19 +54,14 @@ function App() {
           <NavBar />
           <ExplorePage />
         </ProtectedRoute>
-        {/* <ProtectedRoute path="/explore/users" exact={true}>
-          <ExploreUsers />
-        </ProtectedRoute> */}
+        <ProtectedRoute path="/accounts/edit" exact={true}>
+          <NavBar />
+          <AccountEditPage />
+        </ProtectedRoute>
         <ProtectedRoute path="/posts">
           <NavBar />
           <PostDetailPage />
         </ProtectedRoute>
-        {/* <ProtectedProtectedRoute path="/create" exact={true}>
-          <CreatePost />
-        </ProtectedProtectedRoute> */}
-        <Route path="/signup" exact={true}>
-          <Signup />
-        </Route>
         <Route path="">
           <NavBar />
           <ErrorPage />

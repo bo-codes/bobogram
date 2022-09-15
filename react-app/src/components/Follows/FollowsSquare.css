@@ -130,6 +130,8 @@
 }
 
 .user-edit-profile-button-square{
+  color: black;
+  text-decoration: none;
   display: flex;
   height: 30px;
   width: 93px;
@@ -141,4 +143,8 @@
   font-weight: 600;
   /* color: white; */
   border-radius: 3px;
+}
+
+.user-edit-profile-button-square:hover{
+  cursor: pointer;
 }
