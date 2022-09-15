@@ -3,6 +3,6 @@
   padding: 9px 0px;
   font-size: 15px;
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   padding-left: 14.5px;
 }

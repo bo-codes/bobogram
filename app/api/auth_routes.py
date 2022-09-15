@@ -77,7 +77,7 @@ def sign_up():
         return user.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
-@auth_routes.route('/dashboard/<int:id>', methods=["PUT"])
+@auth_routes.route('/accounts/<int:id>', methods=["PUT"])
 @login_required
 def update_user(id):
     """
@@ -89,13 +89,18 @@ def update_user(id):
     else:
         form = EditUserForm()
         form['csrf_token'].data = request.cookies['csrf_token']
+        print("\n\n\n\n USER BACKEND", user.bio, '\n\n\n\n')
         if form.validate_on_submit():
-            user = User.query.filter(User.id == id).first()
+            print("MADE IT PAST FORM VALIDATE")
+            # user = User.query.filter(User.id == id).first()
 
+            user.full_name = form.data['fullName']
             user.username = form.data['username']
+            user.website = form.data['website']
+            user.bio = form.data['bio']
             user.email = form.data['email']
-            user.password = form.data['password']
-            user.profilePicture = form.data['profilePicture']
+            user.phone_number = form.data['phoneNumber']
+            user.gender = form.data['gender']
 
             db.session.commit()
             return user.to_dict()

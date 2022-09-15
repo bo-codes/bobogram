@@ -38,7 +38,7 @@
 
 .current-user-bar{
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 
@@ -103,7 +103,7 @@ Link{
 
 .user-bar {
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   padding-bottom: 9px ;
 }

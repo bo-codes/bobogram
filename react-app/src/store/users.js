@@ -59,23 +59,29 @@ export const destroyUser = (userId) => async (dispatch) => {
 };
 
 export const thunkEditUser =
-  (user_id, username, email, password, avatar) => async (dispatch) => {
-    const response = await fetch(`/api/auth/dashboard/${user_id}`, {
+  (userId, fullName, username, website, bio, email, phoneNumber, gender) =>
+  async (dispatch) => {
+    console.log("USER NAME", fullName);
+    const response = await fetch(`/api/auth/accounts/${userId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        id: user_id,
+        id: userId,
+        fullName,
         username,
+        website,
+        bio,
         email,
-        password,
-        avatar,
+        phoneNumber,
+        gender,
       }),
     });
 
     if (response.ok) {
       const data = await response.json();
+      console.log("DATA", data);
       dispatch(updateUser(data));
       return data;
     } else if (response.status < 500) {
@@ -105,7 +111,7 @@ const userReducer = (state = initialState, action) => {
       });
       return newState;
     case UPDATE_USER:
-      newState.user = action.payload;
+      newState.user = action.payload.user;
       return newState;
     case DELETE_USER:
       delete newState[action.userId];

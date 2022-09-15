@@ -62,7 +62,7 @@
 .numbers-profile-page-container{
   /* border: 1px solid yellowgreen; */
   display: flex;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .posts-number-profile-page{

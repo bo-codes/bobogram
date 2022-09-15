@@ -5,18 +5,22 @@ from sqlalchemy.sql import func
 from sqlalchemy import DateTime
 # from .post import user_posts
 from .follow import follows
-from .like import Like
-from .post import Post
+# from .like import Like
+# from .post import Post
 
 class User(db.Model, UserMixin):
 
     __tablename__ = 'users'
 
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(40), nullable=False, unique=True)
-    email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(255), nullable=False)
     full_name = db.Column(db.String(30), nullable=False)
+    username = db.Column(db.String(40), nullable=False, unique=True)
+    website = db.Column(db.String(40))
+    bio = db.Column(db.Text())
+    email = db.Column(db.String(255), nullable=False, unique=True)
+    phone_number = db.Column(db.String(10))
+    gender = db.Column(db.String(18))
+    hashed_password = db.Column(db.String(255), nullable=False)
     profile_picture = db.Column(db.String(255))
     created_at = db.Column(DateTime(timezone=True), server_default=func.now())
 
@@ -48,29 +52,25 @@ class User(db.Model, UserMixin):
     def to_dict(self):
         return {
             'id': self.id,
+            'full_name': self.full_name,
             'username': self.username,
+            'website': self.website,
+            'bio': self.bio,
             'email': self.email,
+            'phone_number': self.phone_number,
+            'gender': self.gender,
             'created_at': self.created_at,
             'profile_picture': self.profile_picture,
-            'full_name': self.full_name,
             'followers': [user.to_dict_short() for user in self.follows],
             'following': [user.to_dict_short() for user in self.followed]
         }
 
-    # def to_dict(self):
-    #     return {
-    #         'id': self.id,
-    #         'email': self.email,
-    #         'username': self.username,
-    #         'created_at': self.created_at,
-    #     }
-
     def to_dict_short(self):
         return {
             'id': self.id,
-            'email': self.email,
-            'username': self.username,
             'full_name': self.full_name,
+            'username': self.username,
+            'email': self.email,
             'profile_picture': self.profile_picture,
             'created_at': self.created_at,
         }

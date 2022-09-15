@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
+import { thunkEditUser } from "../../../store/users";
 import './AccountEditPage.css'
 
 export default function AccountEditPage() {
@@ -32,16 +33,16 @@ export default function AccountEditPage() {
       return;
     }
 
-    // user = await dispatch(makeComment(userId, postId, content, date));
-    if (user.id) {
+    const updatedUser = await dispatch(thunkEditUser(userId, fullName, username, website, bio, email, phoneNumber, gender));
+    if (updatedUser.id) {
       history.push(window.location.pathname);
       return;
     }
 
     // IF WE GET ERRORS BACK BECAUSE THATS THE ONLY ARR WED GET BACK. COMMENT WOULD BE AN OBJECT.
-    if (Array.isArray(user)) {
+    if (Array.isArray(updatedUser)) {
       // SET OUT ERROR STATE TO OUR NEW ERRORS WE GOT FROM SUBMITTAL
-      setErrors(user);
+      setErrors(updatedUser);
       // IF IT FAILS TO CREATE A COMMENT BUT DOESNT RETURN ERRORS IN THE ARRAY
     } else {
       // setContent("");
@@ -49,6 +50,9 @@ export default function AccountEditPage() {
     }
   };
 
+  if(!user) {
+    return null
+  }
   return (
     <main className="user-edit-entire-page">
       <div className="user-edit-form-and-sidebar-container">

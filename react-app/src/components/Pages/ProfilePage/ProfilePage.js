@@ -97,6 +97,7 @@ function ProfilePage({}) {
               </div>
             </div>
             <div className="user-full-name-profile-page">{user.full_name}</div>
+            <div className="user-bio-profile-page">{user.bio}</div>
           </div>
         </div>
       </div>
