@@ -173,7 +173,7 @@ export const thunkEditPfp = (profilePicture, userId) => async (dispatch) => {
     const postData = new FormData();
     postData.append("image", profilePicture);
 
-    const imageRes = await fetch(`/api/images/`, {
+    const imageRes = await fetch(`/api/images`, {
       method: "POST",
       body: postData,
     });
