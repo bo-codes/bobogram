@@ -173,12 +173,17 @@ export const thunkEditPfp = (profilePicture, userId) => async (dispatch) => {
     const postData = new FormData();
     postData.append("image", profilePicture);
 
+    console.log("WE MADE IT TO RIGHT BEFORE REQUEST");
+
     const imageRes = await fetch(`/api/images/`, {
       method: "POST",
       body: postData,
     });
 
+    console.log("WE MADE IT TO RIGHT AFTER REQUEST");
+
     if (imageRes.ok) {
+      console.log("WE MADE IT TO RIGHT AFTER IF IMAGE.RES");
       profilePicture = await imageRes.json();
       profilePicture = profilePicture.url;
     } else if (imageRes.status < 500) {

@@ -34,3 +34,46 @@
   height: 100%;
   float: right;
 }
+
+.change-profile-button{
+  color: #3195ff;
+  font-weight: 600;
+  font-size: 15px;
+  background: transparentd;
+}
+
+.form-container{
+  border: 1px solid blue;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.user-form-input{
+  height: 33px;
+  width: 355px;
+  font-size: 17px;
+  padding-left: 10px;
+  border: 1px solid rgba(169, 169, 169, 0.447);
+  border-radius: 3px;
+}
+
+.user-form-bio{
+  height: 60px;
+  width: 355px;
+  font-size: 17px;
+  padding-left: 10px;
+  border: 1px solid rgba(169, 169, 169, 0.447);
+  border-radius: 3px
+}
+
+.form-description-text{
+  width: 355px;
+}
+
+.user-pfp-user-edit-form{
+  width: 40px;
+  border-radius: 20px ;
+}

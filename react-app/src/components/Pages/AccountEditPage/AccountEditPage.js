@@ -121,129 +121,145 @@ export default function AccountEditPage() {
             <span> password</span>
           </div>
         </div>
-        <form onSubmit={pfpSubmit}>
-          <div className="input-section">
-            <label htmlFor="image-upload-button" className="imput-label">
-              Image
-              <input
-                id="image-upload-button"
-                name="image"
-                type="file"
-                accept="image/*"
-                onChange={updatedProfilePicture}
-              />
-            </label>
-            {profilePicture && (
-              <span
-                htmlFor="image-upload-button"
-                name="image"
-                className="imput-label"
-              >
-                {/* {image.name} */}
-              </span>
-            )}
-          </div>
-          {/* ----- IMAGE INPUT ----- ^^*/}
-          <div>
-            <div>
-              <button className="login-button">Update Photo</button>
+        <div className="form-container">
+          <form onSubmit={pfpSubmit}>
+            <div className="input-section">
+              <label htmlFor="image-upload-button" className="imput-label">
+                <input
+                  id="image-upload-button"
+                  name="image"
+                  type="file"
+                  accept="image/*"
+                  onChange={updatedProfilePicture}
+                />
+              </label>
+              {profilePicture && (
+                <span
+                  htmlFor="image-upload-button"
+                  name="image"
+                  className="imput-label"
+                >
+                  {/* {image.name} */}
+                </span>
+              )}
             </div>
-          </div>
-        </form>
-        <form onSubmit={formSubmit}>
-          <div>
-            <ul>
-              {errors &&
-                errors.map((error) => {
-                  let splitError = error.split(":");
-                  let firstPart = splitError[0];
-                  let firstLetter = firstPart[0].toUpperCase();
-                  let secondPart = splitError[1].slice(11, 23);
-                  return <li key={error}>{splitError[1]}</li>;
-                })}
-            </ul>
-          </div>
-          <div className="custom-search">
+            {/* ----- IMAGE INPUT ----- ^^*/}
             <div>
-              <label htmlFor="full_name">Name</label>
-              <input
-                name="full_name"
-                type="text"
-                placeholder="Name"
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
-              />
+              <div>
+                <button className="change-profile-button">
+                  Change profile photo
+                </button>
+              </div>
             </div>
             <div>
-              <label htmlFor="username">Username</label>
-              <input
-                name="username"
-                type="text"
-                placeholder="Username"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-              />
+              <img src={profilePicture} className="user-pfp-user-edit-form" />
             </div>
+          </form>
+          <form onSubmit={formSubmit}>
             <div>
-              <label htmlFor="website">Website</label>
-              <input
-                name="website"
-                type="text"
-                placeholder="Website"
-                value={website}
-                onChange={(e) => setWebsite(e.target.value)}
-              />
+              <ul>
+                {errors &&
+                  errors.map((error) => {
+                    let splitError = error.split(":");
+                    let firstPart = splitError[0];
+                    let firstLetter = firstPart[0].toUpperCase();
+                    let secondPart = splitError[1].slice(11, 23);
+                    return <li key={error}>{splitError[1]}</li>;
+                  })}
+              </ul>
             </div>
-            <div className="text-area-container">
-              <label htmlFor="bio">Bio</label>
-              <textarea
-                className="user-edit-bio"
-                name="bio"
-                type="text"
-                placeholder=""
-                value={bio}
-                onChange={(e) => setBio(e.target.value)}
-              />
+            <div className="custom-search">
+              <div>
+                <label htmlFor="full_name">Name</label>
+                <input
+                  name="full_name"
+                  type="text"
+                  placeholder="Name"
+                  className="user-form-input"
+                  value={fullName}
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+                <div className="form-description-text">
+                  Help people discover your account by using the name you're
+                  known by: either your full name, nickname, or business name.
+                </div>
+              </div>
+              <div>
+                <label htmlFor="username">Username</label>
+                <input
+                  name="username"
+                  type="text"
+                  placeholder="Username"
+                  className="user-form-input"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="website">Website</label>
+                <input
+                  name="website"
+                  type="text"
+                  placeholder="Website"
+                  className="user-form-input"
+                  value={website}
+                  onChange={(e) => setWebsite(e.target.value)}
+                />
+              </div>
+              <div className="text-area-container">
+                <label htmlFor="bio">Bio</label>
+                <textarea
+                  name="bio"
+                  type="text"
+                  placeholder=""
+                  className="user-form-bio"
+                  value={bio}
+                  onChange={(e) => setBio(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="email">Email</label>
+                <input
+                  name="email"
+                  type="text"
+                  placeholder="Email"
+                  className="user-form-input"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="phone_number">Phone number</label>
+                <input
+                  name="phone_number"
+                  type="text"
+                  placeholder="Phone number"
+                  className="user-form-input"
+                  value={phoneNumber}
+                  onChange={(e) => setPhoneNumber(e.target.value)}
+                />
+              </div>
+              <div>
+                <label htmlFor="gender">Gender</label>
+                <input
+                  name="gender"
+                  type="text"
+                  placeholder="Gender"
+                  className="user-form-input"
+                  value={gender}
+                  onChange={(e) => setGender(e.target.value)}
+                />
+              </div>
+              {userId ? (
+                <button className="custom-search-button">Submit</button>
+              ) : (
+                <button className="custom-search-button-disabled" disabled>
+                  Submit
+                </button>
+              )}
             </div>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                name="email"
-                type="text"
-                placeholder="Email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="phone_number">Phone number</label>
-              <input
-                name="phone_number"
-                type="text"
-                placeholder="Phone number"
-                value={phoneNumber}
-                onChange={(e) => setPhoneNumber(e.target.value)}
-              />
-            </div>
-            <div>
-              <label htmlFor="gender">Gender</label>
-              <input
-                name="gender"
-                type="text"
-                placeholder="Gender"
-                value={gender}
-                onChange={(e) => setGender(e.target.value)}
-              />
-            </div>
-            {userId ? (
-              <button className="custom-search-button">Submit</button>
-            ) : (
-              <button className="custom-search-button-disabled" disabled>
-                Submit
-              </button>
-            )}
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </main>
   );
