@@ -1,5 +1,6 @@
 // constants
 const SET_USER = "session/SET_USER";
+const UPDATE_USER = "session/UPDATE_USER";
 const REMOVE_USER = "session/REMOVE_USER";
 const FOLLOW = "session/follow";
 const UNFOLLOW = "session/unfollow";
@@ -8,6 +9,11 @@ const GET_FOLLOWED_POSTS = "session/GET_FOLLOWED_POSTS";
 const setUser = (user) => ({
   type: SET_USER,
   payload: user,
+});
+
+const updateUser = (user) => ({
+  type: UPDATE_USER,
+  user,
 });
 
 const removeUser = () => ({
@@ -90,8 +96,7 @@ export const logout = () => async (dispatch) => {
 };
 
 export const signUp =
-  (username, email, password, fullName) =>
-  async (dispatch) => {
+  (username, email, password, fullName) => async (dispatch) => {
     const response = await fetch("/api/auth/signup", {
       method: "POST",
       headers: {
@@ -116,6 +121,42 @@ export const signUp =
       }
     } else {
       return ["An error occurred. Please try again."];
+    }
+  };
+
+export const thunkEditUser =
+  (userId, fullName, username, website, bio, email, phoneNumber, gender) =>
+  async (dispatch) => {
+    console.log("USER NAME", fullName);
+    const response = await fetch(`/api/auth/accounts/${userId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: userId,
+        fullName,
+        username,
+        website,
+        bio,
+        email,
+        phoneNumber,
+        gender,
+      }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log("DATA", data);
+      dispatch(updateUser(data));
+      return data;
+    } else if (response.status < 500) {
+      const data = await response.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error has occured. Please try again."];
     }
   };
 
@@ -163,6 +204,8 @@ export default function reducer(state = initialState, action) {
   switch (action.type) {
     case SET_USER:
       return { user: action.payload };
+    case UPDATE_USER:
+      return { user: action.user };
     case REMOVE_USER:
       return { user: null };
     case GET_FOLLOWED_POSTS:

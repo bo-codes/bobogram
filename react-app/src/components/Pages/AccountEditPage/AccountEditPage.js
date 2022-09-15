@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
-import { thunkEditUser } from "../../../store/users";
-import './AccountEditPage.css'
+import { thunkGetUser } from "../../../store/users";
+import { thunkEditUser } from "../../../store/session";
+import "./AccountEditPage.css";
 
 export default function AccountEditPage() {
   const history = useHistory();
@@ -10,7 +11,7 @@ export default function AccountEditPage() {
 
   const user = useSelector((state) => state.session.user);
 
-  const userId = user.id
+  const userId = user.id;
 
   const [errors, setErrors] = useState([]);
   const [fullName, setFullName] = useState((user && user.full_name) || "");
@@ -23,6 +24,10 @@ export default function AccountEditPage() {
   );
   const [gender, setGender] = useState((user && user.gender) || "");
 
+  useEffect(() => {
+    dispatch(thunkGetUser(user.username));
+  }, [dispatch, user]);
+
   const submit = async (e) => {
     e.preventDefault();
     setErrors([]);
@@ -33,7 +38,18 @@ export default function AccountEditPage() {
       return;
     }
 
-    const updatedUser = await dispatch(thunkEditUser(userId, fullName, username, website, bio, email, phoneNumber, gender));
+    const updatedUser = await dispatch(
+      thunkEditUser(
+        userId,
+        fullName,
+        username,
+        website,
+        bio,
+        email,
+        phoneNumber,
+        gender
+      )
+    );
     if (updatedUser.id) {
       history.push(window.location.pathname);
       return;
@@ -50,8 +66,8 @@ export default function AccountEditPage() {
     }
   };
 
-  if(!user) {
-    return null
+  if (!user) {
+    return null;
   }
   return (
     <main className="user-edit-entire-page">
