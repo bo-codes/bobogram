@@ -1,6 +1,9 @@
+import { user } from "pg/lib/defaults";
+
 // constants
 const SET_USER = "session/SET_USER";
 const UPDATE_USER = "session/UPDATE_USER";
+const EDIT_PFP = "session/EDIT_PFP";
 const REMOVE_USER = "session/REMOVE_USER";
 const FOLLOW = "session/follow";
 const UNFOLLOW = "session/unfollow";
@@ -14,6 +17,11 @@ const setUser = (user) => ({
 const updateUser = (user) => ({
   type: UPDATE_USER,
   user,
+});
+
+const editPfp = (profilePicture) => ({
+  type: EDIT_PFP,
+  profilePicture,
 });
 
 const removeUser = () => ({
@@ -160,6 +168,54 @@ export const thunkEditUser =
     }
   };
 
+export const thunkEditPfp = (profilePicture, userId) => async (dispatch) => {
+  if (typeof profilePicture === "object") {
+    const postData = new FormData();
+    postData.append("image", profilePicture);
+
+    const imageRes = await fetch(`/api/images/`, {
+      method: "POST",
+      body: postData,
+    });
+
+    if (imageRes.ok) {
+      profilePicture = await imageRes.json();
+      profilePicture = profilePicture.url;
+    } else if (imageRes.status < 500) {
+      const data = await imageRes.json();
+      if (data.errors) {
+        return data.errors;
+      }
+    } else {
+      return ["An error occurred. Please try again."];
+    }
+  }
+
+  //
+  const response = await fetch(`/api/auth/accounts/pfp/${userId}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      profilePicture,
+    }),
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(editPfp(data));
+    return data;
+  } else if (response.status < 500) {
+    const data = await response.json();
+    if (data.errors) {
+      return data.errors;
+    }
+  } else {
+    return ["An error has occured. Please try again."];
+  }
+};
+
 export const thunkFollow = (username) => async (dispatch) => {
   const response = await fetch(`/api/users/${username}/follow`, {
     method: "PUT",
@@ -206,6 +262,8 @@ export default function reducer(state = initialState, action) {
       return { user: action.payload };
     case UPDATE_USER:
       return { user: action.user };
+    case EDIT_PFP:
+      return { user: action.profilePicture };
     case REMOVE_USER:
       return { user: null };
     case GET_FOLLOWED_POSTS:

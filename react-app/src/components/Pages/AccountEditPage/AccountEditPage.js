@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { thunkGetUser } from "../../../store/users";
 import { thunkEditUser } from "../../../store/session";
+import { thunkEditPfp } from "../../../store/session";
 import "./AccountEditPage.css";
 
 export default function AccountEditPage() {
@@ -21,14 +22,15 @@ export default function AccountEditPage() {
   const [email, setEmail] = useState((user && user.email) || "");
   const [phoneNumber, setPhoneNumber] = useState(
     (user && user.phone_number) || ""
-  );
+    );
   const [gender, setGender] = useState((user && user.gender) || "");
+  const [profilePicture, setProfilePicture] = useState((user && user.profile_picture) || "");
 
   useEffect(() => {
     dispatch(thunkGetUser(user.username));
   }, [dispatch, user]);
 
-  const submit = async (e) => {
+  const formSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
 
@@ -66,6 +68,43 @@ export default function AccountEditPage() {
     }
   };
 
+  const pfpSubmit = async (e) => {
+    e.preventDefault();
+    setErrors([]);
+
+    if (!userId) {
+      setErrors(["You must be logged in to create or edit a comment."]);
+      setErrors(user);
+      return;
+    }
+
+    const updatedPfp = await dispatch(
+      thunkEditPfp(
+        profilePicture,
+        userId
+      )
+    );
+    if (updatedPfp) {
+      history.push(window.location.pathname);
+      return;
+    }
+
+    // IF WE GET ERRORS BACK BECAUSE THATS THE ONLY ARR WED GET BACK. COMMENT WOULD BE AN OBJECT.
+    if (Array.isArray(updatedPfp)) {
+      // SET OUT ERROR STATE TO OUR NEW ERRORS WE GOT FROM SUBMITTAL
+      setErrors(updatedPfp);
+      // IF IT FAILS TO CREATE A COMMENT BUT DOESNT RETURN ERRORS IN THE ARRAY
+    } else {
+      // setContent("");
+      return;
+    }
+  };
+
+  const updatedProfilePicture = (e) => {
+    const file = e.target.files[0];
+    setProfilePicture(file);
+  };
+
   if (!user) {
     return null;
   }
@@ -82,7 +121,36 @@ export default function AccountEditPage() {
             <span> password</span>
           </div>
         </div>
-        <form onSubmit={submit}>
+        <form onSubmit={pfpSubmit}>
+          <div className="input-section">
+            <label htmlFor="image-upload-button" className="imput-label">
+              Image
+              <input
+                id="image-upload-button"
+                name="image"
+                type="file"
+                accept="image/*"
+                onChange={updatedProfilePicture}
+              />
+            </label>
+            {profilePicture && (
+              <span
+                htmlFor="image-upload-button"
+                name="image"
+                className="imput-label"
+              >
+                {/* {image.name} */}
+              </span>
+            )}
+          </div>
+          {/* ----- IMAGE INPUT ----- ^^*/}
+          <div>
+            <div>
+              <button className="login-button">Update Photo</button>
+            </div>
+          </div>
+        </form>
+        <form onSubmit={formSubmit}>
           <div>
             <ul>
               {errors &&

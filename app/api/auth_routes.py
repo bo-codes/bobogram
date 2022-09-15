@@ -3,6 +3,7 @@ from app.models import User, db
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from app.forms.edituser_form import EditUserForm
+from app.forms.edit_pfp_form import EditPfpForm
 from flask_login import current_user, login_user, logout_user, login_required
 
 auth_routes = Blueprint('auth', __name__)
@@ -101,6 +102,27 @@ def update_user(id):
             user.email = form.data['email']
             user.phone_number = form.data['phoneNumber']
             user.gender = form.data['gender']
+
+            db.session.commit()
+            return user.to_dict()
+
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
+@auth_routes.route('/accounts/pfp/<int:id>', methods=["PUT"])
+@login_required
+def update_pfp(id):
+    """
+    Updates a logged in user
+    """
+    user = User.query.get(id)
+    if user.id == 1:
+        return {'errors': ['You cannot edit the demo user, try creating your own user!']}, 403
+    else:
+        form = EditPfpForm()
+        form['csrf_token'].data = request.cookies['csrf_token']
+        if form.validate_on_submit():
+
+            user.profile_picture = form.data['profilePicture']
 
             db.session.commit()
             return user.to_dict()
