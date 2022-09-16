@@ -5,14 +5,14 @@
 
 .user-edit-form-and-sidebar-container{
   display: flex;
-  border: 1px solid orange;
+  border: 1px solid rgba(177, 177, 177, 0.525);
   margin-top: 30px;
   width: 935px;
   height: 868px;
 }
 
 .user-edit-sidebar{
-  border-right: 1px solid grey;
+  border-right: 1px solid rgba(177, 177, 177, 0.525);
   width: 25.5%;
   height: 100%;
   display: flex;
@@ -35,15 +35,38 @@
   float: right;
 }
 
-.change-profile-button{
-  color: #3195ff;
-  font-weight: 600;
-  font-size: 15px;
-  background: transparentd;
+.pfp-container{
+  margin-top: 20px;
+  display: flex;
+  /* border: 1px solid rgb(255, 0, 242); */
 }
 
-.form-container{
-  border: 1px solid blue;
+.pfp-container-text{
+  font-size: 22px;
+  font-weight: 400;
+}
+
+.pfp-image-container{
+  /* border: 1px solid orangered; */
+  padding-top: 7px;
+  padding-right: 30px;
+  /* display: flex; */
+  /* align-items: center; */
+}
+
+.change-pfp-button{
+  color: #3195ff;
+  font-weight: 700;
+  font-size: 15px;
+  background: transparent;
+}
+
+.change-pfp-button:hover{
+  cursor: pointer;
+}
+
+.user-edit-form-container{
+  /* border: 1px solid blue; */
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -51,13 +74,24 @@
   align-items: center;
 }
 
+.user-edit-form-inputs{
+  display: flex;
+  justify-content: flex-end;
+  /* border: 1px solid aqua; */
+}
+
 .user-form-input{
-  height: 33px;
+  height: 32px;
   width: 355px;
   font-size: 17px;
   padding-left: 10px;
+  margin-left: 32px;
   border: 1px solid rgba(169, 169, 169, 0.447);
   border-radius: 3px;
+}
+
+label{
+  font-weight: 500;
 }
 
 .user-form-bio{
@@ -65,15 +99,102 @@
   width: 355px;
   font-size: 17px;
   padding-left: 10px;
+  margin-left: 32px;
   border: 1px solid rgba(169, 169, 169, 0.447);
-  border-radius: 3px
+  border-radius: 3px;
+}
+
+.bio-length{
+  margin-top: 4px;
+  margin-bottom: 30px;
+  font-size: 12.5px;
+  width: 355px;
+}
+
+.bio-length-normal{
+  color: rgb(138, 138, 138);
+}
+
+.bio-length-red{
+  font-weight: 600;
+  color: rgb(207, 0, 0);
 }
 
 .form-description-text{
+  color: rgb(136, 136, 136);
   width: 355px;
+  font-size: 12.75px;
+  /* border: 1px solid blue; */
+  line-height: 1.25;
+  margin-top: 14px;
+  margin-bottom: 11px;
 }
 
 .user-pfp-user-edit-form{
   width: 40px;
   border-radius: 20px ;
+}
+
+.custom-search{
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+/*
+.input-subsection{
+  display: flex;
+  justify-content: flex-end;
+} */
+
+.user-edit-single-input{
+  /* border: 1px solid orange; */
+  margin-bottom: 22px;
+}
+
+.form-text-personal-information{
+  color: rgb(136, 136, 136);
+  width: 355px;
+  font-size: 15px;
+  font-weight: 600;
+  /* border: 1px solid blue; */
+  line-height: 1.25;
+  margin-bottom: 2px;
+}
+
+.form-text-personal-information-description{
+  color: rgb(136, 136, 136);
+  width: 355px;
+  font-size: 12.75px;
+  /* border: 1px solid blue; */
+  line-height: 1.25;
+  margin-bottom: 12px;
+}
+
+.user-edit-submit-button-container{
+  width: 355px;
+  margin-top: 20px;
+}
+
+.user-edit-submit-button{
+  color: white;
+  background-color: #3195ff;
+  font-weight: 600;
+  font-size: 15px;
+  width: 67px;
+  height: 29px;
+  border-radius: 3px;
+}
+
+.user-edit-submit-button:hover{
+  cursor: pointer;
+}
+
+#image-upload-button{
+  content: 'Change profile photo';
+}
+
+#image-upload-button:hover{
+  cursor: pointer;
 }

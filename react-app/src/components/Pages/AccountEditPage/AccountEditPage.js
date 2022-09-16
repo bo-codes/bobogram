@@ -22,9 +22,11 @@ export default function AccountEditPage() {
   const [email, setEmail] = useState((user && user.email) || "");
   const [phoneNumber, setPhoneNumber] = useState(
     (user && user.phone_number) || ""
-    );
+  );
   const [gender, setGender] = useState((user && user.gender) || "");
-  const [profilePicture, setProfilePicture] = useState((user && user.profile_picture) || "");
+  const [profilePicture, setProfilePicture] = useState(
+    (user && user.profile_picture) || ""
+  );
 
   useEffect(() => {
     dispatch(thunkGetUser(user.username));
@@ -78,12 +80,7 @@ export default function AccountEditPage() {
       return;
     }
 
-    const updatedPfp = await dispatch(
-      thunkEditPfp(
-        profilePicture,
-        userId
-      )
-    );
+    const updatedPfp = await dispatch(thunkEditPfp(profilePicture, userId));
     if (updatedPfp) {
       history.push(window.location.pathname);
       return;
@@ -121,41 +118,43 @@ export default function AccountEditPage() {
             <span> password</span>
           </div>
         </div>
-        <div className="form-container">
+        <div className="user-edit-form-container">
           <form onSubmit={pfpSubmit}>
-            <div className="input-section">
-              <label htmlFor="image-upload-button" className="imput-label">
-                <input
-                  id="image-upload-button"
-                  name="image"
-                  type="file"
-                  accept="image/*"
-                  onChange={updatedProfilePicture}
-                />
-              </label>
-              {profilePicture && (
-                <span
-                  htmlFor="image-upload-button"
-                  name="image"
-                  className="imput-label"
-                >
-                  {/* {image.name} */}
-                </span>
-              )}
-            </div>
-            {/* ----- IMAGE INPUT ----- ^^*/}
-            <div>
-              <div>
-                <button className="change-profile-button">
-                  Change profile photo
-                </button>
+            <div className="pfp-container">
+              <div className="pfp-image-container">
+                <img src={profilePicture} className="user-pfp-user-edit-form" />
+              </div>
+              <div className="input-section">
+                <div className="pfp-container-text">{user.username}</div>
+                <label htmlFor="image-upload-button" className="imput-label">
+                  <input
+                    id="image-upload-button"
+                    name="image"
+                    type="file"
+                    accept="image/*"
+                    // dataText="Change profile photo"
+                    onChange={updatedProfilePicture}
+                  />
+                </label>
+                {profilePicture && (
+                  <span
+                    htmlFor="image-upload-button"
+                    name="image"
+                    className="imput-label"
+                  >
+                    {/* {image.name} */}
+                  </span>
+                )}
+                <div>
+                  <button className="change-pfp-button">
+                    Change profile photo
+                  </button>
+                </div>
               </div>
             </div>
-            <div>
-              <img src={profilePicture} className="user-pfp-user-edit-form" />
-            </div>
+            {/* ----- IMAGE INPUT ----- ^^*/}
           </form>
-          <form onSubmit={formSubmit}>
+          <form onSubmit={formSubmit} className="user-edit-form-inputs">
             <div>
               <ul>
                 {errors &&
@@ -179,10 +178,16 @@ export default function AccountEditPage() {
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                 />
-                <div className="form-description-text">
-                  Help people discover your account by using the name you're
-                  known by: either your full name, nickname, or business name.
-                </div>
+              </div>
+              <div className="form-description-text">
+                Help people discover your account by using the name you're known
+                by: either your full name, nickname, or business name.
+              </div>
+              <div
+                className="form-description-text"
+                style={{ marginTop: "0px", marginBottom: "21px" }}
+              >
+                You can only change your name twice within 14 days.
               </div>
               <div>
                 <label htmlFor="username">Username</label>
@@ -195,7 +200,14 @@ export default function AccountEditPage() {
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>
-              <div>
+              <div
+                className="form-description-text"
+                style={{ marginBottom: "32px" }}
+              >
+                In most cases, you'll be able to change your username back to
+                reaslisticrubens for another 14 days. Learn more
+              </div>
+              <div className="user-edit-single-input">
                 <label htmlFor="website">Website</label>
                 <input
                   name="website"
@@ -206,7 +218,10 @@ export default function AccountEditPage() {
                   onChange={(e) => setWebsite(e.target.value)}
                 />
               </div>
-              <div className="text-area-container">
+              <div
+                className="text-area-container user-edit-single-input"
+                style={{ marginBottom: "10px", paddingBottom: "0px" }}
+              >
                 <label htmlFor="bio">Bio</label>
                 <textarea
                   name="bio"
@@ -217,18 +232,36 @@ export default function AccountEditPage() {
                   onChange={(e) => setBio(e.target.value)}
                 />
               </div>
-              <div>
+              <div
+                className={
+                  bio.length <= 150
+                    ? "bio-length bio-length-normal"
+                    : "bio-length bio-length-red"
+                }
+              >
+                {bio.length} / 150
+              </div>
+              <div className="form-text-personal-information">
+                Personal information
+              </div>
+              <div className="form-text-personal-information-description">
+                Provide your personal information, even if the account is used
+                for a business, a pet or something else. This won't be a part of
+                your public profile.
+              </div>
+              <div className="user-edit-single-input">
                 <label htmlFor="email">Email</label>
                 <input
                   name="email"
                   type="text"
                   placeholder="Email"
                   className="user-form-input"
+                  style={{ marginTop: "0px", paddingTop: "0px" }}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </div>
-              <div>
+              <div className="user-edit-single-input">
                 <label htmlFor="phone_number">Phone number</label>
                 <input
                   name="phone_number"
@@ -239,7 +272,7 @@ export default function AccountEditPage() {
                   onChange={(e) => setPhoneNumber(e.target.value)}
                 />
               </div>
-              <div>
+              <div className="user-edit-single-input">
                 <label htmlFor="gender">Gender</label>
                 <input
                   name="gender"
@@ -251,9 +284,11 @@ export default function AccountEditPage() {
                 />
               </div>
               {userId ? (
-                <button className="custom-search-button">Submit</button>
+                <div className="user-edit-submit-button-container">
+                  <button className="user-edit-submit-button">Submit</button>
+                </div>
               ) : (
-                <button className="custom-search-button-disabled" disabled>
+                <button className="user-edit-submit-button-disabled" disabled>
                   Submit
                 </button>
               )}
