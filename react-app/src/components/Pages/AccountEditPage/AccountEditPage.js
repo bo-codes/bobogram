@@ -204,10 +204,10 @@ export default function AccountEditPage() {
                 className="form-description-text"
                 style={{ marginBottom: "32px" }}
               >
-                In most cases, you'll be able to change your username back to
-                reaslisticrubens for another 14 days. Learn more
+                In most cases, you'll be able to change your username back to{" "}
+                {user.username} for another 14 days. Learn more
               </div>
-              <div className="user-edit-single-input">
+              <div className="user-edit-single-input" style={{marginBottom: '16px'}}>
                 <label htmlFor="website">Website</label>
                 <input
                   name="website"
@@ -219,8 +219,8 @@ export default function AccountEditPage() {
                 />
               </div>
               <div
-                className="text-area-container user-edit-single-input"
-                style={{ marginBottom: "10px", paddingBottom: "0px" }}
+                className="user-edit-text-area-container user-edit-single-input"
+                style={{ marginBottom: "0px", paddingBottom: "0px" }}
               >
                 <label htmlFor="bio">Bio</label>
                 <textarea

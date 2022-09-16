@@ -11,17 +11,27 @@ function PostCardExplore({ post, likes }) {
   const user = useSelector((state) => state.session.user) || "";
 
   return (
-    <div className="postcard-explore">
+    <div
+      className="postcard-explore"
+      style={{
+        width: "291px",
+      }}
+    >
       {/* ----------- POST IMAGE ----------- vv*/}
       <Link
-      style={{
-        textDecoration: 'none',
-      }}
-      to={`/posts/${post.id}`}>
+        style={{
+          textDecoration: "none",
+          width: "295px",
+        }}
+        to={`/posts/${post.id}`}
+      >
         {post.image_url && (
-          <div className="postcard-image" style={{
-            backgroundImage: `url(${post.image_url})`
-          }}></div>
+          <div
+            className="postcard-image"
+            style={{
+              backgroundImage: `url(${post.image_url})`,
+            }}
+          ></div>
         )}
       </Link>
       {/* ----------- POST IMAGE ----------- ^^*/}

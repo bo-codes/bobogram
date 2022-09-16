@@ -27,6 +27,7 @@ function PostCard({ post, postComments, likes }) {
   const [showComments, setShowComments] = useState(false);
   const [showFullCaption, setShowFullCaption] = useState(false);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
+  const [showAllComments, setShowAllComments] = useState(false);
 
   // SHOWING OR HIDING THE CREATE COMMENT MODAL
   const [showCreateComment, setShowCreateComment] = useState(false);
@@ -39,6 +40,7 @@ function PostCard({ post, postComments, likes }) {
   const user = useSelector((state) => state.session.user) || "";
   const [localDate] = useState(new Date(post.created_at));
   const postLikes = likes.filter((like) => like.post_id == post.id);
+  const remainingComments = postComments.slice(-2)
 
   const areWeShowingComments = () => {
     if (showComments) {
@@ -162,36 +164,36 @@ function PostCard({ post, postComments, likes }) {
         </Link>
         {/* {user && <Follows profileUsername={post.user.username} />} */}
         {/*  POST CAPTION ----- vv*/}
-          {post.caption.length > 138 && !showFullCaption && (
-            <p className="post-caption">
-              {post.caption.slice(0, 138)}{" "}
-              <span>
-                ...
-                <button
-                  className="show-more"
-                  onClick={() => setShowFullCaption(true)}
-                >
-                  more
-                </button>
-              </span>
-            </p>
-          )}
-          {post.caption.length > 138 && showFullCaption && (
-            <p className="post-caption">
-              {post.caption}{" "}
-              <span>
-                <button
-                  className="show-more"
-                  onClick={() => setShowFullCaption(false)}
-                >
-                  less
-                </button>
-              </span>
-            </p>
-          )}
-          {post.caption.length < 138 && (
-            <p className="post-caption">{post.caption}</p>
-          )}
+        {post.caption.length > 138 && !showFullCaption && (
+          <p className="post-caption">
+            {post.caption.slice(0, 138)}{" "}
+            <span>
+              ...
+              <button
+                className="show-more"
+                onClick={() => setShowFullCaption(true)}
+              >
+                more
+              </button>
+            </span>
+          </p>
+        )}
+        {post.caption.length > 138 && showFullCaption && (
+          <p className="post-caption">
+            {post.caption}{" "}
+            <span>
+              <button
+                className="show-more"
+                onClick={() => setShowFullCaption(false)}
+              >
+                less
+              </button>
+            </span>
+          </p>
+        )}
+        {post.caption.length < 138 && (
+          <p className="post-caption">{post.caption}</p>
+        )}
         {/* POST CAPTION ----- ^^*/}
       </div>
       {/* {showLogin && (
@@ -201,11 +203,9 @@ function PostCard({ post, postComments, likes }) {
       )} */}
       <div className="create-comment-container">
         {/* ------------ COMMENTS ------------ vv*/}
-        <div className="comment-section">
-          {postComments.length > 2 ? (
-            <div className="view-comments">{`View all ${postComments.length} comments`}</div>
-          ) : (
-            postComments.map((comment) => {
+        {showAllComments ? (
+          <div className="comment-section">
+            {postComments.map((comment) => {
               // FOR EACH COMMENT DISPLAY THIS
               return (
                 <Comment
@@ -216,9 +216,46 @@ function PostCard({ post, postComments, likes }) {
                   userId={user.id}
                 />
               );
-            })
-          )}
-        </div>
+            })}
+          </div>
+        ) : (
+          <div className="comment-section">
+            {postComments.length > 2 ? (
+              <>
+                <button onClick={() => {setShowAllComments(!showAllComments)}} className="view-comments">
+                  {`View all ${postComments.length} comments`}
+                </button>
+                <div>
+                  {remainingComments.map((comment) => {
+                    // FOR EACH COMMENT DISPLAY THIS
+                    return (
+                      <Comment
+                        className="comment"
+                        key={comment.id}
+                        comment={comment}
+                        post={post}
+                        userId={user.id}
+                      />
+                    );
+                  })}
+                </div>
+              </>
+            ) : (
+              postComments.map((comment) => {
+                // FOR EACH COMMENT DISPLAY THIS
+                return (
+                  <Comment
+                    className="comment"
+                    key={comment.id}
+                    comment={comment}
+                    post={post}
+                    userId={user.id}
+                  />
+                );
+              })
+            )}
+          </div>
+        )}
         {/* ------------ COMMENTS ------------ ^^*/}
         {/* ----- POST DATE ----- vv*/}
         <div className="post-date">

@@ -47,8 +47,8 @@ function ExplorePage({}) {
 
   return (
     <main>
-      <div className="">
-        <div className="imageCard">
+      <div className="page-container">
+        <div className="images-container">
           {nonUserPosts.map((post) => {
             let postComments = comments.filter((comment) => {
               return parseInt(comment.post_id) === parseInt(post.id);
@@ -57,7 +57,7 @@ function ExplorePage({}) {
               <div key={post.id} style={{ alignContent: "center" }}>
                 <PostCardExplore
                   id="image"
-                  style={{ position: "relative" }}
+                  style={{ position: "relative", width: '295px' }}
                   post={post}
                   postComments={postComments}
                   likes={likes}

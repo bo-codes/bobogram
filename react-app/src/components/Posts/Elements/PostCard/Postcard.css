@@ -41,6 +41,11 @@
 .view-comments{
   font-size: 14.5px;
   color: rgb(143, 143, 143);
+  background-color: transparent;
+}
+
+.view-comments:hover{
+  cursor: pointer;
 }
 
 .comment {

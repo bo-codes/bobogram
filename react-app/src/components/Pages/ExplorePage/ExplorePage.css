@@ -1,0 +1,15 @@
+.page-container{
+  /* border: 1px solid orange; */
+  display: flex;
+  justify-content: center;
+}
+
+.images-container{
+  /* border: 1px solid blue; */
+  margin-top: 25px;
+  width: 935px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 30px;
+}

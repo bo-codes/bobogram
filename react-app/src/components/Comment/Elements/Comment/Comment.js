@@ -20,19 +20,12 @@ function Comment({ comment, post, userId }) {
               setShowEditComment={setShowEditComment}
             />
           ) : (
-            <div style={{
-              wordWrap: "break-word"
-            }}>
+            <div className="comment-username-and-content-container">
               <div className="comment-content">
-                <span
-                  className="comment-username"
-                  style={{
-                    fontWeight: "bold",
-                  }}
-                >
+                <span className="comment-username">
                   {comment.user.username}
                 </span>
-                {userId === comment.user_id && (
+                {/* {userId === comment.user_id && (
                   <span className="inner-comment-dd">
                     <CommentDropdown
                       comment={comment}
@@ -40,26 +33,15 @@ function Comment({ comment, post, userId }) {
                       showEditComment={showEditComment}
                     />
                   </span>
-                )}
+                )} */}
               </div>
-              <div style={{
-                paddingTop: "10px"
-              }}>
+              <div className="comment-comment">
                 <p>{comment.content}</p>
               </div>
             </div>
           )}
         </div>
       </div>
-      {/* {userId === comment.user_id && (
-        <div>
-          <CommentDropdown
-            comment={comment}
-            setShowEditComment={setShowEditComment}
-            showEditComment={showEditComment}
-          />
-        </div>
-      )} */}
     </div>
   );
 }
