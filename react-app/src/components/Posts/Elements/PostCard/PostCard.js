@@ -9,7 +9,7 @@ import DeletePostModal from "../../Elements/DeletePostModal/DeletePostModal";
 // --------FORMS -------- //
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import CreateCommentForm from "../../../Comment/CommentForms/CreateCommentForm/CreateCommentForm";
-import EditPostForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
+import EditPostForm from "../../PostForms/CreatePostForm/EditPostForm"
 // -------- CSS/IMAGES -------- //
 import "./Postcard.css";
 import Like from "../../../Like/Like";
@@ -117,6 +117,7 @@ function PostCard({ post, postComments, likes }) {
               <OwnPostOptionsForm
                 post={post}
                 setShowOwnPostOptions={setShowOwnPostOptions}
+                showOwnPostOptions={showOwnPostOptions}
                 setShowPostEditModal={setShowPostEditModal}
                 setShowConfirmDeleteModal={setShowConfirmDeleteModal}
               />
@@ -137,6 +138,7 @@ function PostCard({ post, postComments, likes }) {
               <EditPostForm
                 post={post}
                 setShowPostEditModal={setShowPostEditModal}
+                showPostEditModal={showPostEditModal}
                 setShowConfirmDeleteModal={setShowConfirmDeleteModal}
                 showConfirmDeleteModal={showConfirmDeleteModal}
               />

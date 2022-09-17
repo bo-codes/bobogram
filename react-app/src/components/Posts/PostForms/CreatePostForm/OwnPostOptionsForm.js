@@ -10,13 +10,14 @@ import "./OwnPostOptionsForm.css";
 
 function OwnPostOptionsForm({
   post = null,
+  showOwnPostOptions,
   setShowOwnPostOptions,
   setShowCreatePost,
   setShowConfirmDeleteModal,
   setShowPostEditModal,
+  showPostEditModal,
   showConfirmDeleteModal,
 }) {
-
   const [date, setDate] = useState((post && post.created_at) || "");
   const [image, setImage] = useState((post && post.image_url) || "");
   const [caption, setCaption] = useState((post && post.caption) || "");
@@ -102,7 +103,7 @@ function OwnPostOptionsForm({
 
   const editButton = () => {
     setShowPostEditModal(true);
-    // setShowOwnPostOptions(false);
+    setShowOwnPostOptions(false)
   };
 
   return (
@@ -110,12 +111,14 @@ function OwnPostOptionsForm({
       {/* ----------------------FORM ---------------------- vv*/}
       <div className="own-post-options-button">
         <button className="button-text">
-          <span className="critical-operations" onClick={deletePostModal}>Delete</span>
+          <span className="critical-operations" onClick={deletePostModal}>
+            Delete
+          </span>
         </button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text" onClick={editButton}>
-          Edit
+        <button className="button-text">
+          <span onClick={editButton}>Edit</span>
         </button>
       </div>
       <div className="own-post-options-button">
