@@ -22,7 +22,7 @@
 
 #modal-content {
     position: absolute;
-    background-color: black;
+    background-color: white;
     min-width: fit-content;
     width: max-content;
     /* padding: 25px 25px; */

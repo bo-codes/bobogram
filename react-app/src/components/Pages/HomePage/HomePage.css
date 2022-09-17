@@ -10,6 +10,7 @@
   justify-content: center;
   width: 850px;
   margin-top: 26.5px;
+  margin-left: 15px;
 }
 
 .post-list {
@@ -28,6 +29,7 @@
   align-items: center;
   float: right;
   width: 100%;
+  margin-left: 7px;
 }
 
 .inner-suggestions-container{
@@ -86,6 +88,7 @@
 .suggestions-for-you-title{
   color: grey;
   font-size: 15px;
+  font-weight: 600;
   padding: 8px 0px 14px 0px;
 }
 
@@ -123,7 +126,7 @@ Link{
   justify-content: center;
   align-content: center;
   padding: 0;
-  width: 231px;
+  width: 232px;
   /* line-height: 1px; */
 }
 
@@ -150,6 +153,11 @@ Link{
   width: 100%;
   padding: 0;
   margin: 0;
+}
+
+.user-follow-button{
+  margin-bottom: 7px;
+  margin-left: 1px;
 }
 
 @media (max-width: 999px) {

@@ -24,6 +24,7 @@ function PostCard({ post, postComments, likes }) {
   // SHOWING OR HIDING THE EDIT POST MODAL
   const [showPostOptions, setShowPostOptions] = useState(false);
   const [showOwnPostOptions, setShowOwnPostOptions] = useState(false);
+  const [showPostEditModal, setShowPostEditModal] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showFullCaption, setShowFullCaption] = useState(false);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
@@ -95,7 +96,6 @@ function PostCard({ post, postComments, likes }) {
         </div>
         {/* ------ POST EDIT BUTTON ------ ^^*/}
       </div>
-
       {/* ----------- POST IMAGE ----------- vv*/}
       <div>
         {post.image_url && (
@@ -117,6 +117,7 @@ function PostCard({ post, postComments, likes }) {
               <OwnPostOptionsForm
                 post={post}
                 setShowOwnPostOptions={setShowOwnPostOptions}
+                setShowPostEditModal={setShowPostEditModal}
                 setShowConfirmDeleteModal={setShowConfirmDeleteModal}
               />
             </Modal>
@@ -130,6 +131,18 @@ function PostCard({ post, postComments, likes }) {
               />
             </Modal>
           )}
+          {/* ----------- EDIT POST MODAL ----------- vv*/}
+          {showPostEditModal && (
+            <Modal onClose={() => setShowPostEditModal(false)}>
+              <EditPostForm
+                post={post}
+                setShowPostEditModal={setShowPostEditModal}
+                setShowConfirmDeleteModal={setShowConfirmDeleteModal}
+                showConfirmDeleteModal={showConfirmDeleteModal}
+              />
+            </Modal>
+          )}
+          {/* ----------- EDIT POST MODAL ----------- ^^*/}
         </div>
         {/* ----------- EDIT POST BUTTON ----------- ^^*/}
       </div>
@@ -222,7 +235,12 @@ function PostCard({ post, postComments, likes }) {
           <div className="comment-section">
             {postComments.length > 2 ? (
               <>
-                <button onClick={() => {setShowAllComments(!showAllComments)}} className="view-comments">
+                <button
+                  onClick={() => {
+                    setShowAllComments(!showAllComments);
+                  }}
+                  className="view-comments"
+                >
                   {`View all ${postComments.length} comments`}
                 </button>
                 <div>

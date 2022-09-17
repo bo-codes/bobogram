@@ -54,7 +54,7 @@ const deletePost = (postId) => ({
 /***************************** THUNKS ***************************************/
 
 export const makePost =
-  (userIdmu, image, caption, tag, created_at) => async (dispatch) => {
+  (user_id, image, caption, tag, created_at) => async (dispatch) => {
     const imageData = new FormData();
     imageData.append("image", image);
 
@@ -80,7 +80,7 @@ export const makePost =
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        userIdmu,
+        user_id,
         image: image.url,
         caption,
         created_at,
