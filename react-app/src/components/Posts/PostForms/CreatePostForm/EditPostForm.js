@@ -32,6 +32,7 @@ function EditPostForm({
 
   // PULLING THE CURRENT USER IN OUR STATE
   const userId = useSelector((state) => state.session.user.id);
+  const user = useSelector((state) => state.session.user);
 
   // ---------------------- ON SUBMITTAL ---------------------- vv//
   const submit = async (e) => {
@@ -100,6 +101,7 @@ function EditPostForm({
 
   // FUNCTION TO TOGGLE THE VISIBILITY OF DELETE POST MODAL WHEN A BUTTON IS CLICKED
   const deletePostModal = () => {
+    setShowPostEditModal(false)
     setShowConfirmDeleteModal(true);
   };
 
@@ -107,13 +109,8 @@ function EditPostForm({
     <div id="edit-post-form-container">
       {/* ----------------------FORM ---------------------- vv*/}
       <form onSubmit={submit}>
-        {/* IF POST IS FALSEY, AKA IF NOTHING WAS RETURNED FROM THE DISPATCH AND REASSIGNED THE VALUE OF THE
-        POST VARAIBLE FROM ITS DEFAULT NULL VALUE TO SOMETHING TRUTHY, JUST DISPLAY ANY ERRORS */}
-
         {/* -------- ERROR DISPLAY -------- vv*/}
         <div>
-          {/* IF THERE IS A POST, DISPLAY THE TEXT "Update Your Post" AND LIST ANY ERRORS */}
-          {/* {post && <h2>Update Your Post</h2>} */}
           <ul>
             {errors &&
               errors.map((error) => {
@@ -130,43 +127,53 @@ function EditPostForm({
           </ul>
         </div>
         {/* -------- ERROR DISPLAY -------- ^^*/}
-
-        {/* ----- IMAGE INPUT ----- vv*/}
-        {/* <div>
-          <label>Image </label>
-          <label htmlFor="image-upload-button">
-            Upload
-            <input
-              id="image-upload-button"
-              name="image"
-              type="file"
-              accept="image/*"
-              onChange={updateImage}
-            />
-          </label>
-          {image && (
-            <span htmlFor="image-upload-button" name="image">
-              {image.name}
-            </span>
-          )}
-        </div> */}
-        {/* ----- IMAGE INPUT ----- ^^*/}
-
-        {/* ----- CAPTION INPUT ----- vv*/}
-        <div>
-          <label htmlFor="caption">Caption</label>
-          <TextareaAutosize
-            className="post-edit-caption"
-            id="textBox1"
-            name="caption"
-            type="text"
-            value={caption}
-            onChange={(e) => setCaption(e.target.value)}
-          />
+        <div className="entire-edit-form">
+          <div className="edit-form-header">
+            <div className="edit-form-header-button">
+              <button
+                className="edit-form-cancel-button"
+                onClick={() => setShowPostEditModal(false)}
+              >
+                Cancel
+              </button>
+            </div>
+            <div className="post-edit-form-title">Edit info</div>
+            <div className="edit-form-header-button">
+              <button className="edit-form-done-button" onClick={submit}>
+                Done
+              </button>
+            </div>
+          </div>
+          <div className="edit-post-form">
+            <div
+              className="edit-post-image"
+              style={{
+                backgroundImage: `url(${post.image_url})`,
+              }}
+            ></div>
+            {/* ----- CAPTION INPUT ----- vv*/}
+            <div className="input-section-caption">
+              <div className="username-create-post-bar">
+                <img
+                  src={user.profile_picture}
+                  className="user-pfp-create-post"
+                />
+                <label htmlFor="caption" className="caption-label">
+                  {user.username}
+                </label>
+              </div>
+              <textarea
+                name="caption"
+                type="text"
+                value={caption}
+                placeholder="Write a caption..."
+                onChange={(e) => setCaption(e.target.value)}
+                className="caption-input"
+              />
+            </div>
+            {/* ----- CAPTION INPUT ----- ^^*/}
+          </div>
         </div>
-        {/* ----- CAPTION INPUT ----- ^^*/}
-
-        {/* IF THE DELETE BUTTON IS CLICKED AND THE showConfirmModal SLICE IS SET TO TRUE, SHOW THE DELETE CONFIRMATION MODAL */}
         {showConfirmDeleteModal && (
           <Modal onClose={() => setShowConfirmDeleteModal(false)}>
             <DeletePostModal
@@ -175,54 +182,6 @@ function EditPostForm({
             />
           </Modal>
         )}
-
-        {/* IF THERE'S A POST ALREADY WHEN FILLING OUT THE FORM, WHICH MEANS THAT WE PASSED IN THE A POST INTO THE
-        postForm WHICH WE DO IN THE POSTCARD ELEMENT WHEN EDITING, ADD AN UPDATE BUTTON AND A DELETE BUTTON */}
-        <div>
-          {post ? (
-            <div>
-              {/* ----- UPDATE POST BUTTON ----- vv*/}
-              {imageLoading ? (
-                <button disabled>Loading . . .</button>
-              ) : (
-                <button
-                  type="submit"
-                  style={{
-                    color: "white",
-                  }}
-                >
-                  Update Post
-                </button>
-              )}
-              {/* ----- UPDATE POST BUTTON ----- ^^*/}
-
-              {/* ---------- DELETE BUTTON ---------- vv*/}
-              <button
-                type="button"
-                // DELETE BUTTON SETS showDeletePostModal TO TRUE AND SHOWS THE DELETE CONFIRMATION PAGE
-                onClick={deletePostModal}
-                disabled={imageLoading}
-                style={{
-                  color: "white",
-                }}
-              >
-                Delete Post
-              </button>
-              {/* ---------- DELETE BUTTON ---------- ^^*/}
-            </div>
-          ) : (
-            // IF THERES NOT A POST AKA NO POST WAS PASSED INTO THIS COMPONENT SO "post" IS THE DEFAULT NULL VALUE
-            // ----- CREATE BUTTON ----- vv//
-            <div>
-              {imageLoading ? (
-                <button disabled>Loading . . .</button>
-              ) : (
-                <button>Create Post</button>
-              )}
-            </div>
-            // ----- CREATE BUTTON ----- ^^//
-          )}
-        </div>
       </form>
       {/* ---------------------- FORM ---------------------- ^^*/}
     </div>

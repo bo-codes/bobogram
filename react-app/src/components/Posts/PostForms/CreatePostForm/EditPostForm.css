@@ -1,12 +1,67 @@
-.post-edit-caption {
-  height: 120px;
-  width: 100%;
-  color: white;
-  background-color: #8f8f8f;
+.entire-edit-form{
+  width: 1070px;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-post-form{
+  display: flex;
+}
+
+.post-edit-form-title{
+  height: 38px;
+  font-weight: 600;
+  margin-right: 15px;
+  border-bottom: 1px solid rgba(174, 174, 174, 0.444);
+  display: flex;
+  align-items: center;
+}
+
+.edit-post-image{
+  width: 1150px;
+  height: 730px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.caption-input {
+  width: 89%;
+  height: 300px;
+  margin-top: 14px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 16.5px;
+  /* color: rgba(174, 174, 174, 0.262); */
   border: none;
 }
 
 #edit-post-form-container {
   width: 100%;
   /* border: 1px solid purple; */
+}
+
+.edit-form-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(174, 174, 174, 0.444);
+}
+
+.edit-form-header-button{
+  /* border: 1px solid pink; */
+}
+
+.edit-form-done-button {
+  margin: 0px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #3195ff;
+  background-color: transparent;
+}
+
+.edit-form-cancel-button {
+  margin: 0px 15px;
+  font-size: 15px;
+  background-color: transparent;
 }

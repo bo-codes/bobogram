@@ -13,7 +13,7 @@ const DeletePostModal = ({ post, setShowConfirmDeleteModal }) => {
   const deletePost = async (e) => {
     e.preventDefault();
     await dispatch(removePost(post.id));
-    history.push("/profile");
+    history.push(`${window.location.pathname}`);
   };
 
   return (
@@ -22,7 +22,7 @@ const DeletePostModal = ({ post, setShowConfirmDeleteModal }) => {
         <h2
           style={{
             color: "white",
-            marginTop: '8px'
+            marginTop: "8px",
           }}
         >
           Are you sure you want to delete your post?

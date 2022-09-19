@@ -18,7 +18,7 @@ import "./Postcard.css";
 import { addOneLike, getAllLikes } from "../../../../store/likes";
 import Like from "../../../Like/Like";
 
-function PostCardDetail({ post, postComments=null, likes }) {
+function PostCardDetail({ post, postComments=null, postLikes, likes }) {
   // console.log("POST LIKES BEFORE EVEN RETURNING", likes);
   const dispatch = useDispatch();
   // -------- SETTING STATES ------- //
@@ -37,6 +37,15 @@ function PostCardDetail({ post, postComments=null, likes }) {
   // const likes = useSelector((state) => state.likes) || ""; //Grab likes state
   const user = useSelector((state) => state.session.user) || "";
 
+    const areWeShowingComments = () => {
+      if (showComments) {
+        setShowComments(false);
+      } else {
+        setShowComments(true);
+      }
+    };
+
+
   return (
     <div id="outermost-card">
       {/* {console.log("POST LIKES IN POSTCARD.JS BEFORE RETURN", likes)} */}
@@ -44,12 +53,18 @@ function PostCardDetail({ post, postComments=null, likes }) {
         <div className="post-username">
           <Link
             to={`/${post.user.username}`}
-            style={{ textDecoration: "none", color: "white" }}
+            style={{ textDecoration: "none",}}
             className="post-username"
+          >
+            <img src={user.profile_picture} className='post-detail-user-pfp'/>
+          </Link>
+          <Link
+            to={`/${post.user.username}`}
+            className="post-detail-username"
           >
             <div className="post-username">{post.user.username}</div>
           </Link>
-          {user && <Follows profileUsername={post.user.username} />}
+          {user && <Follows profileUsername={post.user.username}  className='post-detail-follows'/>}
         </div>
         {/* ------ POST EDIT BUTTON ------ vv*/}
         <div className="edit-post-container">
@@ -146,17 +161,25 @@ function PostCardDetail({ post, postComments=null, likes }) {
       </div> */}
       {/* ----------- EDIT POST BUTTON ----------- ^^*/}
       <div className="comment-btns">
-        {/* <button className="post-btns" onClick={areWeShowingComments}>
-          <div id="comment-btn"></div>
-        </button> */}
         {user ? (
-          <Like post_id={post.id} user_id={user.id} likes={likes} />
+          <Like post_id={post.id} user_id={user.id} likes={likes} postLikes={postLikes} />
         ) : (
           <button className="post-btns" onClick={() => setShowLogin(true)}>
             <div id="heart-btn"></div>
           </button>
         )}
+        <button className="post-btns" onClick={areWeShowingComments}>
+          <div id="comment-btn"></div>
+        </button>
       </div>
+      {/* LIKES */}
+      {postLikes.length >= 1 && (
+        <div className="like-count">
+          {postLikes.length == 1
+            ? `${postLikes.length} like`
+            : `${postLikes.length} likes`}
+        </div>
+      )}
       {/* {showLogin && (
         <Modal onClose={() => setShowLogin(false)}>
           <LoginFormPosts setShowLogin={setShowLogin} />

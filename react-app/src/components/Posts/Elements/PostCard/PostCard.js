@@ -16,6 +16,7 @@ import Like from "../../../Like/Like";
 import OwnPostOptionsForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
 import { Modal } from "../../../Global/Elements/Modal";
 import PostOptionsForm from "../../PostForms/CreatePostForm/PostOptionsForm";
+import PostCardDetail from "../PostCardDetail/PostCardDetail";
 
 function PostCard({ post, postComments, likes }) {
   // console.log("POST LIKES BEFORE EVEN RETURNING", likes);
@@ -29,6 +30,7 @@ function PostCard({ post, postComments, likes }) {
   const [showFullCaption, setShowFullCaption] = useState(false);
   const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const [showAllComments, setShowAllComments] = useState(false);
+  const [showPostDetail, setShowPostDetail] = useState(false);
 
   // SHOWING OR HIDING THE CREATE COMMENT MODAL
   const [showCreateComment, setShowCreateComment] = useState(false);
@@ -101,6 +103,18 @@ function PostCard({ post, postComments, likes }) {
         {post.image_url && (
           <img id="postcard-image" src={post.image_url} alt="" />
         )}
+        {/* ----------- POST DETAIL POPUP ----------- vv*/}
+        {showPostDetail && (
+          <Modal onClose={() => setShowPostDetail(false)}>
+            <PostCardDetail
+              post={post}
+              showPostDetail={showPostDetail}
+              setShowPostDetail={setShowPostDetail}
+              postLikes={postLikes}
+            />
+          </Modal>
+        )}
+        {/* ----------- POST DETAIL POPUP ----------- ^^*/}
         {/* ----------- EDIT POST BUTTON ----------- vv*/}
         <div id="post-form-container">
           {showPostOptions && (
@@ -151,7 +165,7 @@ function PostCard({ post, postComments, likes }) {
       {/* ----------- POST IMAGE ----------- ^^*/}
       <div className="comment-btns">
         {user ? (
-          <Like post_id={post.id} user_id={user.id} likes={likes} />
+          <Like post_id={post.id} user_id={user.id} likes={likes} postLikes={postLikes} />
         ) : (
           <button className="post-btns" onClick={() => setShowLogin(true)}>
             <div id="heart-btn"></div>

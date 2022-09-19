@@ -36,6 +36,10 @@ export default function AccountEditPage() {
     e.preventDefault();
     setErrors([]);
 
+    if (user.id == 1) {
+      return window.alert("Cannot edit demo user. Try making a new user :)");
+    }
+
     if (!userId) {
       setErrors(["You must be logged in to create or edit a comment."]);
       setErrors(user);
@@ -73,6 +77,10 @@ export default function AccountEditPage() {
   const pfpSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
+
+    if (user.id == 1) {
+      return window.alert("Cannot edit demo user. Try making a new user :)");
+    }
 
     if (!userId) {
       setErrors(["You must be logged in to create or edit a comment."]);
@@ -207,7 +215,10 @@ export default function AccountEditPage() {
                 In most cases, you'll be able to change your username back to{" "}
                 {user.username} for another 14 days. Learn more
               </div>
-              <div className="user-edit-single-input" style={{marginBottom: '16px'}}>
+              <div
+                className="user-edit-single-input"
+                style={{ marginBottom: "16px" }}
+              >
                 <label htmlFor="website">Website</label>
                 <input
                   name="website"

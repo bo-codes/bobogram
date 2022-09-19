@@ -98,12 +98,13 @@ function OwnPostOptionsForm({
 
   // FUNCTION TO TOGGLE THE VISIBILITY OF DELETE POST MODAL WHEN A BUTTON IS CLICKED
   const deletePostModal = () => {
+    setShowOwnPostOptions(false);
     setShowConfirmDeleteModal(true);
   };
 
   const editButton = () => {
+    setShowOwnPostOptions(false);
     setShowPostEditModal(true);
-    setShowOwnPostOptions(false)
   };
 
   return (

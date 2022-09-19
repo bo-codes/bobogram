@@ -4,9 +4,125 @@
   display: flex;
   justify-content: center;
   background-color: white;
+  /* border: 1px solid orange; */
 }
 
-.new-post-title{
+.post-create-form-half{
+  width: 100%;
+  height: 100%;
+  /* border: 1px solid blue; */
+}
+
+.post-create-form-container{
+  /* border: 1px solid green; */
+  height: 100%;
+}
+
+.post-create-form-title{
+  border-bottom: 1px solid rgba(174, 174, 174, 0.444);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 43px;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16.5px;
+}
+
+.post-create-form{
+  height: 93%;
+}
+
+.create-post-inputs{
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+}
+
+.input-section-image{
+  /* border: 1px solid blue; */
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 70px;
+}
+.image-upload-button{
+  padding-left: 100px;
+}
+
+.input-section-caption{
+  /* border: 1px solid green; */
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  height: 100%;
+  border-left: 1px solid rgba(174, 174, 174, 0.444);
+}
+
+.username-create-post-bar{
+  /* border: 1px solid blue; */
+  display: flex;
+  align-items: center;
+  margin-top: 17.5px;
+  margin-left: 17.5px;
+}
+
+.user-pfp-create-post{
+  /* border: 1px solid aqua; */
+  width: 28px;
+  border-radius: 14px;
+}
+
+.caption-label{
+  margin-left: 12px;
+  height: 28px;
+}
+
+.caption-input{
+  width: 89%;
+  height: 300px;
+  margin-top: 14px;
+  margin-left: 20px;
+  margin-right: 20px;
+  font-size: 16.5px;
+  /* color: rgba(174, 174, 174, 0.262); */
+  border: none;
+}
+
+.create-form-share-button{
+  margin: 0px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #3195ff;
+  background-color: transparent;
+}
+
+.create-form-share-button-disabled{
+  margin: 0px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2e9aff4b;
+  background-color: transparent;
+}
+
+.create-form-share-button:hover{
+  cursor: pointer;
+}
+
+.create-form-share-button-invisible{
+  margin: 0px 15px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #3195ff;
+  background-color: transparent;
+  visibility: hidden;
+}
+
+.image-input-jpg{
+  background-image: url('../../../../images//aws-input.png');
+  background-size: contain;
+  width: 300px;
+  height: 170px;
 }

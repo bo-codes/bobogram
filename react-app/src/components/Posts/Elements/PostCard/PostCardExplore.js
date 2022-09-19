@@ -3,12 +3,24 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Modal } from "../../../Global/Elements/Modal";
 import { Link } from "react-router-dom";
+
+import PostCardDetail from "../PostCardDetail/PostCardDetail";
+
 // -------- CSS/IMAGES -------- //
 import "./PostcardExplore.css";
 
 function PostCardExplore({ post, likes }) {
 
   const user = useSelector((state) => state.session.user) || "";
+
+  const [showPostDetail, setShowPostDetail] = useState(false);
+
+  const showDetails = (e) => {
+    e.preventDefault()
+    setShowPostDetail(true)
+  }
+
+  const postLikes = likes.filter((like) => like.post_id == post.id);
 
   return (
     <div
@@ -18,12 +30,12 @@ function PostCardExplore({ post, likes }) {
       }}
     >
       {/* ----------- POST IMAGE ----------- vv*/}
-      <Link
+      <button
         style={{
           textDecoration: "none",
           width: "295px",
         }}
-        to={`/posts/${post.id}`}
+        onClick={showDetails}
       >
         {post.image_url && (
           <div
@@ -33,8 +45,18 @@ function PostCardExplore({ post, likes }) {
             }}
           ></div>
         )}
-      </Link>
+      </button>
       {/* ----------- POST IMAGE ----------- ^^*/}
+      {showPostDetail && (
+        <Modal onClose={() => setShowPostDetail(false)}>
+          <PostCardDetail
+            post={post}
+            showPostDetail={showPostDetail}
+            setShowPostDetail={setShowPostDetail}
+            postLikes={postLikes}
+          />
+        </Modal>
+      )}
     </div>
   );
 }

@@ -7,14 +7,14 @@ import { addOneLike, deleteLike, getAllLikes } from "../../store/likes";
 //   cursor: pointer;
 // `;
 
-function Like({ post_id, user_id = null, likes }) {
+function Like({ post_id, user_id = null, likes = null, postLikes=null }) {
   const dispatch = useDispatch();
-  const postLikes = likes.filter((like) => {
-    return (
-      parseInt(like.post_id) === parseInt(post_id) &&
-      parseInt(like.user_id) === parseInt(user_id)
-    );
-  });
+  // const postLikes = likes.filter((like) => {
+  //   return (
+  //     parseInt(like.post_id) === parseInt(post_id) &&
+  //     parseInt(like.user_id) === parseInt(user_id)
+  //   );
+  // });
   // const postId = post_id;
 
   //if a button clicks and there is no bookmark in the bookmarks table where the user and the event matches,
@@ -32,6 +32,8 @@ function Like({ post_id, user_id = null, likes }) {
     // console.log(likes);
     // console.log("LIKE.js RIGHT BEFORE SET LIKE", postLikes);
     //set bookmark to the first bookmark in state that matches the post_id
+    if (postLikes) {
+    }
     setLike(
       Object.values(postLikes).filter((like) => {
         return parseInt(like.post_id) === parseInt(post_id);

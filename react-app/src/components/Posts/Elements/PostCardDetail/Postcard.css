@@ -1,0 +1,16 @@
+.post-detail-user-pfp{
+  width: 30px;
+  border-radius: 15px;
+}
+
+.post-detail-username{
+  text-decoration: none;
+  color: black;
+  margin-right: 10px;
+}
+
+
+.post-detail-follows{
+  display: flex;
+  align-self: center;
+}
