@@ -29,9 +29,9 @@ const SignUpForm = () => {
   };
 
   useEffect(() => {
-    if (password.length >= 6 && email && username) setValidateInputs(true);
+    if (password.length >= 6 && email && username && fullName) setValidateInputs(true);
     else setValidateInputs(false);
-  }, [password, email]);
+  }, [password, email, username, fullName]);
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -67,11 +67,11 @@ const SignUpForm = () => {
   }
 
   return (
-    <div className="entire-page">
+    <div className="signup-entire-page">
       <div className="form-and-img-container">
         <div className="complete-form-container">
-          <div className="logo-container">
-            <div className="logo"></div>
+          <div className="signup-logo-container">
+            <div className="signup-logo"></div>
           </div>
           <form onSubmit={onSignUp} className="main-form-container">
             <div>
@@ -104,8 +104,30 @@ const SignUpForm = () => {
                   })}
               </ul>
             </div>
+            <div className="signup-first-header">
+              <div className="signup-first-header-text">
+                Sign up to see photos and videos from your friends.
+              </div>
+              <div>
+                <button
+                  className="login-button"
+                  style={{
+                    paddingTop: "2px",
+                    height: "32px",
+                    fontSize: "16",
+                  }}
+                >
+                  See more projects
+                </button>
+              </div>
+            </div>
             <div className="login-fields-and-btns">
-              <div className="login-fields">
+              <div className="signup-fields">
+                <div className="signup-or-lines">
+                  -----------------------------{" "}
+                  <span id="signup-or-word">OR</span>{" "}
+                  ------------------------------
+                </div>
                 <input
                   className="login-input-box"
                   name="email"
@@ -147,24 +169,33 @@ const SignUpForm = () => {
                   </button>
                 </div>
               </div>
+              <div id="signup-first-text">
+                People who use our service may have uploaded your contact
+                information to Instagram.{" "}
+                <span className="signup-text-bold">Learn More</span>
+              </div>
+              <div id="signup-second-text">
+                By signing up, you agree to our{" "}
+                <span className="signup-text-bold">Terms</span> ,{" "}
+                <span className="signup-text-bold">Privacy Policy</span> and{" "}
+                <span className="signup-text-bold">Cookies Policy</span> .
+              </div>
               {/* LOGIN BUTTON */}
               {validateInputs && (
-                <button type="submit" className="login-button">
-                  Log In
+                <button type="submit" className="signup-button">
+                  Sign up
                 </button>
               )}
               {!validateInputs && (
-                <button className="login-button-disabled" disabled>
-                  Log In
+                <button className="signup-button-disabled" disabled>
+                  Sign up
                 </button>
               )}
-              <div className="or-lines">
-                ----------------------------------------{" "}
-                <span id="or-word">OR</span>{" "}
-                -----------------------------------------
-              </div>
             </div>
           </form>
+          <div className="signup-download-link-box">
+            Have an account? Log in
+          </div>
           <div className="form-container-3">Get the app.</div>
           <div className="form-container-4">
             <Link
