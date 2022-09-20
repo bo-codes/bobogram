@@ -2,6 +2,8 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { removePost } from "../../../../store/posts";
 
+import './DeletePostModal.css'
+
 const DeletePostModal = ({ post, setShowConfirmDeleteModal }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -17,41 +19,31 @@ const DeletePostModal = ({ post, setShowConfirmDeleteModal }) => {
   };
 
   return (
-    <main>
-      <div>
-        <h2
-          style={{
-            color: "white",
-            marginTop: "8px",
-          }}
-        >
-          Are you sure you want to delete your post?
-        </h2>
-        <div>
-          <button
-            onClick={cancelDelete}
-            style={{
-              color: "white",
-              marginRight: "5px",
-              padding: "3px",
-              borderRadius: "4px",
-            }}
-          >
-            Cancel
-          </button>
-          <button
-            onClick={deletePost}
-            style={{
-              color: "white",
-              padding: "3px",
-              borderRadius: "4px",
-            }}
-          >
-            Delete
-          </button>
+    <div id="own-post-options">
+      {/* ----------------------FORM ---------------------- vv*/}
+      <div id="delete-modal-header">
+        <div id="delete-post-text">Delete post?</div>
+        <div id="are-you-sure-text">
+          Are you sure you want to delete this post?
         </div>
       </div>
-    </main>
+      <div className="own-post-options-button">
+        <button className="button-text">
+          <span
+            className="critical-operations delete-button-delete-modal"
+            onClick={deletePost}
+          >
+            Delete
+          </span>
+        </button>
+      </div>
+      <div className="own-post-options-bottom-button">
+        <button className="button-text" onClick={cancelDelete}>
+          Cancel
+        </button>
+      </div>
+      {/* ---------------------- FORM ---------------------- ^^*/}
+    </div>
   );
 };
 

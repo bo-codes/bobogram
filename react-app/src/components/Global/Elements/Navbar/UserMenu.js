@@ -35,6 +35,16 @@ function UserMenu({ user }) {
     return () => document.removeEventListener("mousedown", closeMenu);
   }, [showMenu]);
 
+  const pageNotAvailable = (e) => {
+    e.preventDefault();
+    return window.alert("This page is not yet available, try the other pages!");
+  };
+
+  const featureNotAvailable = (e) => {
+    e.preventDefault();
+    return window.alert("Darn! This feature is not yet available.");
+  };
+
   return (
     <>
       <MenuButton onClick={openMenu}>
@@ -68,32 +78,37 @@ function UserMenu({ user }) {
               <div className="usermenu-profile-icon dropdown"></div>
               <div className="dropdown-button-text dropdown">Profile</div>
             </NavLink>
-            <NavLink
-              to="/saved"
+            <button
               activeClassName="active"
               className="dropdown-button"
+              style={{ backgroundColor: "transparent" }}
+              onClick={pageNotAvailable}
             >
               <div className="usermenu-saved-icon dropdown"></div>
               <div className="dropdown-button-text dropdown">Saved</div>
-            </NavLink>
-            <NavLink
+            </button>
+            <button
               to="/settings"
               activeClassName="active"
               className="dropdown-button"
+              style={{ backgroundColor: "transparent" }}
+              onClick={pageNotAvailable}
             >
               <div className="usermenu-settings-icon dropdown"></div>
               <div className="dropdown-button-text dropdown">Settings</div>
-            </NavLink>
-            <NavLink
+            </button>
+            <button
               to="/switch"
               activeClassName="active"
               className="dropdown-button switch-btn"
+              style={{ backgroundColor: "transparent" }}
+              onClick={pageNotAvailable}
             >
               <div className="usermenu-switch-icon dropdown"></div>
               <div className="dropdown-button-text dropdown">
                 Switch accounts
               </div>
-            </NavLink>
+            </button>
 
             <LogoutButton className="dropdown-logout-button" />
           </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import CrossfadeImage from "react-crossfade-image";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink, Redirect } from "react-router-dom";
+import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 import phoneImg1 from "../../../images/phone-screen1.jpg";
 import phoneImg2 from "../../../images/phone-screen2.jpg";
 import phoneImg3 from "../../../images/phone-screen3.jpg";
@@ -55,6 +55,7 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
 
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
+  const history = useHistory()
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -80,6 +81,12 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
   if (user) {
     return <Redirect to="/home" />;
   }
+
+  const demoLogIn = async (e) => {
+    e.preventDefault();
+    await dispatch(login("demo@aa.io", "password"));
+    history.push("/home");
+  };
 
   return (
     <div className="entire-page">
@@ -175,18 +182,17 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
                 </button>
               )}
               <div className="or-lines">
-                ----------------------------------------{" "}
-                <span id="or-word">OR</span>{" "}
-                -----------------------------------------
+                ----------------------------- <span id="or-word">OR</span>{" "}
+                ------------------------------
+              </div>
+              <div id="signup-demo-button-container">
+                <button id="signup-demo-button" onClick={demoLogIn}>Login as demo user</button>
               </div>
             </div>
           </form>
           <div className="form-container-2">
             <span>Don't have an account? </span>
-            <NavLink
-              id="signup-reroute"
-              to={"/signup"}
-            >
+            <NavLink id="signup-reroute" to={"/signup"}>
               {" "}
               Sign up
             </NavLink>

@@ -76,6 +76,7 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
                 <button
                   onClick={() => setShowCreatePost(true)}
                   className="edit-post-button"
+                  style={{visibility: 'hidden'}}
                 >
                   ...
                 </button>

@@ -9,6 +9,7 @@ import DeletePostModal from "../../Elements/DeletePostModal/DeletePostModal";
 import { makePost, editPost } from "../../../../store/posts";
 
 import "./PostOptionsForm.css";
+import Follows from "../../../Follows/Follows";
 
 // THIS IS OUR POST CREATION/EDIT FORM COMPONENT
 function PostOptionsForm({
@@ -16,6 +17,9 @@ function PostOptionsForm({
   setShowCreatePost,
   setShowConfirmDeleteModal,
   showConfirmDeleteModal,
+  setShowPostOptions,
+  postUser,
+  setShowPostDetail
 }) {
   // SETTING STATES
   const [date, setDate] = useState((post && post.created_at) || "");
@@ -102,27 +106,38 @@ function PostOptionsForm({
     setShowConfirmDeleteModal(true);
   };
 
+  const pageNotAvailable = (e) => {
+    e.preventDefault()
+    return window.alert('This page is not yet available, try the other pages!')
+  }
+
+  const featureNotAvailable = (e) => {
+    e.preventDefault()
+    return window.alert('Darn! This feature is not yet available.')
+  }
+
+
   return (
     <div id="own-post-options">
       {/* ----------------------FORM ---------------------- vv*/}
       <div className="own-post-options-button">
-        <button className="button-text">
+        <button className="button-text" onClick={featureNotAvailable}>
           <span className="critical-operations">Report</span>
         </button>
       </div>
       <div className="own-post-options-button">
         <button className="button-text">
-          <span className="critical-operations">Unfollow</span>
+          <span className="critical-operations"><Follows profileUsername={postUser.username}/></span>
         </button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text">Add to favorites</button>
+        <button className="button-text" onClick={featureNotAvailable}>Add to favorites</button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text">Go to post</button>
+        <button className="button-text" onClick={() => setShowPostDetail(true)}>Go to post</button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text">Cancel</button>
+        <button className="button-text" onClick={() => setShowPostOptions(false)}>Cancel</button>
       </div>
       {/* ---------------------- FORM ---------------------- ^^*/}
     </div>

@@ -25,10 +25,15 @@ const NavBar = () => {
     if (user) setLoggedIn(true);
   }, [user, loggedIn]);
 
-  const demoLogIn = () => {
-    dispatch(login("demo@aa.io", "password"));
-    history.push("/home");
-  };
+  const pageNotAvailable = (e) => {
+    e.preventDefault()
+    return window.alert('This page is not yet available, try the other pages!')
+  }
+
+  const featureNotAvailable = (e) => {
+    e.preventDefault()
+    return window.alert('Darn! This feature is not yet available.')
+  }
 
   return (
     <div className="entire-navBar">
@@ -95,21 +100,21 @@ const NavBar = () => {
                 </NavLink>
               </div>
               <div className="navlink-container">
-                <NavLink
-                  to="/messages"
+                <button
+                  onClick={featureNotAvailable}
                   activeClassName="active"
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: "none", backgroundColor: 'transparent' }}
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink
+                    className={`navlink-button
                     ${
                       window.location.pathname == "/messages"
                         ? "messages-link-selected"
                         : "messages-link"
                     }`}
                   ></div>
-                </NavLink>
+                </button>
               </div>
               <div className="navlink-container">
                 <button
@@ -146,22 +151,21 @@ const NavBar = () => {
                 </NavLink>
               </div>
               <div className="navlink-container">
-                <NavLink
-                  to="/likes"
-                  exact={true}
+                <button
+                onClick={pageNotAvailable}
                   activeClassName="active"
-                  style={{ textDecoration: "none" }}
+                  style={{ textDecoration: "none", backgroundColor: 'transparent' }}
                 >
                   <div
                     style={{ textDecoration: "none" }}
-                    className={`navlink
+                    className={`navlink-button
                     ${
                       window.location.pathname == "/likes"
                         ? "likes-link-selected"
                         : "likes-link"
                     }`}
                   ></div>
-                </NavLink>
+                </button>
               </div>
               <UserMenu user={user} />
             </>

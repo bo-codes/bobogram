@@ -1,7 +1,8 @@
 import { signUp } from "../../../store/session";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink, Redirect } from "react-router-dom";
+import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
+import { login } from "../../../store/session";
 
 import appStoreButton from "../../../images/Download-on-the-App-Store-Button.png";
 import googlePlayButton from "../../../images/Get-It-On-Google-Play-Button.png";
@@ -9,6 +10,9 @@ import googlePlayButton from "../../../images/Get-It-On-Google-Play-Button.png";
 import "./SignupForm.css";
 
 const SignUpForm = () => {
+
+  const history = useHistory()
+
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [fullName, setFullName] = useState("");
@@ -66,6 +70,12 @@ const SignUpForm = () => {
     return <Redirect to="/home" />;
   }
 
+  const demoLogIn = async (e) => {
+    e.preventDefault();
+    await dispatch(login("demo@aa.io", "password"));
+    history.push("/home");
+  };
+
   return (
     <div className="signup-entire-page">
       <div className="form-and-img-container">
@@ -115,9 +125,11 @@ const SignUpForm = () => {
                     paddingTop: "2px",
                     height: "32px",
                     fontSize: "16",
+                    textDecoration: "none",
                   }}
+                  onClick={demoLogIn}
                 >
-                  See more projects
+                  Log in as demo user
                 </button>
               </div>
             </div>

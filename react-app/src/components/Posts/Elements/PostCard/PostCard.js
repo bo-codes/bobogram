@@ -120,6 +120,8 @@ function PostCard({ post, postComments, likes }) {
           {showPostOptions && (
             <Modal onClose={() => setShowPostOptions(false)}>
               <PostOptionsForm
+                setShowPostDetail={setShowPostDetail}
+                postUser={post.user}
                 post={post}
                 setShowPostOptions={setShowPostOptions}
                 setShowConfirmDeleteModal={setShowConfirmDeleteModal}
@@ -129,6 +131,7 @@ function PostCard({ post, postComments, likes }) {
           {showOwnPostOptions && (
             <Modal onClose={() => setShowOwnPostOptions(false)}>
               <OwnPostOptionsForm
+                setShowPostDetail={setShowPostDetail}
                 post={post}
                 setShowOwnPostOptions={setShowOwnPostOptions}
                 showOwnPostOptions={showOwnPostOptions}

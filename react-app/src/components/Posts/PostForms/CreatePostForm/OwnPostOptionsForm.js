@@ -17,6 +17,7 @@ function OwnPostOptionsForm({
   setShowPostEditModal,
   showPostEditModal,
   showConfirmDeleteModal,
+  setShowPostDetail
 }) {
   const [date, setDate] = useState((post && post.created_at) || "");
   const [image, setImage] = useState((post && post.image_url) || "");
@@ -107,6 +108,17 @@ function OwnPostOptionsForm({
     setShowPostEditModal(true);
   };
 
+  const pageNotAvailable = (e) => {
+    e.preventDefault();
+    return window.alert("This page is not yet available, try the other pages!");
+  };
+
+  const featureNotAvailable = (e) => {
+    e.preventDefault();
+    return window.alert("Darn! This feature is not yet available.");
+  };
+
+
   return (
     <div id="own-post-options">
       {/* ----------------------FORM ---------------------- vv*/}
@@ -123,16 +135,16 @@ function OwnPostOptionsForm({
         </button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text">Hide like count</button>
+        <button className="button-text" onClick={featureNotAvailable}>Hide like count</button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text">Turn off commenting</button>
+        <button className="button-text" onClick={featureNotAvailable}>Turn off commenting</button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text">Go to post</button>
+        <button className="button-text" onClick={() => setShowPostDetail(true)}>Go to post</button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text">Cancel</button>
+        <button className="button-text" onClick={() => setShowOwnPostOptions(false)}>Cancel</button>
       </div>
       {/* ---------------------- FORM ---------------------- ^^*/}
     </div>

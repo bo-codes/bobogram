@@ -60,6 +60,26 @@
     border: none;
     margin-right: 23px;
 }
+
+.navlink:hover {
+    cursor: pointer;
+}
+
+.navlink-button {
+    font-family: proxima-nova, sans-serif;
+    font-size: 13px;
+    color: #bbbcdb;
+    text-decoration: "none";
+    background-color: transparent;
+    border: none;
+    margin-right: 23px;
+    margin-top: 6px;
+}
+
+.navlink-button:hover {
+    cursor: pointer;
+}
+
 .explore-link {
     background-image: url("../../../../images/explore-icon1.png");
     background-size: cover;
@@ -203,6 +223,10 @@
     text-decoration: none;
     margin-bottom: 12px;
     color: black;
+}
+
+.dropdown-button:hover {
+    cursor: pointer;
 }
 
 .dropdown-button-text {
