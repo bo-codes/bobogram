@@ -1,0 +1,136 @@
+.detail-comment-container {
+  /* border: 1px solid orange; */
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.55;
+  margin-left: 0px;
+}
+
+.comment-dropdown {
+  position: relative;
+  margin-top: 6px;
+}
+
+.detail-comment-username-and-content-container{
+  width: 434px;
+  display: flex;
+  flex-direction: row;
+  font-size: 14px;
+}
+
+.detail-comment-content{
+  display: flex;
+  flex-direction: row;
+  /* border: 1px solid blue; */
+  width: 434px;
+  margin-bottom: 25px;
+}
+
+.post-detail-comment-comment {
+  margin-left: 0px;
+  padding-bottom: .75px;
+  font-size: 16px;
+}
+
+.detail-comment-and-button-container {
+  /* position: relative; */
+  /* display: flex; */
+  /* flex-direction: column-reverse; */
+  /* max-width: 100%; */
+}
+
+.detail-comment-container-container {
+  /* border: 1px solid blue; */
+  position: relative;
+  /* float: left; */
+  /* width: fit-content; */
+  /* max-width: 88%; */
+}
+
+.comment-menu-button {
+  width: 50px;
+}
+
+.inner-comment-dd {
+  position: absolute;
+  float: right;
+  margin-left: 6px ;
+  margin-top: 0;
+  top: 0;
+  right: 5px;
+}
+
+.comment-username-detail {
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.no-comment-message {
+  color: white;
+  font-size: 30px;
+}
+
+.post-detail-comment-user-pfp{
+  width: 32px;
+  border-radius: 16px;
+}
+
+.postcard-detail-comment-section{
+  margin-left: 10px;
+}
+
+.post-detail-comment-username{
+  margin-left: 14px;
+  text-decoration: none;
+  color: black;
+  font-size: 16px;
+}
+
+.detail-comment-username-and-content-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-detail-username{
+  font-weight: 600;
+  margin-right: 5px;
+}
+
+.comment-options-button-container{
+  /* border: 1px solid blue; */
+  padding-bottom: 10px;
+  background-color: transparent;
+  justify-self: flex-end;
+}
+
+.comment-options-button{
+  background-image: url('../../../../images/other.png');
+  background-position: center;
+  background-size: contain;
+  width: 15px;
+  height: 15px;
+}
+
+.comment-options-button:hover{
+  cursor: pointer;
+}
+
+.detail-comment-entire-comment{
+  display: flex;
+  /* border: 1px solid orangered; */
+}
+
+.comment-options-button-container-container{
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  /* border: 1px solid orangered; */
+  width: auto;
+  position: absolute;
+  right: 15px;
+  top: 13px;
+
+}

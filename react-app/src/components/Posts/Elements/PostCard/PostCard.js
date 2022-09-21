@@ -111,6 +111,7 @@ function PostCard({ post, postComments, likes }) {
               showPostDetail={showPostDetail}
               setShowPostDetail={setShowPostDetail}
               postLikes={postLikes}
+              postComments={postComments}
             />
           </Modal>
         )}

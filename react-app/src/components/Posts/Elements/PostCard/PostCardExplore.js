@@ -9,7 +9,7 @@ import PostCardDetail from "../PostCardDetail/PostCardDetail";
 // -------- CSS/IMAGES -------- //
 import "./PostcardExplore.css";
 
-function PostCardExplore({ post, likes }) {
+function PostCardExplore({ post, likes, postComments }) {
 
   const user = useSelector((state) => state.session.user) || "";
 
@@ -54,6 +54,7 @@ function PostCardExplore({ post, likes }) {
             showPostDetail={showPostDetail}
             setShowPostDetail={setShowPostDetail}
             postLikes={postLikes}
+            postComments={postComments}
           />
         </Modal>
       )}

@@ -1,0 +1,94 @@
+.post-detail-user-pfp{
+  width: 30px;
+  border-radius: 15px;
+  margin-top: 9px;
+  margin-left: 10px;
+  margin-right: 14px;
+}
+
+.post-detail-user-pfp-container{
+  /* border-bottom: 1px solid grey; */
+}
+
+.post-detail-username{
+  text-decoration: none;
+  color: black;
+}
+
+
+.post-detail-follows{
+  display: flex;
+  align-self: center;
+}
+
+#post-detail-postcard-image{
+  width: 885px;
+  height: 100%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#post-detail-postcard-image-container{
+  /* background-color: black; */
+  position: relative;
+  border-right: 1px solid rgba(173, 173, 173, 0.539);
+}
+
+#post-detail-outermost-card{
+  display: flex;
+  width: 1340px;
+  height: 700px;
+  border-radius: 0px;
+  background-color: transparent;
+}
+
+#post-detail-caption{
+  padding-left: 20px;
+  padding-right: 10px;
+  padding-top: 12px;
+  margin-top: 3px;
+  margin-bottom: 25px;
+  width: 454px;
+  height: max-content;
+  border-top: 1px solid rgba(195, 195, 195, 0.289);
+}
+
+.post-detail-postcard-pinned-to-bottom-section{
+  position: absolute;
+  width:32.7%;
+  bottom: 0;
+}
+
+.post-detail-caption-and-comments{
+  max-height: 525px;
+  overflow-y: scroll;
+}
+
+.comment-section {
+  width: 100%;
+  /* border: 1px solid purple; */
+  /* background-color: #3f3f3f; */
+  margin-left: 15px;
+  padding-bottom: 5px;
+}
+
+.comment-section-container{
+  display: flex;
+  justify-content: center;
+  overflow-y: scroll;
+}
+
+.post-detail-comment {
+  height: 15%;
+  font-size: 15px;
+  padding: 2%;
+  margin: 2%;
+  background-color: #ffff;
+  color: black;
+}
+
+#post-detail-second-section{
+  height: 100%;
+  width: 454px;
+}

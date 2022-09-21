@@ -59,10 +59,10 @@ def update_comment(id):
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 #-------------------------DELETE ONE COMMENT-------------------
-@comment_routes.route("/<int:id>", methods=["DELETE"])
+@comment_routes.route("/<int:commentId>", methods=["DELETE"])
 @login_required
-def delete_comment(id):
-    comment = Comment.query.get(id)
+def delete_comment(commentId):
+    comment = Comment.query.get(commentId)
     db.session.delete(comment)
     db.session.commit()
     return {"message": "Deleted"}

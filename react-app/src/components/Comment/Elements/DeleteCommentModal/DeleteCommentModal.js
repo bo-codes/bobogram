@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { removeComment } from "../../../../store/comments";
 
-const DeleteCommentModal = ({ comment, setShowConfirmDeleteCommentModal, setShowCommentEditModal }) => {
+const DeleteCommentModal = ({ comment, setShowConfirmDeleteCommentModal, setShowCommentEditModal, commentId }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
@@ -13,22 +13,35 @@ const DeleteCommentModal = ({ comment, setShowConfirmDeleteCommentModal, setShow
 
   const deleteComment = async (e) => {
     e.preventDefault();
-    await dispatch(removeComment(comment.id));
-    history.push(window.location.pathname);
+    await dispatch(removeComment(commentId));
   };
 
   return (
-    <main>
-      <div>
-        <h2 style={{
-          color: "black"
-        }}>Are you sure you want to delete your comment?</h2>
-        <div>
-          <button onClick={cancelDelete}>Cancel</button>
-          <button onClick={deleteComment}>Delete</button>
+    <div id="own-post-options">
+      {/* ----------------------FORM ---------------------- vv*/}
+      <div id="delete-modal-header">
+        <div id="delete-post-text">Delete comment?</div>
+        <div id="are-you-sure-text">
+          Are you sure you want to delete this comment?
         </div>
       </div>
-    </main>
+      <div className="own-post-options-button">
+        <button className="button-text">
+          <span
+            className="critical-operations delete-button-delete-modal"
+            onClick={deleteComment}
+          >
+            Delete
+          </span>
+        </button>
+      </div>
+      <div className="own-post-options-bottom-button">
+        <button className="button-text" onClick={cancelDelete}>
+          Cancel
+        </button>
+      </div>
+      {/* ---------------------- FORM ---------------------- ^^*/}
+    </div>
   );
 };
 

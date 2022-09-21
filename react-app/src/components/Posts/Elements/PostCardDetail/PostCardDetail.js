@@ -14,9 +14,11 @@ import CreateCommentForm from "../../../Comment/CommentForms/CreateCommentForm/C
 import EditPostForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
 import SignUpForm from "../../../auth/SignupForm/SignUpForm";
 // -------- CSS/IMAGES -------- //
-import "./Postcard.css";
+import "./PostCardDetail.css";
 import { addOneLike, getAllLikes } from "../../../../store/likes";
 import Like from "../../../Like/Like";
+import CommentPostDetail from "../../../Comment/Elements/CommentPostDetail/CommentPostDetail";
+import DeleteCommentModal from "../../../Comment/Elements/DeleteCommentModal/DeleteCommentModal";
 
 function PostCardDetail({ post, postComments=null, postLikes, likes }) {
   // console.log("POST LIKES BEFORE EVEN RETURNING", likes);
@@ -47,52 +49,15 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
 
 
   return (
-    <div id="outermost-card">
-      {/* {console.log("POST LIKES IN POSTCARD.JS BEFORE RETURN", likes)} */}
-      <div className="post-head-container">
-        <div className="post-username">
-          <Link
-            to={`/${post.user.username}`}
-            style={{ textDecoration: "none",}}
-            className="post-username"
-          >
-            <img src={user.profile_picture} className='post-detail-user-pfp'/>
-          </Link>
-          <Link
-            to={`/${post.user.username}`}
-            className="post-detail-username"
-          >
-            <div className="post-username">{post.user.username}</div>
-          </Link>
-          {user && <Follows profileUsername={post.user.username}  className='post-detail-follows'/>}
-        </div>
-        {/* ------ POST EDIT BUTTON ------ vv*/}
-        <div className="edit-post-container">
-          {post ? (
-            // POST EDIT BUTTON
-            // when clicked, setShowCreatePost will toggle to true
-            <div className="edit-post-button-container">
-              {user && post.user_id === user.id && (
-                <button
-                  onClick={() => setShowCreatePost(true)}
-                  className="edit-post-button"
-                  style={{visibility: 'hidden'}}
-                >
-                  ...
-                </button>
-              )}
-              {/* if setShowCreatePost is set to true, then show the modal which holds the post edit form. */}
-            </div>
-          ) : (
-            <h1>Loading Post</h1>
-          )}
-        </div>
-        {/* ------ POST EDIT BUTTON ------ ^^*/}
-      </div>
-
+    <div id="post-detail-outermost-card">
       {/* ----------- POST IMAGE ----------- vv*/}
       {post.image_url && (
-        <img id="postcard-image" src={post.image_url} alt="" />
+        <div id="post-detail-postcard-image-container">
+          <div
+            id="post-detail-postcard-image"
+            style={{ backgroundImage: `url(${post.image_url})` }}
+          ></div>
+        </div>
       )}
       {/* ----------- POST IMAGE ----------- ^^*/}
 
@@ -103,125 +68,133 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
       {/* ----- POST DATE ----- ^^ */}
 
       {/*  POST CAPTION ----- vv*/}
-      {!showCreatePost && (
-        <div className="post-caption">
-          {post.caption.length > 138 ? (
-            <div>
-              {!showFullCaption ? (
-                <p>
-                  {post.caption.slice(0, 138)}{" "}
-                  <span>
-                    <button
-                      className="show-more"
-                      onClick={() => setShowFullCaption(true)}
-                    >
-                      ...
-                    </button>
-                  </span>
-                </p>
-              ) : (
-                <p>
-                  {post.caption}{" "}
-                  <span>
-                    <button
-                      className="show-more"
-                      onClick={() => setShowFullCaption(false)}
-                    >
-                      show less
-                    </button>
-                  </span>
-                </p>
-              )}
-            </div>
-          ) : (
-            <p>{post.caption}</p>
-          )}
-        </div>
-      )}
-      {/* POST CAPTION ----- ^^*/}
-      {/* ----------- EDIT POST BUTTON ----------- vv*/}
-      {/* <div id="post-form-container">
-        {showCreatePost && (
-          <Modal onClose={() => setShowCreatePost(false)}>
-            <EditPostForm
-              post={post}
-              setShowCreatePost={setShowCreatePost}
-              setShowConfirmDeleteModal={setShowConfirmDeleteModal}
-            />
-          </Modal>
-        )}
-        {showConfirmDeleteModal && (
-          <Modal onClose={() => setShowConfirmDeleteModal(false)}>
-            <DeletePostModal
-              setShowConfirmDeleteModal={setShowConfirmDeleteModal}
-              showConfirmDeleteModal={showConfirmDeleteModal}
-              post={post}
-            />
-          </Modal>
-        )}
-      </div> */}
-      {/* ----------- EDIT POST BUTTON ----------- ^^*/}
-      <div className="comment-btns">
-        {user ? (
-          <Like post_id={post.id} user_id={user.id} likes={likes} postLikes={postLikes} />
-        ) : (
-          <button className="post-btns" onClick={() => setShowLogin(true)}>
-            <div id="heart-btn"></div>
-          </button>
-        )}
-        <button className="post-btns" onClick={areWeShowingComments}>
-          <div id="comment-btn"></div>
-        </button>
-      </div>
-      {/* LIKES */}
-      {postLikes.length >= 1 && (
-        <div className="like-count">
-          {postLikes.length == 1
-            ? `${postLikes.length} like`
-            : `${postLikes.length} likes`}
-        </div>
-      )}
-      {/* {showLogin && (
-        <Modal onClose={() => setShowLogin(false)}>
-          <LoginFormPosts setShowLogin={setShowLogin} />
-        </Modal>
-      )} */}
-        <div className="create-comment-container">
-          {/* ----------- CREATE COMMENT FORM ----------- vv*/}
-          <CreateCommentForm
-            post={post}
-            userId={user.id}
-            setShowLogin={setShowLogin}
-          />
-          {/* ----------- CREATE COMMENT FORM ----------- ^^*/}
-
-          {/* ------------ COMMENTS ------------ vv*/}
-          <div className="comment-section">
-            {postComments && (
-              postComments.map((comment) => {
-                // FOR EACH COMMENT DISPLAY THIS
-                return (
-                  <Comment
-                    style={{
-                      backgroundColor: "red",
-                    }}
-                    className="comment"
-                    key={comment.id}
-                    comment={comment}
-                    post={post}
-                    userId={user.id}
-                  />
-                );
-              })
+      <div id="post-detail-second-section">
+        <div className="post-head-container">
+          <div className="post-username">
+            <Link
+              to={`/${post.user.username}`}
+              style={{ textDecoration: "none" }}
+              className="post-detail-user-pfp-container"
+            >
+              <img
+                src={user.profile_picture}
+                className="post-detail-user-pfp"
+              />
+            </Link>
+            <Link
+              to={`/${post.user.username}`}
+              className="post-detail-username"
+            >
+              <div className="post-username" style={{ fontSize: "15px" }}>
+                {post.user.username}
+              </div>
+            </Link>
+            {user && (
+              <Follows
+                profileUsername={post.user.username}
+                className="post-detail-follows"
+              />
             )}
+          </div>
+          {/* ------ POST EDIT BUTTON ------ vv*/}
+          <div className="edit-post-container">
+            {post ? (
+              // POST EDIT BUTTON
+              // when clicked, setShowCreatePost will toggle to true
+              <div className="edit-post-button-container">
+                {user && post.user_id === user.id && (
+                  <button
+                    onClick={() => setShowCreatePost(true)}
+                    className="edit-post-button"
+                    style={{ visibility: "hidden" }}
+                  >
+                    ...
+                  </button>
+                )}
+                {/* if setShowCreatePost is set to true, then show the modal which holds the post edit form. */}
+              </div>
+            ) : (
+              <h1>Loading Post</h1>
+            )}
+          </div>
+          {/* ------ POST EDIT BUTTON ------ ^^*/}
+        </div>
+        <div className="post-detail-caption-and-comments">
+          {!showCreatePost && <p id="post-detail-caption">{post.caption}</p>}
+          {/* POST CAPTION ----- ^^*/}
+          {/* ------------ COMMENTS ------------ vv*/}
+          <div className="comment-section-container">
+            <div className="postcard-detail-comment-section">
+              {postComments &&
+                postComments
+                  .sort((a, b) => {
+                    return new Date(b.created_at) - new Date(a.created_at);
+                  })
+                  .map((comment) => {
+                    // FOR EACH COMMENT DISPLAY THIS
+                    return (
+                      <CommentPostDetail
+                        style={{
+                          backgroundColor: "red",
+                        }}
+                        className="post-detail-comment"
+                        key={comment.id}
+                        commentId={comment.id}
+                        comment={comment}
+                        post={post}
+                        userId={user.id}
+                        setShowConfirmDeleteModal={setShowConfirmDeleteModal}
+                        showConfirmDeleteModal={showConfirmDeleteModal}
+
+                      />
+                    );
+                  })}
+            </div>
           </div>
           {/* ------------ COMMENTS ------------ ^^*/}
         </div>
-        {!postComments && (
-          <div className="no-comment-message">
-            No Comments Yet, Want To Leave One?
+        <div className="post-detail-postcard-pinned-to-bottom-section">
+          <div className="comment-btns">
+            {user ? (
+              <Like
+                post_id={post.id}
+                user_id={user.id}
+                likes={likes}
+                postLikes={postLikes}
+              />
+            ) : (
+              <button className="post-btns" onClick={() => setShowLogin(true)}>
+                <div id="heart-btn"></div>
+              </button>
+            )}
+            <button className="post-btns" onClick={areWeShowingComments}>
+              <div id="comment-btn"></div>
+            </button>
           </div>
-        )}
+          {/* LIKES */}
+          {postLikes.length >= 1 && (
+            <div className="like-count">
+              {postLikes.length == 1
+                ? `${postLikes.length} like`
+                : `${postLikes.length} likes`}
+            </div>
+          )}
+          {/* {showLogin && (
+            <Modal onClose={() => setShowLogin(false)}>
+              <LoginFormPosts setShowLogin={setShowLogin} />
+            </Modal>
+          )} */}
+          <div className="create-comment-container">
+            {/* ----------- CREATE COMMENT FORM ----------- vv*/}
+            <CreateCommentForm
+              post={post}
+              userId={user.id}
+              setShowLogin={setShowLogin}
+            />
+            {/* ----------- CREATE COMMENT FORM ----------- ^^*/}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
