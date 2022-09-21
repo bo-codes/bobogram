@@ -28,7 +28,6 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const [showFullCaption, setShowFullCaption] = useState(false);
-  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
 
   // SHOWING OR HIDING THE CREATE COMMENT MODAL
 
@@ -143,9 +142,6 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
                         comment={comment}
                         post={post}
                         userId={user.id}
-                        setShowConfirmDeleteModal={setShowConfirmDeleteModal}
-                        showConfirmDeleteModal={showConfirmDeleteModal}
-
                       />
                     );
                   })}

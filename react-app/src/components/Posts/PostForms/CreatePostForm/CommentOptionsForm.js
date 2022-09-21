@@ -13,7 +13,7 @@ import Follows from "../../../Follows/Follows";
 function CommentOptionsForm({
   post = null,
   setShowCreatePost,
-  setShowConfirmDeleteModal,
+  setShowConfirmDeleteCommentModal,
   setShowCommentOptions,
   showConfirmDeleteModal,
   setShowPostOptions,
@@ -77,7 +77,8 @@ function CommentOptionsForm({
   };
 
   const deletePostModal = () => {
-    setShowConfirmDeleteModal(true);
+    setShowConfirmDeleteCommentModal(true);
+    setShowCommentOptions(false)
   };
 
   const pageNotAvailable = (e) => {

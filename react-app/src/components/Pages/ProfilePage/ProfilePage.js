@@ -70,8 +70,6 @@ function ProfilePage({}) {
             <div className="name-and-btns-profile-page-container">
               <div className="name-profile-page">{user.username}</div>
               <div className="btns-profile-page">
-                {/* <Link>Edit Profile</Link> */}
-                {/* <button></button> */}
                 <FollowsSquare
                   followingList={followingList}
                   profileUsername={user.username}

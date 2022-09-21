@@ -57,29 +57,6 @@ const NavBar = () => {
           </div>
         </div>
         <div className="navBarDiv2">
-          {/* {!loggedIn && (
-            <>
-              <div className="navlink-container">
-                <button onClick={demoLogIn} className="navlink">
-                  Demo
-                </button>
-              </div>
-              <div className="navlink-container">
-                <button className="navlink" onClick={() => setShowLogin(true)}>
-                  Login
-                </button>
-              </div>
-              <div className="navlink-container">
-                <NavLink
-                  to="/signup"
-                  activeClassName="active"
-                  style={{ textDecoration: "none" }}
-                >
-                  <p className="navlink">Signup</p>
-                </NavLink>
-              </div>
-            </>
-          )} */}
           {loggedIn && user && (
             <>
               <div className="navlink-container">

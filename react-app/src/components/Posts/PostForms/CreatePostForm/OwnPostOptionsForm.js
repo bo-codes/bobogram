@@ -118,6 +118,12 @@ function OwnPostOptionsForm({
     return window.alert("Darn! This feature is not yet available.");
   };
 
+  const goToPost = (e) => {
+    e.preventDefault();
+    setShowPostDetail(true);
+    setShowOwnPostOptions(false);
+  };
+
 
   return (
     <div id="own-post-options">
@@ -141,7 +147,7 @@ function OwnPostOptionsForm({
         <button className="button-text" onClick={featureNotAvailable}>Turn off commenting</button>
       </div>
       <div className="own-post-options-button">
-        <button className="button-text" onClick={() => setShowPostDetail(true)}>Go to post</button>
+        <button className="button-text" onClick={goToPost}>Go to post</button>
       </div>
       <div className="own-post-options-button">
         <button className="button-text" onClick={() => setShowOwnPostOptions(false)}>Cancel</button>

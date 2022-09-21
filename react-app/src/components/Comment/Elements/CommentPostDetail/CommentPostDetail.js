@@ -10,15 +10,12 @@ import DeleteCommentModal from "../DeleteCommentModal/DeleteCommentModal";
 
 function CommentPostDetail({
   comment,
-  key,
   post,
-  userId,
-  setShowConfirmDeleteModal,
-  showConfirmDeleteModal,
-  commentId
+  commentId,
 }) {
   const [showEditComment, setShowEditComment] = useState(false);
   const [showCommentOptions, setShowCommentOptions] = useState(false);
+  const [showConfirmDeleteCommentModal, setShowConfirmDeleteCommentModal] = useState(false);
   // const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const commentDate = comment.created_at.toLocaleString("en-US", {
     timeZone: "America/Los_Angeles",
@@ -31,16 +28,16 @@ function CommentPostDetail({
             <CommentOptionsForm
               setShowCommentOptions={setShowCommentOptions}
               showCommentOptions={showCommentOptions}
-              setShowConfirmDeleteModal={setShowConfirmDeleteModal}
+              setShowConfirmDeleteCommentModal={setShowConfirmDeleteCommentModal}
               commentId={commentId}
             />
           </Modal>
         )}
-        {showConfirmDeleteModal && (
-          <Modal onClose={() => setShowConfirmDeleteModal(false)}>
+        {showConfirmDeleteCommentModal && (
+          <Modal onClose={() => setShowConfirmDeleteCommentModal(false)}>
             <DeleteCommentModal
-              setShowConfirmDeleteModal={setShowConfirmDeleteModal}
-              showConfirmDeleteModal={showConfirmDeleteModal}
+              setShowConfirmDeleteCommentModal={setShowConfirmDeleteCommentModal}
+              showConfirmDeleteCommentModal={showConfirmDeleteCommentModal}
               post={post}
               commentId={commentId}
             />
