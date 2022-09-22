@@ -33,7 +33,6 @@
 }
 
 .suggested-users-only-container{
-  /* border: 1px solid orange; */
   display: flex;
   justify-content: center;
   width: 100%;
@@ -48,6 +47,7 @@
 
 .inner-suggestions-only-container{
   /* border: 1px solid purple; */
+  border: 1.25px solid rgba(188, 188, 188, 0.486);
   width: 400px;
   padding: 22px 20px 0px 30px;
   margin-top: 50px;
