@@ -104,7 +104,7 @@ function ProfilePage({}) {
       </div>
       {showSuggestions && (
         <div className="second-section-container">
-          <div className="suggestions-box-pfp">suggestions</div>
+          <div className="suggestions-box-pfp"></div>
         </div>
       )}
       {showUserOptions && (

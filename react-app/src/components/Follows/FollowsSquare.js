@@ -43,6 +43,8 @@ const FollowsSquare = ({
     setShowSuggestions(!showSuggestions);
   };
 
+  const currentUser = window.location.pathname.slice(1)
+
   return (
     <>
       {sessionUser.username === profileUsername && (
@@ -62,7 +64,7 @@ const FollowsSquare = ({
               >
                 Follow
               </button>
-              {showSuggestions ? (
+              {showSuggestions && sessionUser.username != currentUser ? (
                 <button
                   onClick={suggestionsButton}
                   className="suggestions-button-pfp-blue"
@@ -70,12 +72,16 @@ const FollowsSquare = ({
                   <div className="user-suggestions-button-opened-pfp-blue"></div>
                 </button>
               ) : (
-                <button
-                  onClick={suggestionsButton}
-                  className="suggestions-button-pfp-blue"
-                >
-                  <div className="user-suggestions-button-pfp-blue"></div>
-                </button>
+                <>
+                {sessionUser.username != currentUser && (
+                  <button
+                    onClick={suggestionsButton}
+                    className="suggestions-button-pfp-blue"
+                  >
+                    <div className="user-suggestions-button-pfp-blue"></div>
+                  </button>
+                )}
+                </>
               )}
               <button
                 className="user-options-button-pfp-container"
