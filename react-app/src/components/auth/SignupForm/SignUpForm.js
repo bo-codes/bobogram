@@ -1,7 +1,7 @@
 import { signUp } from "../../../store/session";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, Redirect, useHistory } from "react-router-dom";
+import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
 import { login } from "../../../store/session";
 
 import appStoreButton from "../../../images/Download-on-the-App-Store-Button.png";
@@ -195,7 +195,11 @@ const SignUpForm = () => {
             </div>
           </form>
           <div className="signup-download-link-box">
-            Have an account? Log in
+            <span>Have an account? </span>
+            <NavLink id="login-reroute" to={"/"}>
+              {" "}
+              Log in
+            </NavLink>
           </div>
           <div className="form-container-3">Get the app.</div>
           <div className="form-container-4">
