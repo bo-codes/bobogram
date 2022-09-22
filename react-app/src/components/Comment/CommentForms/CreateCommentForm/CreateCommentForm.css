@@ -25,8 +25,9 @@
 .text-area-container {
   border-top: .5px solid rgba(148, 148, 148, 0.358);
   display: flex;
-  align-items: center;
-  height: 48px;
+  align-items: flex-end;
+  padding-bottom: 4.5px;
+  height: 49px;
   width: 100%;
 }
 
