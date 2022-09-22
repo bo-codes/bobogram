@@ -14,16 +14,16 @@
 }
 
 .post-list {
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
   align-items:center;
   float: left;
-  /* border: 1px solid blue; */
 }
 
 .suggested-users-container{
-  height: 300px;
   /* border: 1px solid orange; */
+  height: 300px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -45,10 +45,10 @@
 }
 
 .current-user-profile-picture{
+  /* border: 1px solid blue; */
   width: 55px;
   margin-right: 20px;
   border-radius: 27.5px;
-  /* border: 1px solid blue; */
 }
 
 .current-user-username-and-name{
@@ -59,13 +59,10 @@
   align-content: center;
   padding: 0;
   margin-right: 80px;
-  /* line-height: 1px; */
 }
 
 .current-user-username{
   /* border: 1px greenyellow; */
-  /* height: 14px; */
-  /* position: relative; */
   font-size: 15px;
   font-weight: semi-bold;
   padding: 0;
@@ -76,7 +73,6 @@
 .current-user-full-name{
   /* border: 1px greenyellow; */
   color: grey;
-  /* height: 14px; */
   line-height: 0.5;
   position: relative;
   font-size: 15px;
@@ -112,10 +108,10 @@ Link{
 }
 
 .user-profile-picture {
+  /* border: 1px solid blue; */
   width: 32.5px;
   margin-right: 13px;
   border-radius: 16.25px;
-  /* border: 1px solid blue; */
 }
 
 .user-username-and-name {
@@ -127,14 +123,11 @@ Link{
   align-content: center;
   padding: 0;
   width: 232px;
-  /* line-height: 1px; */
 }
 
 .user-username {
   /* border: 1px greenyellow; */
   width: 100%;
-  /* height: 14px; */
-  /* position: relative; */
   font-size: 15px;
   font-weight: semi-bold;
   padding: 0;
@@ -145,7 +138,6 @@ Link{
 .user-suggested-for-you {
   /* border: 1px greenyellow; */
   color: grey;
-  /* height: 14px; */
   line-height: 0.5;
   position: relative;
   font-size: 13px;

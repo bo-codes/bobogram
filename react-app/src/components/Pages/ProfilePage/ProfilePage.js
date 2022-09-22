@@ -1,20 +1,19 @@
-// IMPORT REACT STUFF --------
+// REACT STUFF --------
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 // --------COMPONENTS -------- //
-import PostCard from "../../Posts/Elements/PostCard/PostCard";
+import FollowsSquare from "../../Follows/FollowsSquare";
+import UserOptionsForm from "../../Posts/PostForms/CreatePostForm/UserOptionsForm";
+import PostCardExplore from "../../Posts/Elements/PostCard/PostCardExplore";
 // -------- THUNKS -------- //
 import { getAllCommentsThunk } from "../../../store/comments";
 import { getAllLikes } from "../../../store/likes";
-// -------- CSS/IMAGES -------- //
-import "./ProfilePage.css";
 import { getOneUserPostsThunk } from "../../../store/posts";
 import { thunkGetUser } from "../../../store/users";
-import FollowsSquare from "../../Follows/FollowsSquare";
 import { Modal } from "../../Global/Elements/Modal";
-import UserOptionsForm from "../../Posts/PostForms/CreatePostForm/UserOptionsForm";
-import PostCardExplore from "../../Posts/Elements/PostCard/PostCardExplore";
+// -------- CSS/IMAGES -------- //
+import "./ProfilePage.css";
 
 function ProfilePage({}) {
   const dispatch = useDispatch();
@@ -34,9 +33,8 @@ function ProfilePage({}) {
   });
 
   useEffect(() => {
-    // GET ALL COMMENTS
     dispatch(getAllCommentsThunk());
-    // GET ALL LIKES
+
     dispatch(getAllLikes());
   }, [dispatch, username]);
 
@@ -114,15 +112,11 @@ function ProfilePage({}) {
         <div className="third-section">
           {userPosts &&
             userPosts.map((post) => {
-              // WE FILTER THROUGH ALL COMMENTS EVER TO ONLY GRAB THE ONES ASSOCIATED WITH THIS POST
-              // console.log(likes, "LIKES BEFORE EVEN FILTERING");
               let postComments = comments.filter((comment) => {
                 return parseInt(comment.post_id) === parseInt(post.id);
               });
 
-              // RETURNING A POST CARD WHICH IS A COMPONENT THAT DETERMINES HOW THE POST IS STRUCTURED
               return (
-                // EACH ITEM IN A MAP NEEDS ITS OWN UNIQUE KEY
                 <a key={post.id} name={post.id} id={post.id}>
                   <PostCardExplore
                     post={post}
@@ -130,7 +124,6 @@ function ProfilePage({}) {
                     likes={likes}
                   />
                 </a>
-                // <></>
               );
             })}
         </div>

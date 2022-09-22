@@ -1,21 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { NavLink, useLocation, useHistory } from "react-router-dom";
-import styled from "styled-components";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 import UserMenu from "./UserMenu";
-import { login } from "../../../../store/session";
 import { Modal } from "../../../Global/Elements/Modal";
 import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import "./navBar.css";
 import CreatePostForm from "../../../Posts/PostForms/CreatePostForm/CreatePostForm";
 
 const NavBar = () => {
-  const history = useHistory();
   const [showLogin, setShowLogin] = useState(false);
 
-  const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
-  const currentPage = window.location.href.split("/")[-1];
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [showCreatePostForm, setShowCreatePostForm] = useState(false);
@@ -26,14 +21,14 @@ const NavBar = () => {
   }, [user, loggedIn]);
 
   const pageNotAvailable = (e) => {
-    e.preventDefault()
-    return window.alert('This page is not yet available, try the other pages!')
-  }
+    e.preventDefault();
+    return window.alert("This page is not yet available, try the other pages!");
+  };
 
   const featureNotAvailable = (e) => {
-    e.preventDefault()
-    return window.alert('Darn! This feature is not yet available.')
-  }
+    e.preventDefault();
+    return window.alert("Darn! This feature is not yet available.");
+  };
 
   return (
     <div className="entire-navBar">
@@ -80,7 +75,10 @@ const NavBar = () => {
                 <button
                   onClick={featureNotAvailable}
                   activeClassName="active"
-                  style={{ textDecoration: "none", backgroundColor: 'transparent' }}
+                  style={{
+                    textDecoration: "none",
+                    backgroundColor: "transparent",
+                  }}
                 >
                   <div
                     style={{ textDecoration: "none" }}
@@ -95,7 +93,11 @@ const NavBar = () => {
               </div>
               <div className="navlink-container">
                 <button
-                  style={{ textDecoration: "none", backgroundColor: 'transparent', marginTop: '6px' }}
+                  style={{
+                    textDecoration: "none",
+                    backgroundColor: "transparent",
+                    marginTop: "6px",
+                  }}
                   onClick={() => setShowCreatePostForm(true)}
                 >
                   <div
@@ -129,9 +131,12 @@ const NavBar = () => {
               </div>
               <div className="navlink-container">
                 <button
-                onClick={pageNotAvailable}
+                  onClick={pageNotAvailable}
                   activeClassName="active"
-                  style={{ textDecoration: "none", backgroundColor: 'transparent' }}
+                  style={{
+                    textDecoration: "none",
+                    backgroundColor: "transparent",
+                  }}
                 >
                   <div
                     style={{ textDecoration: "none" }}

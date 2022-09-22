@@ -1,26 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { removeComment } from "../../../../store/comments";
-import { Modal } from "../../../Global/Elements/Modal";
-import DeleteCommentModal from "../../Elements/DeleteCommentModal/DeleteCommentModal";
 import "../../Elements/Comment/Comment.css";
-import "./CommentDropdown.css"
+import "./CommentDropdown.css";
 
 function CommentDropdown({ setShowEditComment, showEditComment, comment }) {
   const [showDropdown, setShowDropdown] = useState(false);
-  const [showConfirmDeleteCommentModal, setShowConfirmDeleteCommentModal] =
-    useState(false);
+
   const dispatch = useDispatch();
 
   const deleteComment = async (e) => {
     e.preventDefault();
     await dispatch(removeComment(comment.id));
-    // history.push("/posts");
-  };
-
-  // THIS SHOWS THE MODAL WHEN CALLED
-  const deleteCommentModal = () => {
-    setShowConfirmDeleteCommentModal(true);
   };
 
   useEffect(() => {
@@ -34,27 +25,31 @@ function CommentDropdown({ setShowEditComment, showEditComment, comment }) {
 
   return (
     <>
-      <div style={{ position: "relative", zIndex: '1' }}>
-        <button className="comment-dropdown"
+      <div style={{ position: "relative", zIndex: "1" }}>
+        <button
+          className="comment-dropdown"
           onClick={() => setShowDropdown(!showDropdown)}
         >
           ...
         </button>
         {showDropdown && !showEditComment && (
-          <div style={{ position: "absolute", backgroundColor: 'grey'}} className="dropdown">
+          <div
+            style={{ position: "absolute", backgroundColor: "grey" }}
+            className="dropdown"
+          >
             <button
-            style={{
-              color: 'white'
-            }}
+              style={{
+                color: "white",
+              }}
               className="comment-menu-button"
               onClick={() => setShowEditComment(true)}
             >
               Edit
             </button>
             <button
-            style={{
-              color: 'white'
-            }}
+              style={{
+                color: "white",
+              }}
               type="button"
               className="comment-menu-button"
               onClick={deleteComment}

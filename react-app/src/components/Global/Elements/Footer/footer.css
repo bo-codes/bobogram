@@ -17,7 +17,6 @@ footer {
     margin-top: 10px;
     justify-self: flex-end;
     background-color: whitesmoke;
-    /* box-shadow: 0 0 8px whitesmoke; */
     border-top: .5px solid grey;
     bottom: 0;
 }
@@ -35,7 +34,6 @@ footer ul {
 
 footer ul li {
     display: flex;
-    /* flex-direction: column; */
     justify-content: center;
     align-items: center;
 }

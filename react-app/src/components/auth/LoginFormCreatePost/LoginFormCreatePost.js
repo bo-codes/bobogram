@@ -25,6 +25,10 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
   const [curImg, setCurImg] = useState(0);
   const images = [phoneImg1, phoneImg2, phoneImg3, phoneImg4];
 
+  const user = useSelector((state) => state.session.user);
+  const dispatch = useDispatch();
+  const history = useHistory()
+
   useEffect(() => {
     let interval = null;
 
@@ -40,11 +44,8 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
   }, [curImg]);
   // CROSSFADE END
 
-  // Password toggle handler
   const togglePassword = async (e) => {
     e.preventDefault();
-    // When the handler is invoked
-    // inverse the boolean state of passwordShown
     setPasswordShown(!passwordShown);
   };
 
@@ -52,10 +53,6 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
     if (password.length >= 6 && email) setValidateInputs(true);
     else setValidateInputs(false);
   }, [password, email]);
-
-  const user = useSelector((state) => state.session.user);
-  const dispatch = useDispatch();
-  const history = useHistory()
 
   const onLogin = async (e) => {
     e.preventDefault();
@@ -71,11 +68,6 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
 
   const updatePassword = (e) => {
     setPassword(e.target.value);
-  };
-
-  const switchToSignup = () => {
-    setShowLogin(false);
-    setShowSignup(true);
   };
 
   if (user) {
@@ -100,10 +92,7 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
               timingFunction={"ease-out"}
               id="fading-images"
               style={{
-                // border: "1px solid orange",
                 width: "252px",
-                // height:'100px',
-                // zIndex: "-1",
               }}
             />
           </div>
@@ -114,14 +103,10 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
           </div>
           <form onSubmit={onLogin} className="main-form-container">
             <div>
-              {/* IF THERE IS A POST, DISPLAY THE TEXT "Update Your Post" AND LIST ANY ERRORS */}
               <ul>
                 {errors &&
                   errors.map((error) => {
                     let splitError = error.split(":");
-                    // let firstPart = splitError[0];
-                    // let firstLetter = firstPart[0].toUpperCase();
-                    // let secondPart = splitError[1].slice(11, 23);
                     return (
                       <li
                         key={error}
@@ -136,7 +121,6 @@ const LoginFormPosts = ({ setShowLogin, setShowSignup }) => {
                         >
                           ✖
                         </span>
-                        {/* {firstLetter + firstPart.slice(1) + secondPart} */}
                         {splitError[1]}
                       </li>
                     );

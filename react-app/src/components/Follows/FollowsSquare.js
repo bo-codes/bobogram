@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { thunkFollow, thunkUnfollow } from "../../store/session";
-import { thunkGetUser } from "../../store/users";
 import "./FollowsSquare.css";
 
 const FollowsSquare = ({
@@ -10,11 +9,9 @@ const FollowsSquare = ({
   setShowSuggestions,
   showSuggestions,
   setShowUserOptions,
-  showUserOptions
+  showUserOptions,
 }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
 
   const sessionUser = useSelector((state) => state.session.user);
   const [follow, setFollow] = useState(false);
@@ -29,35 +26,17 @@ const FollowsSquare = ({
   }, [sessionUser.following, profileUsername]);
 
   const optionsButton = (e) => {
-    setShowUserOptions(!showUserOptions)
-  }
+    setShowUserOptions(!showUserOptions);
+  };
 
   const followButton = async (e) => {
     setFollow(true);
     await dispatch(thunkFollow(profileUsername));
-
-    // if (follow) {
-    //   if (follow.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    //   if (sessionUser.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    // }
   };
 
   const unfollowButton = async (e) => {
     setFollow(false);
     await dispatch(thunkUnfollow(profileUsername));
-
-    // if (unfollow) {
-    //   if (unfollow.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    //   if (sessionUser.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    // }
   };
 
   const suggestionsButton = (e) => {
@@ -68,7 +47,7 @@ const FollowsSquare = ({
     <>
       {sessionUser.username === profileUsername && (
         <div>
-          <Link to='/accounts/edit' className="user-edit-profile-button-square">
+          <Link to="/accounts/edit" className="user-edit-profile-button-square">
             Edit profile
           </Link>
         </div>

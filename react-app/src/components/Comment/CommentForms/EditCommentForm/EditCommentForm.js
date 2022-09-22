@@ -1,4 +1,4 @@
-// IMPORT REACT STUFF --------
+// REACT STUFF --------
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -9,23 +9,15 @@ import DeleteCommentModal from "../../Elements/DeleteCommentModal/DeleteCommentM
 import { editComment } from "../../../../store/comments";
 import { removeComment } from "../../../../store/comments";
 
-// COMMENT FORM THAT WE WILL DISPLAY ON THE POSTS PAGE USING A MODAL AND BUTTON THAT SHOWS MODAL NEXT TO EACH POST
 function EditCommentForm({ comment = null, post = null, setShowEditComment }) {
-  // SETTING STATES
   const [date, setDate] = useState((comment && comment.created_at) || "");
   const [content, setContent] = useState((comment && comment.content) || "");
   const [errors, setErrors] = useState([]);
-  const [showConfirmDeleteCommentModal, setShowConfirmDeleteCommentModal] =
-    useState(false);
 
-  // SETTING UP THE REACT FUNCTIONS
-  const history = useHistory();
   const dispatch = useDispatch();
 
-  // PULLING CURRENT USER FROM STATE
   const userId = useSelector((state) => state.session.user.id);
 
-  // SETTING VARIABLES TO INFO WE'LL USE
   const postId = post.id;
   let created_at;
   if (comment) created_at = comment.created_at;
@@ -51,30 +43,19 @@ function EditCommentForm({ comment = null, post = null, setShowEditComment }) {
       return;
     }
   };
-
-  // THIS SHOWS THE MODAL WHEN CALLED
-  const deleteCommentModal = () => {
-    setShowConfirmDeleteCommentModal(true);
-  };
-
   const deleteComment = async (e) => {
     e.preventDefault();
     await dispatch(removeComment(comment.id));
-    // history.push("/posts");
   };
 
   return (
     <div>
       <form onSubmit={submit}>
         <div>
-          {/* IF THERE IS A POST, DISPLAY THE TEXT "Update Your Post" AND LIST ANY ERRORS */}
           <ul>
             {errors &&
               errors.map((error) => {
                 let splitError = error.split(":");
-                let firstPart = splitError[0];
-                let firstLetter = firstPart[0].toUpperCase();
-                let secondPart = splitError[1].slice(11, 23);
                 return (
                   <li
                     key={error}
@@ -82,7 +63,6 @@ function EditCommentForm({ comment = null, post = null, setShowEditComment }) {
                       color: "white",
                     }}
                   >
-                    {/* {firstLetter + firstPart.slice(1) + secondPart} */}
                     {splitError[1]}
                   </li>
                 );
@@ -106,18 +86,7 @@ function EditCommentForm({ comment = null, post = null, setShowEditComment }) {
             }}
           />
         </div>
-        {/* {showConfirmDeleteCommentModal && (
-          <Modal onClose={() => setShowConfirmDeleteCommentModal(false)}>
-            <DeleteCommentModal
-              setShowConfirmDeleteCommentModal={
-                setShowConfirmDeleteCommentModal
-              }
-              comment={comment}
-            />
-          </Modal>
-        )} */}
         <div>
-          {/* IS THERE A COMMENT? IF SO THE BUTTONS WILL CHANGE TO UPDATE AND DELETE */}
           {comment ? (
             <div
               style={{
@@ -147,7 +116,6 @@ function EditCommentForm({ comment = null, post = null, setShowEditComment }) {
               </button>
             </div>
           ) : (
-            // IF THERE WAS NO COMMENT THEN ONLY GIVE THE OPTION TO CREATE. YOU"RE NOT UPDATING GOOFY
             <div>
               <button>Create Comment</button>
             </div>

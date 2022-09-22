@@ -32,13 +32,12 @@
   margin-left: 20px;
   margin-right: 20px;
   font-size: 16.5px;
-  /* color: rgba(174, 174, 174, 0.262); */
   border: none;
 }
 
 #edit-post-form-container {
-  width: 100%;
   /* border: 1px solid purple; */
+  width: 100%;
 }
 
 .edit-form-header{
@@ -46,10 +45,6 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgba(174, 174, 174, 0.444);
-}
-
-.edit-form-header-button{
-  /* border: 1px solid pink; */
 }
 
 .edit-form-done-button {

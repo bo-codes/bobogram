@@ -42,15 +42,11 @@
 }
 
 #imageCard {
+  /* border: 1px solid purple; */
   column-gap: 0px;
   max-width: 60vw;
   height: 100vh;
   overflow-y: scroll;
-  /* columns: 2; */
-  /* overflow-x: scroll; */
-  /* display: flex;
-  flex-wrap: wrap; */
-  /* border: 1px solid purple; */
 }
 
 .imageCard-container {
@@ -73,13 +69,6 @@
   font-weight: 800;
   font-size: 3.2vw;
   font-stretch: ultra-condensed;
-
-  /* MIRROR UPSIDEDOWN */
-  /* -moz-transform: scale(1, -1);
-  -webkit-transform: scale(1, -1);
-  -o-transform: scale(1, -1);
-  -ms-transform: scale(1, -1);
-  transform: scale(1, -1); */
 }
 
 .onambulo {
@@ -87,16 +76,17 @@
   color: #5142694e;
 }
 
-.container-titles-and-img-divs { /*  RED  */
+.container-titles-and-img-divs {
+  /* border: 1px solid red; */
   width: 40vw;
   height: 100vh;
   float: right;
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
 }
 
-.title-container { /*  BLUE  */
+.title-container {
+  /* border: 1px solid blue */
   display: flex;
   flex-direction: column;
   float: right;
@@ -106,36 +96,36 @@
   width: 40vw;
   height: 80vh;
   overflow: hidden;
-  /* border: 1px solid blue */
 }
 
-.cat-image-and-title-container { /*  WHITE  */
+.cat-image-and-title-container {
+  /* border: 1px solid white; */
   height: 20vh;
   width: 40vw;
   position: absolute;
   float: left;
   bottom: -55px;
-  /* border: 1px solid white; */
 }
 
 .cat-image-container {
+  /* border: 1px solid orange; */
   position: relative;
   display: flex;
   justify-content: center;
   width: 36%;
   height: 100%;
   float: left;
-  /* border: 1px solid orange; */
 }
 
 #cat-image {
+  /* border: 1px solid green; */
   height: 100%;
   max-height: 100%;
-  /* border: 1px solid green; */
 }
 
 
 .home-subtitle-container {
+  /* border: 1px solid violet; */
   font-family: proxima-nova, sans-serif;
   position: relative;
   display: flex;
@@ -145,10 +135,10 @@
   width: 64%;
   height: 100%;
   bottom: 0;
-  /* border: 1px solid violet; */
 }
 
 .home-subtitle {
+  /* border: 1px solid purple; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -156,7 +146,6 @@
   font-family: proxima-nova, sans-serif;
   width: 100%;
   height: 100%;
-  /* border: 1px solid purple; */
 
 }
 

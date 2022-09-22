@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { thunkGetUser } from "../../../store/users";
 import { thunkEditUser } from "../../../store/session";
 import { thunkEditPfp } from "../../../store/session";
@@ -63,13 +63,9 @@ export default function AccountEditPage() {
       return;
     }
 
-    // IF WE GET ERRORS BACK BECAUSE THATS THE ONLY ARR WED GET BACK. COMMENT WOULD BE AN OBJECT.
     if (Array.isArray(updatedUser)) {
-      // SET OUT ERROR STATE TO OUR NEW ERRORS WE GOT FROM SUBMITTAL
       setErrors(updatedUser);
-      // IF IT FAILS TO CREATE A COMMENT BUT DOESNT RETURN ERRORS IN THE ARRAY
     } else {
-      // setContent("");
       return;
     }
   };
@@ -94,13 +90,9 @@ export default function AccountEditPage() {
       return;
     }
 
-    // IF WE GET ERRORS BACK BECAUSE THATS THE ONLY ARR WED GET BACK. COMMENT WOULD BE AN OBJECT.
     if (Array.isArray(updatedPfp)) {
-      // SET OUT ERROR STATE TO OUR NEW ERRORS WE GOT FROM SUBMITTAL
       setErrors(updatedPfp);
-      // IF IT FAILS TO CREATE A COMMENT BUT DOESNT RETURN ERRORS IN THE ARRAY
     } else {
-      // setContent("");
       return;
     }
   };
@@ -140,7 +132,6 @@ export default function AccountEditPage() {
                     name="image"
                     type="file"
                     accept="image/*"
-                    // dataText="Change profile photo"
                     onChange={updatedProfilePicture}
                   />
                 </label>
@@ -150,7 +141,6 @@ export default function AccountEditPage() {
                     name="image"
                     className="imput-label"
                   >
-                    {/* {image.name} */}
                   </span>
                 )}
                 <div>
@@ -160,7 +150,6 @@ export default function AccountEditPage() {
                 </div>
               </div>
             </div>
-            {/* ----- IMAGE INPUT ----- ^^*/}
           </form>
           <form onSubmit={formSubmit} className="user-edit-form-inputs">
             <div>

@@ -1,12 +1,9 @@
-// IMPORT REACT STUFF
-import React, { useState } from "react";
-// IMPORT COMPONENTS WE'RE USING
+import React from "react";
 import Follows from "../../../Follows/Follows";
 
 import "./PostOptionsForm.css";
 
 function PostOptionsForm({ setShowPostOptions, postUser, setShowPostDetail }) {
-  // ---------------------- ON SUBMITTAL ---------------------- vv//
   const featureNotAvailable = (e) => {
     e.preventDefault();
     return window.alert("Darn! This feature is not yet available.");

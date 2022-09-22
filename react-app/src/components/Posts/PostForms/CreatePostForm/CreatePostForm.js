@@ -1,4 +1,4 @@
-// IMPORT REACT STUFF
+// REACT STUFF
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -7,9 +7,7 @@ import { makePost, editPost, makePostTag } from "../../../../store/posts";
 import "../../../auth/SignupForm/SignupForm.css";
 import "./CreatePostForm.css";
 
-// THIS IS OUR POST CREATION/EDIT FORM COMPONENT
 function CreatePostForm({ post = null, setShowCreatePostForm }) {
-  // SETTING STATES
   const [date, setDate] = useState((post && post.created_at) || "");
   const [image, setImage] = useState((post && post.image_url) || "");
   const [caption, setCaption] = useState((post && post.caption) || "");
@@ -17,24 +15,12 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
   const [tag, setTag] = useState((post && post.tag) || []);
   const [errors, setErrors] = useState([]);
   const [imageLoading, setImageLoading] = useState(false);
-  const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
 
   const history = useHistory();
   const dispatch = useDispatch();
 
   const user = useSelector((state) => state.session.user);
   const user_id = useSelector((state) => state.session.user.id);
-
-  // const createTag = async (e) => {
-  //   e.preventDefault();
-
-  //   if (!user_id) {
-  //     setErrors(["You must be logged in to create a tag."]);
-  //     return;
-  //   } else {
-  //     let newTag = await dispatch(makePostTag(tag));
-  //   }
-  // };
 
   // ---------------------- ON SUBMITTAL ---------------------- vv//
   const submit = async (e) => {
@@ -76,15 +62,9 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
   };
   // ---------------------- ON SUBMITTAL ---------------------- ^^//
 
-  // FUNCTION TO SET IMAGE TO WHATEVER WE UPLOAD WHEN WE UPLOAD
   const updateImage = (e) => {
     const imageFile = e.target.files[0];
     setImage(imageFile);
-  };
-
-  // FUNCTION TO TOGGLE THE VISIBILITY OF DELETE POST MODAL WHEN A BUTTON IS CLICKED
-  const deletePostModal = () => {
-    setShowConfirmDeleteModal(true);
   };
 
   return (
@@ -106,7 +86,11 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
               </div>
             ) : (
               <div>
-                <button className="create-form-share-button-disabled" onClick={submit} disabled>
+                <button
+                  className="create-form-share-button-disabled"
+                  onClick={submit}
+                  disabled
+                >
                   Share
                 </button>
               </div>
@@ -122,7 +106,6 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
                     let splitError = error.split(":");
                     return (
                       <li key={error}>
-                        {/* {firstLetter + firstPart.slice(1) + secondPart} */}
                         <span
                           style={{
                             color: "#9387bc",
@@ -165,9 +148,7 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
                     htmlFor="image-upload-button"
                     name="image"
                     className="imput-label"
-                  >
-                    {/* {image.name} */}
-                  </span>
+                  ></span>
                 )}
               </div>
               {/* ----- IMAGE INPUT ----- ^^*/}

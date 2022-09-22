@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import EditCommentForm from "../../CommentForms/EditCommentForm/EditCommentForm";
-import CommentDropdown from "../CommentDropdown/CommentDropdown";
-import moment from "moment";
 import { Link } from "react-router-dom";
 import "./CommentPostDetail.css";
 import { Modal } from "../../../Global/Elements/Modal";
@@ -16,7 +14,6 @@ function CommentPostDetail({
   const [showEditComment, setShowEditComment] = useState(false);
   const [showCommentOptions, setShowCommentOptions] = useState(false);
   const [showConfirmDeleteCommentModal, setShowConfirmDeleteCommentModal] = useState(false);
-  // const [showConfirmDeleteModal, setShowConfirmDeleteModal] = useState(false);
   const commentDate = comment.created_at.toLocaleString("en-US", {
     timeZone: "America/Los_Angeles",
   });

@@ -36,9 +36,9 @@
 }
 
 .pfp-container{
+  /* border: 1px solid rgb(255, 0, 242); */
   margin-top: 20px;
   display: flex;
-  /* border: 1px solid rgb(255, 0, 242); */
 }
 
 .pfp-container-text{
@@ -50,8 +50,6 @@
   /* border: 1px solid orangered; */
   padding-top: 7px;
   padding-right: 30px;
-  /* display: flex; */
-  /* align-items: center; */
 }
 
 .change-pfp-button{
@@ -120,10 +118,10 @@ label{
 }
 
 .form-description-text{
+  /* border: 1px solid blue; */
   color: rgb(136, 136, 136);
   width: 355px;
   font-size: 12.75px;
-  /* border: 1px solid blue; */
   line-height: 1.25;
   margin-top: 14px;
   margin-bottom: 11px;
@@ -141,11 +139,6 @@ label{
   justify-content: flex-start;
   align-items: flex-end;
 }
-/*
-.input-subsection{
-  display: flex;
-  justify-content: flex-end;
-} */
 
 .user-edit-single-input{
   /* border: 1px solid orange; */
@@ -153,20 +146,20 @@ label{
 }
 
 .form-text-personal-information{
+  /* border: 1px solid blue; */
   color: rgb(136, 136, 136);
   width: 355px;
   font-size: 15px;
   font-weight: 600;
-  /* border: 1px solid blue; */
   line-height: 1.25;
   margin-bottom: 2px;
 }
 
 .form-text-personal-information-description{
+  /* border: 1px solid blue; */
   color: rgb(136, 136, 136);
   width: 355px;
   font-size: 12.75px;
-  /* border: 1px solid blue; */
   line-height: 1.25;
   margin-bottom: 12px;
 }

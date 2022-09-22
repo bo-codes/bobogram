@@ -8,10 +8,10 @@
 }
 
 .top-section{
+  /* border: 1px solid rgba(0, 0, 255, 0.177); */
   display: flex;
   justify-content: flex-start;
   margin: 0px 20px;
-  /* border: 1px solid rgba(0, 0, 255, 0.177); */
   border-top: 0px;
   border-bottom: 1px solid rgba(182, 182, 182, 0.456);
   height: 100%;
@@ -65,19 +65,6 @@
   justify-content: flex-start;
 }
 
-.posts-number-profile-page{
-  /* border: 1px solid green; */
-  /* font-weight: 500; */
-}
-
-.followers-number-profile-page{
-  /* border: 1px solid rgb(233, 14, 226); */
-}
-
-.following-number-profile-page{
-  /* border: 1px solid rgb(128, 0, 81); */
-}
-
 .profile-number{
   font-weight: 600;
 }
@@ -91,10 +78,6 @@
   font-weight: bold;
   font-size: 17px;
   margin-top: 19px;
-}
-
-.btn-profile-page{
-
 }
 
 .second-section-container{
@@ -128,4 +111,9 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   gap: 30px;
+}
+
+.user-bio-profile-page{
+  width: 600px;
+  word-wrap: break-word;
 }

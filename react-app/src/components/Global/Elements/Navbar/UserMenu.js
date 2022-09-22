@@ -11,12 +11,6 @@ const MenuButton = styled.div`
 function UserMenu({ user }) {
   const [showMenu, setShowMenu] = useState(false);
 
-  const myDash = async () => {
-    setTimeout(() => {
-      setShowMenu(false);
-    }, 1);
-  };
-
   const openMenu = () => {
     if (!showMenu) return setShowMenu(true);
   };

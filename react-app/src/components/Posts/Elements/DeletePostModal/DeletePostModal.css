@@ -13,7 +13,6 @@
   border-bottom: .25px solid grey;
   padding: 23.75px 0px;
   width: 100%;
-  /* width: 100%; */
   background-color: white;
 }
 
@@ -21,10 +20,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border-bottom: .25px solid grey; */
   padding: 11px 0px;
   width: 100%;
-  /* width: 100%; */
   background-color: white;
 }
 
@@ -40,7 +37,6 @@
 .critical-operations {
   font-weight: 600;
   color: red;
-  /* border-top: .25px solid grey; */
 }
 
 #delete-modal-header{

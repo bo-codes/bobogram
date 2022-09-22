@@ -1,7 +1,7 @@
 import { signUp } from "../../../store/session";
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, NavLink, Redirect, useHistory } from "react-router-dom";
+import { Link, Redirect, useHistory } from "react-router-dom";
 import { login } from "../../../store/session";
 
 import appStoreButton from "../../../images/Download-on-the-App-Store-Button.png";
@@ -18,17 +18,13 @@ const SignUpForm = () => {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
   const [passwordShown, setPasswordShown] = useState(false);
   const [validateInputs, setValidateInputs] = useState();
 
-  // Password toggle handler
   const togglePassword = async (e) => {
     e.preventDefault();
-    // When the handler is invoked
-    // inverse the boolean state of passwordShown
     setPasswordShown(!passwordShown);
   };
 
@@ -39,14 +35,12 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    // if (password === repeatPassword) {
     const data = await dispatch(
       signUp(username, email, password, fullName)
     );
     if (data) {
       setErrors(data);
     }
-    // }
   };
 
   const updateUsername = (e) => {
@@ -85,14 +79,10 @@ const SignUpForm = () => {
           </div>
           <form onSubmit={onSignUp} className="main-form-container">
             <div>
-              {/* IF THERE IS A POST, DISPLAY THE TEXT "Update Your Post" AND LIST ANY ERRORS */}
               <ul>
                 {errors &&
                   errors.map((error) => {
                     let splitError = error.split(":");
-                    // let firstPart = splitError[0];
-                    // let firstLetter = firstPart[0].toUpperCase();
-                    // let secondPart = splitError[1].slice(11, 23);
                     return (
                       <li
                         key={error}
@@ -107,7 +97,6 @@ const SignUpForm = () => {
                         >
                           ✖
                         </span>
-                        {/* {firstLetter + firstPart.slice(1) + secondPart} */}
                         {splitError[1]}
                       </li>
                     );

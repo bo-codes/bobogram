@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useLocation } from "react-router-dom";
 import { thunkFollow, thunkUnfollow } from "../../store/session";
-import { thunkGetUser } from "../../store/users";
 import "./Follows.css";
 
 const Follows = ({ profileUsername }) => {
@@ -25,29 +24,11 @@ const Follows = ({ profileUsername }) => {
   const followButton = async (e) => {
     setFollow(true);
     await dispatch(thunkFollow(profileUsername));
-
-    // if (follow) {
-    //   if (follow.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    //   if (sessionUser.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    // }
   };
 
   const unfollowButton = async (e) => {
     setFollow(false);
     await dispatch(thunkUnfollow(profileUsername));
-
-    // if (unfollow) {
-    //   if (unfollow.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    //   if (sessionUser.username === profileUsername) {
-    //     dispatch(thunkGetUser(profileUsername));
-    //   }
-    // }
   };
 
   return (

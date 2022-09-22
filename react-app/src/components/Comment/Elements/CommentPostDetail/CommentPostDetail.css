@@ -21,9 +21,9 @@
 }
 
 .detail-comment-content{
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: row;
-  /* border: 1px solid blue; */
   width: 434px;
   margin-bottom: 25px;
 }
@@ -34,19 +34,9 @@
   font-size: 16px;
 }
 
-.detail-comment-and-button-container {
-  /* position: relative; */
-  /* display: flex; */
-  /* flex-direction: column-reverse; */
-  /* max-width: 100%; */
-}
-
 .detail-comment-container-container {
   /* border: 1px solid blue; */
   position: relative;
-  /* float: left; */
-  /* width: fit-content; */
-  /* max-width: 88%; */
 }
 
 .comment-menu-button {
@@ -119,15 +109,15 @@
 }
 
 .detail-comment-entire-comment{
-  display: flex;
   /* border: 1px solid orangered; */
+  display: flex;
 }
 
 .comment-options-button-container-container{
+  /* border: 1px solid orangered; */
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  /* border: 1px solid orangered; */
   width: auto;
   position: absolute;
   right: 15px;

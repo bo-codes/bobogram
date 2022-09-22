@@ -6,10 +6,6 @@
   margin-right: 14px;
 }
 
-.post-detail-user-pfp-container{
-  /* border-bottom: 1px solid grey; */
-}
-
 .post-detail-username{
   text-decoration: none;
   color: black;
@@ -30,7 +26,6 @@
 }
 
 #post-detail-postcard-image-container{
-  /* background-color: black; */
   position: relative;
   border-right: 1px solid rgba(173, 173, 173, 0.539);
 }
@@ -66,9 +61,8 @@
 }
 
 .comment-section {
-  width: 100%;
   /* border: 1px solid purple; */
-  /* background-color: #3f3f3f; */
+  width: 100%;
   margin-left: 15px;
   padding-bottom: 5px;
 }

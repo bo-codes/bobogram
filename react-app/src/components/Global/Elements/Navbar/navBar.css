@@ -43,10 +43,10 @@
 }
 
 .logo-dropdown-arrow-container {
+    /* border: 1px solid blue; */
     display: flex;
     justify-content: center;
     align-items: center;
-    /* border: 1px solid blue; */
     height: 44px;
     width: 25px;
 }
@@ -118,7 +118,6 @@
 .likes-link-selected {
     background-image: url("../../../../images/heart-selected.png");
     background-size: cover;
-    /* opacity: 100%; */
     width: 25px;
     height: 22px;
 }

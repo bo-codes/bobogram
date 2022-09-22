@@ -1,11 +1,8 @@
 import { useDispatch } from "react-redux";
-import { useHistory, useLocation } from "react-router-dom";
 import { removeComment } from "../../../../store/comments";
 
-const DeleteCommentModal = ({ comment, setShowConfirmDeleteCommentModal, setShowCommentEditModal, commentId }) => {
+const DeleteCommentModal = ({ comment, setShowConfirmDeleteCommentModal, commentId }) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const location = useLocation();
 
   const cancelDelete = () => {
     setShowConfirmDeleteCommentModal(false);

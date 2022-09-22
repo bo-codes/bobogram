@@ -1,51 +1,31 @@
-// IMPORT REACT STUFF --------
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Modal } from "../../../Global/Elements/Modal";
-import moment from "moment";
+// REACT STUFF --------
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 // --------COMPONENTS -------- //
-import Comment from "../../../Comment/Elements/Comment/Comment";
-import DeletePostModal from "../DeletePostModal/DeletePostModal";
+import CommentPostDetail from "../../../Comment/Elements/CommentPostDetail/CommentPostDetail";
 import Follows from "../../../Follows/Follows";
+import Like from "../../../Like/Like";
 // --------FORMS -------- //
-import LoginFormPosts from "../../../auth/LoginFormCreatePost/LoginFormCreatePost";
 import CreateCommentForm from "../../../Comment/CommentForms/CreateCommentForm/CreateCommentForm";
-import EditPostForm from "../../PostForms/CreatePostForm/OwnPostOptionsForm";
-import SignUpForm from "../../../auth/SignupForm/SignUpForm";
 // -------- CSS/IMAGES -------- //
 import "./PostCardDetail.css";
-import { addOneLike, getAllLikes } from "../../../../store/likes";
-import Like from "../../../Like/Like";
-import CommentPostDetail from "../../../Comment/Elements/CommentPostDetail/CommentPostDetail";
-import DeleteCommentModal from "../../../Comment/Elements/DeleteCommentModal/DeleteCommentModal";
 
-function PostCardDetail({ post, postComments=null, postLikes, likes }) {
-  // console.log("POST LIKES BEFORE EVEN RETURNING", likes);
-  const dispatch = useDispatch();
-  // -------- SETTING STATES ------- //
-  // SHOWING OR HIDING THE EDIT POST MODAL
+function PostCardDetail({ post, postComments = null, postLikes, likes }) {
   const [showCreatePost, setShowCreatePost] = useState(false);
   const [showComments, setShowComments] = useState(false);
-  const [showFullCaption, setShowFullCaption] = useState(false);
-
-  // SHOWING OR HIDING THE CREATE COMMENT MODAL
-
 
   const [showLogin, setShowLogin] = useState(false);
 
-  // -------- PULLING INFO FROM THE STATE -------- //
-  // const likes = useSelector((state) => state.likes) || ""; //Grab likes state
   const user = useSelector((state) => state.session.user) || "";
 
-    const areWeShowingComments = () => {
-      if (showComments) {
-        setShowComments(false);
-      } else {
-        setShowComments(true);
-      }
-    };
-
+  const areWeShowingComments = () => {
+    if (showComments) {
+      setShowComments(false);
+    } else {
+      setShowComments(true);
+    }
+  };
 
   return (
     <div id="post-detail-outermost-card">
@@ -98,8 +78,6 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
           {/* ------ POST EDIT BUTTON ------ vv*/}
           <div className="edit-post-container">
             {post ? (
-              // POST EDIT BUTTON
-              // when clicked, setShowCreatePost will toggle to true
               <div className="edit-post-button-container">
                 {user && post.user_id === user.id && (
                   <button
@@ -110,7 +88,6 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
                     ...
                   </button>
                 )}
-                {/* if setShowCreatePost is set to true, then show the modal which holds the post edit form. */}
               </div>
             ) : (
               <h1>Loading Post</h1>
@@ -130,7 +107,6 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
                     return new Date(b.created_at) - new Date(a.created_at);
                   })
                   .map((comment) => {
-                    // FOR EACH COMMENT DISPLAY THIS
                     return (
                       <CommentPostDetail
                         style={{
@@ -167,7 +143,6 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
               <div id="comment-btn"></div>
             </button>
           </div>
-          {/* LIKES */}
           {postLikes.length >= 1 && (
             <div className="like-count">
               {postLikes.length == 1
@@ -175,11 +150,6 @@ function PostCardDetail({ post, postComments=null, postLikes, likes }) {
                 : `${postLikes.length} likes`}
             </div>
           )}
-          {/* {showLogin && (
-            <Modal onClose={() => setShowLogin(false)}>
-              <LoginFormPosts setShowLogin={setShowLogin} />
-            </Modal>
-          )} */}
           <div className="create-comment-container">
             {/* ----------- CREATE COMMENT FORM ----------- vv*/}
             <CreateCommentForm

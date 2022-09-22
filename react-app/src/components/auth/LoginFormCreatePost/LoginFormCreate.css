@@ -1,43 +1,40 @@
 .entire-page{
+  /* border: 1px solid greenyellow; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid greenyellow; */
   height: 100vh;
 
 }
 
 #login-header {
+  /* border: 1px solid red; */
   font-weight: 800;
   color: black;
   display: flex;
   justify-content: center;
   margin-bottom: 10px;
-  /* border: 1px solid red; */
 }
 .form-and-img-container{
+  /* border: 1px solid blue; */
   display: flex;
   justify-content: center;
   gap: 14px;
-  /* border: 1px solid blue; */
   width: 815px;
-  /* height: 565px; */
   margin-top: 55px;
   margin-bottom: 75px;
-  /* padding: 10px; */
 }
 
 .img-container{
-  position: relative;
   /* border: 1px solid seagreen; */
+  position: relative;
   width: 47%;
   height: 98%;
 }
 
 .phone-image{
   /* border: 1px solid aqua; */
-  /* position: absolute; */
   width: 100%;
   z-index: -1;
 }
@@ -51,11 +48,11 @@
 
 
 .logo-container{
+  /* border: 1px solid magenta; */
   position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* border: 1px solid magenta; */
   height: 133px;
   width: 350px;
 }
@@ -64,8 +61,6 @@
   /* border: 1px solid orange; */
   display: flex;
   justify-content: center;
-  /* height: 80px;
-  width: 174px; */
   height: 73px;
   width: 160px;
   background-image: url('../../../images/Bobogram-No-Fish-Logo.png');
@@ -93,34 +88,34 @@
 }
 
 .form-container-2{
+  /* border: 1px solid orange; */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 63px;
   width: 100%;
-  /* border: 1px solid orange; */
   border: 1px solid rgba(158, 158, 158, 0.532);
   background-color: white;
   font-size: 16px;
 }
 
 .form-container-3{
+  /* border: 1px solid purple; */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 57px;
   width: 100%;
-  /* border: 1px solid purple; */
   font-size: 16px;
 }
 
 .form-container-4{
+  /* border: 1px solid green; */
   display: flex;
   justify-content: center;
   gap: 10px;
   height: 40px;
   width: 100%;
-  /* border: 1px solid green; */
 }
 
 .little-footer{
@@ -209,11 +204,10 @@
 }
 
 .password-input-container{
+  /* border: 1px solid greenyellow; */
   display: flex;
   justify-content: center;
-  /* align-self: center; */
   position: relative;
-  /* border: 1px solid greenyellow; */
   width: 270px;
 }
 

@@ -1,8 +1,7 @@
-// IMPORT REACT STUFF --------
-import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+// REACT STUFF --------
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Modal } from "../../../Global/Elements/Modal";
-import { Link } from "react-router-dom";
 
 import PostCardDetail from "../PostCardDetail/PostCardDetail";
 
@@ -10,15 +9,14 @@ import PostCardDetail from "../PostCardDetail/PostCardDetail";
 import "./PostcardExplore.css";
 
 function PostCardExplore({ post, likes, postComments }) {
-
   const user = useSelector((state) => state.session.user) || "";
 
   const [showPostDetail, setShowPostDetail] = useState(false);
 
   const showDetails = (e) => {
-    e.preventDefault()
-    setShowPostDetail(true)
-  }
+    e.preventDefault();
+    setShowPostDetail(true);
+  };
 
   const postLikes = likes.filter((like) => like.post_id == post.id);
 

@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import EditCommentForm from "../../CommentForms/EditCommentForm/EditCommentForm";
-import CommentDropdown from "../CommentDropdown/CommentDropdown";
-import moment from "moment";
 import "./Comment.css";
 
-function Comment({ comment, post, userId }) {
+function Comment({ comment, post }) {
   const [showEditComment, setShowEditComment] = useState(false);
   const commentDate = comment.created_at.toLocaleString("en-US", {
     timeZone: "America/Los_Angeles",
@@ -25,15 +23,6 @@ function Comment({ comment, post, userId }) {
                 <span className="comment-username">
                   {comment.user.username}
                 </span>
-                {/* {userId === comment.user_id && (
-                  <span className="inner-comment-dd">
-                    <CommentDropdown
-                      comment={comment}
-                      setShowEditComment={setShowEditComment}
-                      showEditComment={showEditComment}
-                    />
-                  </span>
-                )} */}
               </div>
               <div className="comment-comment">
                 <p>{comment.content}</p>
