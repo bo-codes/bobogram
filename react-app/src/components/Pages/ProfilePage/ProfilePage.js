@@ -1,7 +1,7 @@
 // REACT STUFF --------
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 // --------COMPONENTS -------- //
 import FollowsSquare from "../../Follows/FollowsSquare";
 import UserOptionsForm from "../../Posts/PostForms/CreatePostForm/UserOptionsForm";
@@ -14,6 +14,9 @@ import { thunkGetUser } from "../../../store/users";
 import { Modal } from "../../Global/Elements/Modal";
 // -------- CSS/IMAGES -------- //
 import "./ProfilePage.css";
+import appStoreButton from "../../../images/Download-on-the-App-Store-Button.png";
+import googlePlayButton from "../../../images/Get-It-On-Google-Play-Button.png";
+
 
 function ProfilePage({}) {
   const dispatch = useDispatch();
@@ -56,6 +59,8 @@ function ProfilePage({}) {
   if (user) {
     userPosts = posts.filter((post) => post.user_id === user.id);
   }
+
+  const currentUser = window.location.pathname
 
   return (
     <main className="entire-profile-page">
@@ -110,7 +115,7 @@ function ProfilePage({}) {
       <div className="second-and-a-half-section"></div>
       <div className="third-section-container">
         <div className="third-section">
-          {userPosts &&
+          {userPosts.length ? (
             userPosts.map((post) => {
               let postComments = comments.filter((comment) => {
                 return parseInt(comment.post_id) === parseInt(post.id);
@@ -125,7 +130,51 @@ function ProfilePage({}) {
                   />
                 </a>
               );
-            })}
+            })
+          ) : (
+            <>
+              { currentUser === `/${sessionUser.username}` ? (
+                <div className="no-posts-container">
+                  <div className="no-posts-image"></div>
+                  <div className="no-posts-text-container">
+                    <div className="no-posts-button-and-text-container">
+                      <div className="no-posts-bold-text">
+                        Start capturing and sharing your moments.
+                      </div>
+                      <div className="no-posts-normal-text">
+                        Get the app to share your first photo or video.
+                      </div>
+                      <div className="no-posts-form-container-4">
+                        <Link
+                          to={{
+                            pathname: "https://www.bo-codes.co",
+                          }}
+                          target="_blank"
+                        >
+                          <img src={appStoreButton} className="no-posts-store-links" />
+                        </Link>
+                        <Link
+                          to={{
+                            pathname: "https://www.bo-codes.co",
+                          }}
+                          target="_blank"
+                        >
+                          <img src={googlePlayButton} className="no-posts-store-links" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ):(
+                <>
+                  <div className="no-posts-yet-others-container">
+                    <div className="no-posts-yet-others-image"></div>
+                    <div className="no-posts-yet-others-text">No Posts Yet</div>
+                  </div>
+                </>
+              )}
+          </>
+          )}
         </div>
       </div>
     </main>
