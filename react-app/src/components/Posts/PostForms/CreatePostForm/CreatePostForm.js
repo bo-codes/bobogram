@@ -156,7 +156,7 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
                 >
                   <input
                     id="image-upload-button"
-                    name="image"
+                    name="image-upload"
                     type="file"
                     accept="image/*"
                     onChange={updateImage}
@@ -177,7 +177,7 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
               </div>
               <input
                 id="image-upload-button"
-                name="image"
+                name="image-upload"
                 type="file"
                 accept="image/*"
                 onChange={updateImage}

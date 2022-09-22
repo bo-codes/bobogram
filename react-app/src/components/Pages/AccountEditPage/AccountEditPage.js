@@ -25,7 +25,8 @@ export default function AccountEditPage() {
   );
   const [gender, setGender] = useState((user && user.gender) || "");
   const [profilePicture, setProfilePicture] = useState(
-    (user && user.profile_picture) || ""
+    (user && user.profile_picture) ||
+      "https://bobogrambucket.s3.amazonaws.com/6f00f3e66f084737bb2914c52c05c6db.jpg"
   );
 
   useEffect(() => {
@@ -140,6 +141,7 @@ export default function AccountEditPage() {
                     htmlFor="image-upload-button"
                     name="image"
                     className="imput-label"
+                    style={{backgroundColor: 'black'}}
                   >
                   </span>
                 )}
