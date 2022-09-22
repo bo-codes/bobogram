@@ -65,7 +65,22 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
   const updateImage = (e) => {
     const imageFile = e.target.files[0];
     setImage(imageFile);
+    console.log(imageFile, "IMAGE")
   };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    const file = e.dataTransfer.files[0];
+    setImage(file);
+  };
+
+  const handleDragOver = (e) => {
+    e.preventDefault();
+  };
+
+  // handleInputByClick = (e) => {
+  //   this.uploadFile(Array.from(e.target.files));
+  // };
 
   return (
     <div className="create-page-container">
@@ -134,15 +149,20 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
             )}
             <div className="create-post-inputs">
               <div className="input-section-image">
-                <div className="image-input-jpg"></div>
-                <input
-                  id="image-upload-button"
-                  name="image"
-                  type="file"
-                  accept="image/*"
-                  onChange={updateImage}
-                  className="image-upload-button"
-                />
+                <div
+                  className="image-input-jpg"
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                >
+                  <input
+                    id="image-upload-button"
+                    name="image"
+                    type="file"
+                    accept="image/*"
+                    onChange={updateImage}
+                    className="image-upload-button-invisible"
+                  />
+                </div>
                 {image && (
                   <span
                     htmlFor="image-upload-button"
@@ -150,7 +170,19 @@ function CreatePostForm({ post = null, setShowCreatePostForm }) {
                     className="imput-label"
                   ></span>
                 )}
+                <label htmlFor="image-upload-button" id="post-image-upload-button">Select from computer</label>
+                {image && (
+                  <div className="post-create-image-upload-filename">{image.name}</div>
+                )}
               </div>
+              <input
+                id="image-upload-button"
+                name="image"
+                type="file"
+                accept="image/*"
+                onChange={updateImage}
+                className="image-upload-button"
+              />
               {/* ----- IMAGE INPUT ----- ^^*/}
               {/* ----- CAPTION INPUT ----- vv*/}
               <div className="input-section-caption">

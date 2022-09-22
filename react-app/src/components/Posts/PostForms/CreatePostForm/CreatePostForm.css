@@ -48,8 +48,18 @@
   align-items: center;
   padding-bottom: 70px;
 }
+
+.image-upload-button-invisible{
+  visibility: hidden;
+}
+
 .image-upload-button{
-  padding-left: 100px;
+  /* border: 1px solid blue; */
+  position: absolute;
+  display: flex;
+  align-self: center;
+  margin-top: 130px;
+  margin-left: 90px;
 }
 
 .input-section-caption{
@@ -123,5 +133,30 @@
   background-image: url('../../../../images//aws-input.png');
   background-size: contain;
   width: 300px;
-  height: 170px;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input[type="file"]{
+  display: none;
+}
+
+#post-image-upload-button{
+  display: flex;
+  color: white;
+  position: absolute;
+  height: 30px;
+  width: 166px;
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  background-color: #3195ff;;
+  align-self: center;
+  margin-top: 204px;
+}
+
+.post-create-image-upload-filename{
+  position: absolute;
+  margin-top: 270px;
 }
