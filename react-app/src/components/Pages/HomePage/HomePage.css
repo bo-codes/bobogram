@@ -32,10 +32,26 @@
   margin-left: 7px;
 }
 
+.suggested-users-only-container{
+  /* border: 1px solid orange; */
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-left: 7px;
+}
+
 .inner-suggestions-container{
   /* border: 1px solid purple; */
   width: 100%;
   padding: 22px 20px 0px 30px;
+}
+
+.inner-suggestions-only-container{
+  /* border: 1px solid purple; */
+  width: 400px;
+  padding: 22px 20px 0px 30px;
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
 
 .current-user-bar{

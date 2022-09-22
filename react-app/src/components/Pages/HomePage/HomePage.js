@@ -35,9 +35,106 @@ function HomePage({}) {
 
   return (
     <main className="entire-homepage">
-      <div className="homepage-container">
-        <div className="suggested-users-container">
-          <div className="inner-suggestions-container">
+      {posts.length ? (
+        <div className="homepage-container">
+          <div className="suggested-users-container">
+            <div className="inner-suggestions-container">
+              <div className="current-user-bar">
+                {user && (
+                  <>
+                    <Link to={`/${user.username}`} exact={true}>
+                      <img
+                        className="current-user-profile-picture"
+                        src={user.profile_picture}
+                      />
+                    </Link>
+                    <div className="current-user-username-and-name">
+                      <Link
+                        to={`/${user.username}`}
+                        exact={true}
+                        style={{ textDecoration: "none", color: "black" }}
+                      >
+                        <h3 className="current-user-username">
+                          {user.username}
+                        </h3>
+                      </Link>
+                      <h3 className="current-user-full-name">
+                        {user.full_name}
+                      </h3>
+                    </div>
+                    <Link
+                      to={{
+                        pathname: "https://www.bo-codes.co",
+                      }}
+                      target="_blank"
+                      className="other-work-text"
+                    >
+                      Other Work
+                    </Link>
+                  </>
+                )}
+              </div>
+              <h2 className="suggestions-for-you-title">
+                Suggestestions For You
+              </h2>
+              {shuffledUsers &&
+                shuffledUsers.slice(0, 5).map((user) => {
+                  return (
+                    <div className="user-bar" key={user.id}>
+                      <Link to={`/${user.username}`} exact={true}>
+                        <img
+                          className="user-profile-picture"
+                          src={user.profile_picture}
+                        />
+                      </Link>
+                      <div className="user-username-and-name">
+                        <Link
+                          to={`/${user.username}`}
+                          exact={true}
+                          style={{ textDecoration: "none", color: "black" }}
+                        >
+                          <h3 className="user-username">{user.username}</h3>
+                        </Link>
+                        <h3 className="user-suggested-for-you">
+                          Suggested for you
+                        </h3>
+                      </div>
+                      <Follows
+                        profileUsername={user.username}
+                        className="user-follow-button"
+                      />
+                    </div>
+                  );
+                })}
+            </div>
+          </div>
+          <div className="post-list">
+            {posts &&
+              posts
+                .sort((a, b) => {
+                  return new Date(b.created_at) - new Date(a.created_at);
+                })
+                .map((post) => {
+                  let postComments = comments.filter((comment) => {
+                    return parseInt(comment.post_id) === parseInt(post.id);
+                  });
+
+                  return (
+                    <a key={post.id} name={post.id} id={post.id}>
+                      <PostCard
+                        post={post}
+                        postComments={postComments}
+                        likes={likes}
+                      />
+                    </a>
+                  );
+                })}
+          </div>
+          {/* </div> */}
+        </div>
+      ) : (
+        <div className="suggested-users-only-container">
+          <div className="inner-suggestions-only-container">
             <div className="current-user-bar">
               {user && (
                 <>
@@ -73,7 +170,7 @@ function HomePage({}) {
               Suggestestions For You
             </h2>
             {shuffledUsers &&
-              shuffledUsers.slice(0, 5).map((user) => {
+              shuffledUsers.slice(0, 31).map((user) => {
                 return (
                   <div className="user-bar" key={user.id}>
                     <Link to={`/${user.username}`} exact={true}>
@@ -103,30 +200,7 @@ function HomePage({}) {
               })}
           </div>
         </div>
-        <div className="post-list">
-          {posts &&
-            posts
-              .sort((a, b) => {
-                return new Date(b.created_at) - new Date(a.created_at);
-              })
-              .map((post) => {
-                let postComments = comments.filter((comment) => {
-                  return parseInt(comment.post_id) === parseInt(post.id);
-                });
-
-                return (
-                  <a key={post.id} name={post.id} id={post.id}>
-                    <PostCard
-                      post={post}
-                      postComments={postComments}
-                      likes={likes}
-                    />
-                  </a>
-                );
-              })}
-        </div>
-        {/* </div> */}
-      </div>
+      )}
     </main>
   );
 }
