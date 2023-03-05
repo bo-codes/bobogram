@@ -42,6 +42,7 @@ const SignUpForm = () => {
       setErrors(data);
     }
   };
+  // NOTE NOTE NOTE
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
